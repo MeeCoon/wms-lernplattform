@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Zeichenfeld</title>
+  <style>
+    canvas {
+      border: 2px solid #333;
+      background-color: #fff;
+      touch-action: none; /* wichtig für Touch-Geräte */
+    }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Zeichne hier mit der Maus oder dem Stift!</h1>
+  <canvas id="zeichenfeld" width="500" height="300"></canvas>
+
+  <script>
+    const canvas = document.getElementById("zeichenfeld");
+    const ctx = canvas.getContext("2d");
+
+    let zeichnet = false;
+
+    function position(evt) {
+      let rect = canvas.getBoundingClientRect();
+      return {
+        x: (evt.touches ? evt.touches[0].clientX : evt.clientX) - rect.left,
+        y: (evt.touches ? evt.touches[0].clientY : evt.clientY) - rect.top
+      };
+    }
+
+    function start(evt) {
+      zeichnet = true;
+      let pos = position(evt);
+      ctx.beginPath();
+      ctx.moveTo(pos.x, pos.y);
+    }
+
+    function draw(evt) {
+      if (!zeichnet) return;
+      evt.preventDefault(); // wichtig für Touch!
+      let pos = position(evt);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+
+    function stop() {
+      zeichnet = false;
+    }
+
+    // Maus-Events
+    canvas.addEventListener("mousedown", start);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", stop);
+    canvas.addEventListener("mouseleave", stop);
+
+    // Touch-Events
+    canvas.addEventListener("touchstart", start);
+    canvas.addEventListener("touchmove", draw);
+    canvas.addEventListener("touchend", stop);
+  </script>
+
+</body>
+</html>
