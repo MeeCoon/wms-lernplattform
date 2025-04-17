@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WMS Lernhilfe</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .faecher-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .fach-box {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #444;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .fach-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+    }
+
+    .suche {
+      position: relative;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    .suche input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      outline: none;
+    }
+
+    .suche button {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      padding: 8px 15px;
+      background: #00796b;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .fach-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Willkommen bei der WMS Lernhilfe</h1>
+
+  <!-- Fächer-Anzeige -->
+  <div class="faecher-container">
+    <div class="fach-box" onclick="location.href='mathematik.html'">📐 Mathematik</div>
+    <div class="fach-box" onclick="location.href='frw.html'">📊 FRW</div>
+    <div class="fach-box" onclick="location.href='wur.html'">⚖️ WuR</div>
+  </div>
+
+  <!-- Suchleiste -->
+  <div class="suche">
+    <input type="text" id="suche" placeholder="Suche nach einem Thema...">
+    <button onclick="sucheThema()">Suchen</button>
+  </div>
+
+  <script>
+    function sucheThema() {
+      const begriff = document.getElementById("suche").value.toLowerCase();
+
+      // Test-Simulation – später durch echte Seiten/Themen ersetzen
+      if (begriff.includes("gleichung") || begriff.includes("mathe")) {
+        location.href = "mathematik.html";
+      } else if (begriff.includes("buchhaltung") || begriff.includes("frw")) {
+        location.href = "frw.html";
+      } else if (begriff.includes("recht") || begriff.includes("wuwr")) {
+        location.href = "wur.html";
+      } else {
+        alert("Thema nicht gefunden 😕");
+      }
+    }
+  </script>
+
+</body>
+</html>
