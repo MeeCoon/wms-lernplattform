@@ -112,3 +112,72 @@
     }
 
     .submenu.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Menü Button -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Sidebar Menü -->
+<div class="sidebar" id="sidebar">
+  <h2>Fächerübersicht</h2>
+  <input type="text" placeholder="Suchen...">
+  <ul>
+    <li><span class="arrow" onclick="toggleSubmenu('matheSub')">▶</span><a href="mathe.html">Mathematik</a>
+      <ul id="matheSub" class="submenu">
+        <li><a href="#">Rechnungen in Z</a></li>
+        <li><a href="#">Rechnungen in Q</a></li>
+        <li><a href="#">Lineare Gleichungen</a></li>
+        <li><a href="#">Quadratische Gleichungen</a></li>
+      </ul>
+    </li>
+    <li><span class="arrow" onclick="toggleSubmenu('frwSub')">▶</span><a href="frw.html">FRW</a>
+      <ul id="frwSub" class="submenu">
+        <li><a href="#">Kaufmännische Buchführung</a></li>
+        <li><a href="#">Doppelte Buchführung</a></li>
+        <li><a href="#">Rechnungsabschluss</a></li>
+        <li><a href="#">Fremde Währungen</a></li>
+      </ul>
+    </li>
+    <li><a href="#">WuR</a></li>
+  </ul>
+</div>
+
+<!-- Hauptinhalt -->
+<h1>Finanz- und Rechnungswesen (FRW)</h1>
+<div class="topics">
+  <ul>
+    <li><a href="#">Kaufmännische Buchführung</a></li>
+    <li><a href="#">System der doppelten Buchführung</a></li>
+    <li><a href="#">Rechnungsabschluss und Kontenrahmen</a></li>
+    <li><a href="#">Geschäfte mit der Bank</a></li>
+    <li><a href="#">Fremde Währungen</a></li>
+    <li><a href="#">Buchhaltung des Warenhandelsbetriebs</a></li>
+    <li><a href="#">Mehrwertsteuer</a></li>
+    <li><a href="#">Betriebliche Kalkulation</a></li>
+    <li><a href="#">Verluste auf Forderungen</a></li>
+    <li><a href="#">Abschreibungen</a></li>
+    <li><a href="#">Rechnungsabgrenzungen</a></li>
+    <li><a href="#">Personalaufwand</a></li>
+    <li><a href="#">Besonderheiten des Einzelunternehmens</a></li>
+  </ul>
+</div>
+
+<!-- Scripte -->
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("show");
+  }
+
+  function toggleSubmenu(id) {
+    const submenu = document.getElementById(id);
+    submenu.classList.toggle("show");
+  }
+</script>
+
+</body>
+</html>
