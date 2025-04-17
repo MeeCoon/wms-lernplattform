@@ -7,52 +7,98 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f8fafc;
       margin: 0;
       padding: 0;
+      background-color: #f0f4f8;
+    }
+
+    /* Menü-Stil */
+    .menu-icon {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .menu-dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background-color: white;
+      color: #2b6cb0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 280px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    .menu-dropdown input {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .menu-dropdown details summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .menu-dropdown ul {
+      list-style: none;
+      padding-left: 15px;
+    }
+
+    .menu-dropdown ul li {
+      margin: 5px 0;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.5em;
-      margin-top: 60px;
       color: #2b6cb0;
+      font-size: 2.5em;
+      margin: 50px 0 20px;
     }
 
-    /* Tab-Stile */
+    /* Tabs */
     .tabs {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      margin-bottom: 20px;
     }
 
     .tab {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: #e2e8f0;
+      padding: 14px 28px;
       cursor: pointer;
-      border: 1px solid #ccc;
-      margin: 0 5px;
+      font-size: 16px;
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+      border-top: none;
+      border-bottom: none;
+      margin-right: 10px;
       border-radius: 8px 8px 0 0;
-      transition: background-color 0.3s;
+    }
+
+    .tab:last-child {
+      margin-right: 0;
     }
 
     .tab.active {
-      background-color: #2b6cb0;
-      color: white;
+      background-color: #e2e8f0;
+      font-weight: bold;
     }
 
-    /* Inhalt der Tabs */
     .tab-content {
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 800px;
+      margin: auto;
       padding: 20px;
-      background-color: white;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
     }
 
-    /* Standardmäßig alle Tab-Inhalte ausblenden */
     .content {
       display: none;
     }
@@ -61,69 +107,101 @@
       display: block;
     }
 
-    /* Styling für die einzelnen Bereiche */
-    .theory, .tasks, .exams {
-      font-size: 18px;
+    .content ul {
+      padding-left: 20px;
+    }
+
+    .content ul li {
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
 
-<!-- Titel für das Thema -->
+<!-- Menü-Icon -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<!-- Menü-Dropdown -->
+<div id="menu" class="menu-dropdown">
+  <input type="text" placeholder="Thema suchen...">
+  <details open>
+    <summary>Mathematik</summary>
+    <ul>
+      <li><a href="mathe_rechnen_in_Z.html">• Rechnen in Z</a></li>
+      <li><a href="#">• Rechnen in Q</a></li>
+      <li><a href="#">• Lineare Gleichungen</a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>FRW</summary>
+    <ul>
+      <li><a href="#">• Kaufmännische Buchführung</a></li>
+      <li><a href="#">• Doppelte Buchführung</a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>WuR</summary>
+    <ul>
+      <li><a href="#">• Vertragsarten</a></li>
+    </ul>
+  </details>
+</div>
+
+<!-- Titel -->
 <h1>Rechnen in Z</h1>
 
-<!-- Tabs (Reiter) -->
+<!-- Reiter -->
 <div class="tabs">
   <div class="tab active" onclick="showTab('theory')">Theorie</div>
   <div class="tab" onclick="showTab('tasks')">Aufgaben</div>
   <div class="tab" onclick="showTab('exams')">Übungsprüfungen</div>
 </div>
 
-<!-- Tab-Inhalte -->
+<!-- Inhalt -->
 <div class="tab-content">
   <div id="theory" class="content active">
     <h2>Theorie</h2>
-    <p>Hier kommt die Theorie zu "Rechnen in Z". Du lernst alles über Addition, Subtraktion, Multiplikation und Division im Bereich der ganzen Zahlen (Z). Z.B.:</p>
     <ul>
-      <li>Was sind ganze Zahlen?</li>
-      <li>Regeln der Addition/Subtraktion/Multiplikation von Zahlen</li>
-      <li>Beispielaufgaben und Lösungen</li>
+      <li>Ganze Zahlen (Z) sind ...</li>
+      <li>Beispiel: -3 + 7 = 4</li>
+      <li>Beachte das Vorzeichen bei Subtraktion!</li>
     </ul>
   </div>
-  
+
   <div id="tasks" class="content">
     <h2>Aufgaben</h2>
-    <p>Hier kommen Aufgaben, die du lösen kannst, um deine Fähigkeiten zu testen. Versuche die folgenden Aufgaben zu lösen:</p>
     <ul>
-      <li>5 + (-3) = ?</li>
-      <li>7 - 2 = ?</li>
-      <li>(-4) * 3 = ?</li>
+      <li>1. -4 + 2 = ?</li>
+      <li>2. 7 - 10 = ?</li>
+      <li>3. (-3) × (-3) = ?</li>
     </ul>
   </div>
-  
+
   <div id="exams" class="content">
     <h2>Übungsprüfungen</h2>
-    <p>Hier findest du Übungsprüfungen zu "Rechnen in Z", um dich auf deine Prüfung vorzubereiten. Diese Tests decken alle relevanten Themen ab:</p>
     <ul>
-      <li>Prüfung 1: Addition und Subtraktion der ganzen Zahlen</li>
-      <li>Prüfung 2: Multiplikation und Division im Bereich der Zahlen</li>
+      <li>Teil A: Rechnen mit negativen Zahlen</li>
+      <li>Teil B: Textaufgaben mit Z</li>
     </ul>
   </div>
 </div>
 
-<!-- JavaScript zum Wechseln der Tabs -->
+<!-- JavaScript -->
 <script>
   function showTab(tabName) {
-    // Alle Tabs und deren Inhalte zurücksetzen
     const tabs = document.querySelectorAll('.tab');
     const contents = document.querySelectorAll('.content');
-    
+
     tabs.forEach(tab => tab.classList.remove('active'));
     contents.forEach(content => content.classList.remove('active'));
-    
-    // Den ausgewählten Tab und dessen Inhalt aktivieren
+
     document.querySelector(`#${tabName}`).classList.add('active');
     document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
   }
 </script>
 
