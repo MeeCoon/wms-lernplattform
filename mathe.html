@@ -1,4 +1,3 @@
-<!-- mathe.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,12 +6,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mathematik</h1>
-  <p>Hier kommen alle Mathe-Themen hin...</p>
-  <a href="index.html">Zurück zur Startseite</a>
+  <!-- Menü einfügen -->
+  <div id="menu-container"></div>
 
-  <canvas id="drawingCanvas" width="400" height="200" style="border:1px solid black;"></canvas>
-<button onclick="clearCanvas()">Löschen</button>
-<button onclick="saveDrawing()">Überprüfen</button>
+  <h1 style="text-align: center; margin-top: 60px;">📐 Mathematik</h1>
+  <div style="max-width: 600px; margin: 40px auto;">
+    <ul style="list-style: none; padding-left: 0; font-size: 1.2rem;">
+      <li><a href="#">Rechnungen in Z</a></li>
+      <li><a href="#">Rechnungen in Q</a></li>
+      <li><a href="#">Lineare Gleichungen, Systeme</a></li>
+      <li><a href="#">Quadratische Gleichungen</a></li>
+      <li><a href="#">Potenzen, Wurzeln, Logarithmen</a></li>
+      <li><a href="#">Nutzenschwelle</a></li>
+      <li><a href="#">Lineare Optimierung</a></li>
+    </ul>
+  </div>
+
+  <script>
+    // Lade das Menü aus menu.html rein
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
