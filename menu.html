@@ -1,0 +1,122 @@
+<style>
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: white;
+    box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+    padding: 30px 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar.show {
+    transform: translateX(0%);
+  }
+
+  .menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .fach-liste {
+    list-style: none;
+    padding: 0;
+  }
+
+  .fach-liste > li {
+    margin-bottom: 10px;
+  }
+
+  .fach-liste summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .fach-liste a {
+    display: block;
+    text-decoration: none;
+    color: #444;
+    margin-left: 10px;
+    margin-bottom: 4px;
+  }
+
+  .suche-im-menu {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<!-- Menü Button -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h2>Navigation</h2>
+  <input type="text" placeholder="Suche..." class="suche-im-menu">
+
+  <ul class="fach-liste">
+    <li>
+      <details>
+        <summary><a href="mathematik.html">📐 Mathematik</a></summary>
+        <a href="#">Rechnungen in Z</a>
+        <a href="#">Rechnungen in Q</a>
+        <a href="#">Lineare Gleichungen</a>
+        <a href="#">Quadratische Gleichungen</a>
+        <a href="#">Potenzen & Logarithmen</a>
+        <a href="#">Nutzenschwelle</a>
+        <a href="#">Lineare Optimierung</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="frw.html">📊 FRW</a></summary>
+        <a href="#">Kaufmännische Buchführung</a>
+        <a href="#">Doppelte Buchführung</a>
+        <a href="#">Rechnungsabschluss</a>
+        <a href="#">Bankgeschäfte</a>
+        <a href="#">Fremde Währungen</a>
+        <a href="#">Warenhandelsbetrieb</a>
+        <a href="#">Mehrwertsteuer</a>
+        <a href="#">Kalkulation</a>
+        <a href="#">Forderungsverlust</a>
+        <a href="#">Abschreibungen</a>
+        <a href="#">Rechnungsabgrenzung</a>
+        <a href="#">Personalaufwand</a>
+        <a href="#">Einzelunternehmen</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="wur.html">⚖️ WuR</a></summary>
+        <a href="#">(Themen folgen)</a>
+      </details>
+    </li>
+  </ul>
+</div>
+
+<script>
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("show");
+  }
+</script>
