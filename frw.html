@@ -1,14 +1,39 @@
-<!-- mathe.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Finanz- und Rechnungswesen</title>
+  <title>FRW</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Finanz- und Rechnungswesen</h1>
-  <p>Hier kommen alle FRW-Themen hin...</p>
-  <a href="index.html">Zurück zur Startseite</a>
+  <!-- Menü einfügen -->
+  <div id="menu-container"></div>
+
+  <h1 style="text-align: center; margin-top: 60px;">📊 Finanz- & Rechnungswesen</h1>
+  <div style="max-width: 600px; margin: 40px auto;">
+    <ul style="list-style: none; padding-left: 0; font-size: 1.2rem;">
+      <li><a href="#">Kaufmännische Buchführung</a></li>
+      <li><a href="#">Doppelte Buchführung</a></li>
+      <li><a href="#">Rechnungsabschluss & Konten</a></li>
+      <li><a href="#">Bankgeschäfte</a></li>
+      <li><a href="#">Fremde Währungen</a></li>
+      <li><a href="#">Warenhandelsbetrieb</a></li>
+      <li><a href="#">Mehrwertsteuer</a></li>
+      <li><a href="#">Kalkulation</a></li>
+      <li><a href="#">Forderungsverlust</a></li>
+      <li><a href="#">Abschreibungen</a></li>
+      <li><a href="#">Rechnungsabgrenzung</a></li>
+      <li><a href="#">Personalaufwand</a></li>
+      <li><a href="#">Einzelunternehmen</a></li>
+    </ul>
+  </div>
+
+  <script>
+    fetch('menu.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
+  </script>
 </body>
 </html>
