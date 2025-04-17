@@ -118,90 +118,72 @@
 </head>
 <body>
 
-<!-- Menü-Icon -->
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<!-- Menü Button -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- Menü-Dropdown -->
-<div id="menu" class="menu-dropdown">
-  <input type="text" placeholder="Thema suchen...">
-  <details open>
-    <summary>Mathematik</summary>
-    <ul>
-      <li><a href="mathe_rechnen_in_Z.html">• Rechnen in Z</a></li>
-      <li><a href="#">• Rechnen in Q</a></li>
-      <li><a href="#">• Lineare Gleichungen</a></li>
-    </ul>
-  </details>
-  <details>
-    <summary>FRW</summary>
-    <ul>
-      <li><a href="#">• Kaufmännische Buchführung</a></li>
-      <li><a href="#">• Doppelte Buchführung</a></li>
-    </ul>
-  </details>
-  <details>
-    <summary>WuR</summary>
-    <ul>
-      <li><a href="#">• Vertragsarten</a></li>
-    </ul>
-  </details>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h2>Navigation</h2>
+  <input type="text" placeholder="Suche..." class="suche-im-menu">
+
+  <ul class="fach-liste">
+    <li>
+      <details>
+        <summary><a href="mathematik.html">📐 Mathematik</a></summary>
+        <a href="Rechnungen_in_Z.html">Rechnungen in Z</a>
+        <a href="#">Rechnungen in Q</a>
+        <a href="#">Lineare Gleichungen</a>
+        <a href="#">Quadratische Gleichungen</a>
+        <a href="#">Potenzen & Logarithmen</a>
+        <a href="#">Nutzenschwelle</a>
+        <a href="#">Lineare Optimierung</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="frw.html">📊 FRW</a></summary>
+        <a href="#">Kaufmännische Buchführung</a>
+        <a href="#">Doppelte Buchführung</a>
+        <a href="#">Rechnungsabschluss</a>
+        <a href="#">Bankgeschäfte</a>
+        <a href="#">Fremde Währungen</a>
+        <a href="#">Warenhandel</a>
+        <a href="#">Mehrwertsteuer</a>
+        <a href="#">Kalkulation</a>
+        <a href="#">Forderungsverlust</a>
+        <a href="#">Abschreibungen</a>
+        <a href="#">Rechnungsabgrenzung</a>
+        <a href="#">Personalaufwand</a>
+        <a href="#">Einzelunternehmen</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="wur.html">⚖️ WuR</a></summary>
+        <a href="#">(Themen folgen)</a>
+      </details>
+    </li>
+  </ul>
 </div>
 
-<!-- Titel -->
-<h1>Rechnen in Z</h1>
-
-<!-- Reiter -->
-<div class="tabs">
-  <div class="tab active" onclick="showTab('theory')">Theorie</div>
-  <div class="tab" onclick="showTab('tasks')">Aufgaben</div>
-  <div class="tab" onclick="showTab('exams')">Übungsprüfungen</div>
+<!-- Themenliste -->
+<h1>📐 Mathematik</h1>
+<div class="theme-list">
+  <ul>
+    <li><a href="#">Rechnungen in Z</a></li>
+    <li><a href="#">Rechnungen in Q</a></li>
+    <li><a href="#">Lineare Gleichungen, Systeme</a></li>
+    <li><a href="#">Quadratische Gleichungen</a></li>
+    <li><a href="#">Potenzen, Wurzeln, Logarithmen</a></li>
+    <li><a href="#">Nutzenschwelle</a></li>
+    <li><a href="#">Lineare Optimierung</a></li>
+  </ul>
 </div>
 
-<!-- Inhalt -->
-<div class="tab-content">
-  <div id="theory" class="content active">
-    <h2>Theorie</h2>
-    <ul>
-      <li>Ganze Zahlen (Z) sind ...</li>
-      <li>Beispiel: -3 + 7 = 4</li>
-      <li>Beachte das Vorzeichen bei Subtraktion!</li>
-    </ul>
-  </div>
-
-  <div id="tasks" class="content">
-    <h2>Aufgaben</h2>
-    <ul>
-      <li>1. -4 + 2 = ?</li>
-      <li>2. 7 - 10 = ?</li>
-      <li>3. (-3) × (-3) = ?</li>
-    </ul>
-  </div>
-
-  <div id="exams" class="content">
-    <h2>Übungsprüfungen</h2>
-    <ul>
-      <li>Teil A: Rechnen mit negativen Zahlen</li>
-      <li>Teil B: Textaufgaben mit Z</li>
-    </ul>
-  </div>
-</div>
-
-<!-- JavaScript -->
 <script>
-  function showTab(tabName) {
-    const tabs = document.querySelectorAll('.tab');
-    const contents = document.querySelectorAll('.content');
-
-    tabs.forEach(tab => tab.classList.remove('active'));
-    contents.forEach(content => content.classList.remove('active'));
-
-    document.querySelector(`#${tabName}`).classList.add('active');
-    document.querySelector(`.tab[onclick="showTab('${tabName}')"]`).classList.add('active');
-  }
-
   function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("show");
   }
 </script>
 
