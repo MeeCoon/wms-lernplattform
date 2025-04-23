@@ -12,107 +12,69 @@
       background-color: #f0f4f8;
     }
 
-    /* Menü-Stil */
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-      position: absolute;
+   .menu-btn {
+      position: fixed;
       top: 20px;
       right: 20px;
-    }
-
-    .menu-dropdown {
-      display: none;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: white;
-      color: #2b6cb0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 280px;
-      padding: 10px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
       z-index: 1000;
     }
 
-    .menu-dropdown input {
-      width: 90%;
-      padding: 8px;
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -270px;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.show {
+      right: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .fach-liste {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fach-liste > li {
       margin-bottom: 10px;
     }
 
-    .menu-dropdown details summary {
+    .fach-liste summary {
       cursor: pointer;
       font-weight: bold;
-      margin-top: 10px;
+      margin-bottom: 5px;
     }
 
-    .menu-dropdown ul {
-      list-style: none;
-      padding-left: 15px;
-    }
-
-    .menu-dropdown ul li {
-      margin: 5px 0;
-    }
-
-    h1 {
-      text-align: center;
-      color: #2b6cb0;
-      font-size: 2.5em;
-      margin: 50px 0 20px;
-    }
-
-    /* Tabs */
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .tab {
-      padding: 14px 28px;
-      cursor: pointer;
-      font-size: 16px;
-      background-color: white;
-      color: black;
-      border: 1px solid black;
-      border-top: none;
-      border-bottom: none;
-      margin-right: 10px;
-      border-radius: 8px 8px 0 0;
-    }
-
-    .tab:last-child {
-      margin-right: 0;
-    }
-
-    .tab.active {
-      background-color: #e2e8f0;
-      font-weight: bold;
-    }
-
-    .tab-content {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .content {
-      display: none;
-    }
-
-    .content.active {
+    .fach-liste a {
       display: block;
+      text-decoration: none;
+      color: #444;
+      margin-left: 10px;
+      margin-bottom: 4px;
     }
 
-    .content ul {
-      padding-left: 20px;
-    }
-
-    .content ul li {
-      margin-bottom: 8px;
+    .suche-im-menu {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -163,20 +125,6 @@
         <a href="#">(Themen folgen)</a>
       </details>
     </li>
-  </ul>
-</div>
-
-<!-- Themenliste -->
-<h1>📐 Mathematik</h1>
-<div class="theme-list">
-  <ul>
-    <li><a href="#">Rechnungen in Z</a></li>
-    <li><a href="#">Rechnungen in Q</a></li>
-    <li><a href="#">Lineare Gleichungen, Systeme</a></li>
-    <li><a href="#">Quadratische Gleichungen</a></li>
-    <li><a href="#">Potenzen, Wurzeln, Logarithmen</a></li>
-    <li><a href="#">Nutzenschwelle</a></li>
-    <li><a href="#">Lineare Optimierung</a></li>
   </ul>
 </div>
 
