@@ -20,7 +20,199 @@
   }
 
   .tabs {
-    display: flex;
+    display: flex;<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>📐 Rechnungen in Z</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #2c3e50;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+
+    /* Menübutton bleibt gleich */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px; /* aktualisiert */
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+
+    .sidebar.show {
+      right: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .fach-liste {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fach-liste > li {
+      margin-bottom: 10px;
+    }
+
+    .fach-liste summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .fach-liste a {
+      display: block;
+      text-decoration: none;
+      color: #444;
+      margin-left: 10px;
+      margin-bottom: 4px;
+    }
+
+    .suche-im-menu {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px 8px 0 0;
+      background: #e4e8ec;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .tab:hover {
+      background: #d3d8dd;
+    }
+
+    .tab.active {
+      background: #cfd5db;
+      font-weight: bold;
+    }
+
+    .tab-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 40px;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Menü Button -->
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h2>Navigation</h2>
+  <input type="text" placeholder="Suche..." class="suche-im-menu">
+
+  <ul class="fach-liste">
+    <li>
+      <details>
+        <summary><a href="mathematik.html">📐 Mathematik</a></summary>
+        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+        <a href="#">Rechnungen in Q</a>
+        <a href="#">Lineare Gleichungen</a>
+        <a href="#">Quadratische Gleichungen</a>
+        <a href="#">Potenzen & Logarithmen</a>
+        <a href="#">Nutzenschwelle</a>
+        <a href="#">Lineare Optimierung</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="frw.html">📊 FRW</a></summary>
+        <a href="#">Kaufmännische Buchführung</a>
+        <a href="#">Doppelte Buchführung</a>
+        <a href="#">Rechnungsabschluss</a>
+        <a href="#">Bankgeschäfte</a>
+        <a href="#">Fremde Währungen</a>
+        <a href="#">Warenhandel</a>
+        <a href="#">Mehrwertsteuer</a>
+        <a href="#">Kalkulation</a>
+        <a href="#">Forderungsverlust</a>
+        <a href="#">Abschreibungen</a>
+        <a href="#">Rechnungsabgrenzung</a>
+        <a href="#">Personalaufwand</a>
+        <a href="#">Einzelunternehmen</a>
+      </details>
+    </li>
+    <li>
+      <details>
+        <summary><a href="wur.html">⚖️ WuR</a></summary>
+        <a href="#">(Themen folgen)</a>
+      </details>
+    </li>
+  </ul>
+</div>
+
+<!-- Titel -->
+<h1>Rechnungen in Z</h1>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('theorie')">Theorie</div>
+  <div class="tab" onclick="showTab('aufgaben')">Aufgaben</div>
+  <div class="tab" onclick="showTab('test')
+
     justify-content: center;
     margin: 40px auto 0;
     border-bottom: 2px solid #ccc;
