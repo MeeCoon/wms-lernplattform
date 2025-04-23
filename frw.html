@@ -1,54 +1,48 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FRW</title>
+  <meta charset="UTF-8">
+  <title>Finanz- und Rechnungswesen</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
+      background: #f8f9fa;
     }
 
     h1 {
       text-align: center;
-      margin-top: 60px;
-      font-size: 2.5em;
-      color: #1e3a8a;
+      margin-top: 80px;
+      font-size: 3rem;
+      color: #2c3e50;
     }
 
-    .topics {
-      max-width: 800px;
+    .theme-list {
+      max-width: 600px;
       margin: 40px auto;
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      background: white;
       padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    .topics ul {
-      list-style: square;
-      padding-left: 25px;
+    .theme-list ul {
+      list-style: disc;
+      padding-left: 30px;
+      font-size: 1.3rem;
     }
 
-    .topics li {
-      margin-bottom: 10px;
-      font-size: 18px;
+    .theme-list li {
+      margin-bottom: 12px;
     }
 
-    .topics a {
+    .theme-list a {
       text-decoration: none;
-      color: #1e40af;
-      transition: color 0.2s ease;
+      color: #2980b9;
     }
 
-    .topics a:hover {
-      color: #2563eb;
-    }
-
-    /* Menü Button */
     .menu-btn {
       position: fixed;
       top: 20px;
@@ -60,19 +54,17 @@
       z-index: 1000;
     }
 
-    /* Sidebar Menü */
     .sidebar {
       position: fixed;
       top: 0;
-      right: -260px;
+      right: -300px;
       width: 250px;
       height: 100%;
-      background: #ffffff;
-      box-shadow: -3px 0 10px rgba(0,0,0,0.1);
-      padding: 20px;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
       transition: right 0.3s ease;
       z-index: 999;
-      overflow-y: auto;
     }
 
     .sidebar.show {
@@ -80,39 +72,40 @@
     }
 
     .sidebar h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
     }
 
-    .sidebar input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    .sidebar ul {
+    .fach-liste {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
 
-    .sidebar li {
-      margin-bottom: 8px;
+    .fach-liste > li {
+      margin-bottom: 10px;
     }
 
-    .arrow {
+    .fach-liste summary {
       cursor: pointer;
-      margin-right: 8px;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
 
-    .submenu {
-      display: none;
-      padding-left: 16px;
-    }
-
-    .submenu.show {
+    .fach-liste a {
       display: block;
+      text-decoration: none;
+      color: #444;
+      margin-left: 10px;
+      margin-bottom: 4px;
+    }
+
+    .suche-im-menu {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
     }
   </style>
 </head>
@@ -121,63 +114,75 @@
 <!-- Menü Button -->
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- Sidebar Menü -->
+<!-- Sidebar -->
 <div class="sidebar" id="sidebar">
-  <h2>Fächerübersicht</h2>
-  <input type="text" placeholder="Suchen...">
-  <ul>
-    <li><span class="arrow" onclick="toggleSubmenu('matheSub')">▶</span><a href="mathe.html">Mathematik</a>
-      <ul id="matheSub" class="submenu">
-        <li><a href="#">Rechnungen in Z</a></li>
-        <li><a href="#">Rechnungen in Q</a></li>
-        <li><a href="#">Lineare Gleichungen</a></li>
-        <li><a href="#">Quadratische Gleichungen</a></li>
-      </ul>
+  <h2>Navigation</h2>
+  <input type="text" placeholder="Suche..." class="suche-im-menu">
+
+  <ul class="fach-liste">
+    <li>
+      <details>
+        <summary><a href="mathe.html">📐 Mathematik</a></summary>
+        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+        <a href="rechnungen_in_q.html">Rechnungen in Q</a>
+        <a href="#">Lineare Gleichungen</a>
+        <a href="#">Quadratische Gleichungen</a>
+        <a href="#">Potenzen & Logarithmen</a>
+        <a href="#">Nutzenschwelle</a>
+        <a href="#">Lineare Optimierung</a>
+      </details>
     </li>
-    <li><span class="arrow" onclick="toggleSubmenu('frwSub')">▶</span><a href="frw.html">FRW</a>
-      <ul id="frwSub" class="submenu">
-        <li><a href="#">Kaufmännische Buchführung</a></li>
-        <li><a href="#">Doppelte Buchführung</a></li>
-        <li><a href="#">Rechnungsabschluss</a></li>
-        <li><a href="#">Fremde Währungen</a></li>
-      </ul>
+    <li>
+      <details>
+        <summary><a href="frw.html">📊 FRW</a></summary>
+        <a href="#">Kaufmännische Buchführung</a>
+        <a href="#">Doppelte Buchführung</a>
+        <a href="#">Rechnungsabschluss</a>
+        <a href="#">Bankgeschäfte</a>
+        <a href="#">Fremde Währungen</a>
+        <a href="#">Warenhandel</a>
+        <a href="#">Mehrwertsteuer</a>
+        <a href="#">Kalkulation</a>
+        <a href="#">Forderungsverlust</a>
+        <a href="#">Abschreibungen</a>
+        <a href="#">Rechnungsabgrenzung</a>
+        <a href="#">Personalaufwand</a>
+        <a href="#">Einzelunternehmen</a>
+      </details>
     </li>
-    <li><a href="#">WuR</a></li>
+    <li>
+      <details>
+        <summary><a href="wur.html">⚖️ WuR</a></summary>
+        <a href="#">(Themen folgen)</a>
+      </details>
+    </li>
   </ul>
 </div>
 
-<!-- Hauptinhalt -->
-<h1>Finanz- und Rechnungswesen (FRW)</h1>
-<div class="topics">
+<!-- Themenliste -->
+<h1>Finanz- und Rechnungswesen</h1>
+<div class="theme-list">
   <ul>
     <li><a href="#">Kaufmännische Buchführung</a></li>
-    <li><a href="#">System der doppelten Buchführung</a></li>
-    <li><a href="#">Rechnungsabschluss und Kontenrahmen</a></li>
-    <li><a href="#">Geschäfte mit der Bank</a></li>
-    <li><a href="#">Fremde Währungen</a></li>
-    <li><a href="#">Buchhaltung des Warenhandelsbetriebs</a></li>
+    <li><a href="#">Doppelte Buchführung</a></li>
+    <li><a href="#">Rechnungsabschluss</a></li>
+    <li><a href="#">Bankgeschäfte</a></li>
+    <li><a href="#">Warenhandel</a></li>
     <li><a href="#">Mehrwertsteuer</a></li>
-    <li><a href="#">Betriebliche Kalkulation</a></li>
-    <li><a href="#">Verluste auf Forderungen</a></li>
+    <li><a href="#">Kalkulation</a></li>
+    <li><a href="#">Forderungsverlust</a></li>
     <li><a href="#">Abschreibungen</a></li>
-    <li><a href="#">Rechnungsabgrenzungen</a></li>
+    <li><a href="#">Rechnungsabgrenzung</a></li>
     <li><a href="#">Personalaufwand</a></li>
-    <li><a href="#">Besonderheiten des Einzelunternehmens</a></li>
+    <li><a href="#">Einzelunternehmen</a></li>
   </ul>
 </div>
 
-<!-- Scripte -->
 <script>
   function toggleMenu() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("show");
   }
-
-  function toggleSubmenu(id) {
-    const submenu = document.getElementById(id);
-    submenu.classList.toggle("show");
-  }
 </script>
-
 </body>
 </html>
