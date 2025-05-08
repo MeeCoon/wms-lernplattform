@@ -30,7 +30,7 @@
       position: relative;
       display: flex;
       justify-content: center;
-      padding: 40px 0 30px; /* mehr Abstand unten */
+      padding: 40px 0 10px; /* unten verkleinert */
     }
 
     .reiter {
@@ -52,13 +52,13 @@
     /* springende Linie */
     .indicator {
       position: absolute;
-      bottom: 0;
+      bottom: 5px;           /* näher an die Buttons */
       height: 3px;
       background-color: #2980b9;
       transition: left 0.3s ease, width 0.3s ease;
     }
 
-    /* Themen Grid – gerückt unter die Reiter */
+    /* Themen Grid */
     .themen-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -66,22 +66,21 @@
       max-width: 1200px;
       margin: 0 auto 60px;
       padding: 0 20px;
-      padding-top: 20px; /* zusätzlicher Abstand nach oben */
+      padding-top: 20px;
     }
 
     /* Themen Karte */
     .thema-card {
-      background: #ffffff;
       border-radius: 20px;
       padding: 30px 20px;
       text-align: center;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, background-color 0.3s;
+      transition: transform 0.2s, filter 0.3s;
       cursor: pointer;
     }
     .thema-card:hover {
       transform: scale(1.05);
-      background-color: #f1f1f1;
+      filter: brightness(1.05);
     }
 
     /* Icon-Kreis */
@@ -96,32 +95,33 @@
       display: block;
     }
 
-    /* Individuelle Farben */
-    .icon-z    { background-color: #ffab00; } /* Rechnungen in Z */
-    .icon-q    { background-color: #ff7043; } /* Rechnungen in Q */
-    .icon-lin  { background-color: #4caf50; } /* Lineare Gleichungen */
-    .icon-quad { background-color: #2196f3; } /* Quadratische Gleichungen */
-    .icon-log  { background-color: #673ab7; } /* Potenzen & Logarithmen */
-    .icon-nut  { background-color: #009688; } /* Nutzenschwelle */
-    .icon-opt  { background-color: #795548; } /* Lineare Optimierung */
-
-    .icon-buch { background-color: #009688; } /* Kaufm. Buchführung */
-    .icon-dopp { background-color: #ff5722; } /* Doppelte Buchführung */
-    .icon-absch{ background-color: #3f51b5; } /* Rechnungsabschluss */
-    .icon-bank { background-color: #607d8b; } /* Bankgeschäfte */
-    .icon-fw   { background-color: #f44336; } /* Fremde Währungen */
-
-    .icon-recht{ background-color: #9e9e9e; } /* Vertragsrecht */
-    .icon-staat{ background-color: #607d8b; } /* Staatsrecht */
-    .icon-polit{ background-color: #3f51b5; } /* Politisches System */
-    .icon-vw   { background-color: #009688; } /* Volkswirtschaft */
-    .icon-bw   { background-color: #ff7043; } /* Betriebswirtschaft */
-
     h3 {
       font-size: 1.2rem;
       color: #2c3e50;
       margin: 0;
     }
+
+    /* individuelle Hintergrund-Klassen */
+    .bg-z    { background-color: #ffab00; }
+    .bg-q    { background-color: #ff7043; }
+    .bg-lin  { background-color: #4caf50; }
+    .bg-quad { background-color: #2196f3; }
+    .bg-log  { background-color: #673ab7; }
+    .bg-nut  { background-color: #009688; }
+    .bg-opt  { background-color: #795548; }
+
+    .bg-buch { background-color: #009688; }
+    .bg-dopp { background-color: #ff5722; }
+    .bg-absch{ background-color: #3f51b5; }
+    .bg-bank { background-color: #607d8b; }
+    .bg-fw   { background-color: #f44336; }
+
+    .bg-recht{ background-color: #9e9e9e; }
+    .bg-staat{ background-color: #607d8b; }
+    .bg-polit{ background-color: #3f51b5; }
+    .bg-vw   { background-color: #009688; }
+    .bg-bw   { background-color: #ff7043; }
+
   </style>
 </head>
 <body>
@@ -140,80 +140,80 @@
 
   <!-- Mathematik Themen -->
   <div class="themen-grid" id="mathematik">
-    <div class="thema-card">
-      <div class="thema-icon icon-z">➗</div>
+    <div class="thema-card bg-z">
+      <div class="thema-icon">➗</div>
       <h3>Rechnungen in Z</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-q">➕</div>
+    <div class="thema-card bg-q">
+      <div class="thema-icon">➕</div>
       <h3>Rechnungen in Q</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-lin">📝</div>
+    <div class="thema-card bg-lin">
+      <div class="thema-icon">📝</div>
       <h3>Lineare Gleichungen</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-quad">🧮</div>
+    <div class="thema-card bg-quad">
+      <div class="thema-icon">🧮</div>
       <h3>Quadratische Gleichungen</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-log">📐</div>
+    <div class="thema-card bg-log">
+      <div class="thema-icon">📐</div>
       <h3>Potenzen & Logarithmen</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-nut">📊</div>
+    <div class="thema-card bg-nut">
+      <div class="thema-icon">📊</div>
       <h3>Nutzenschwelle</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-opt">📈</div>
+    <div class="thema-card bg-opt">
+      <div class="thema-icon">📈</div>
       <h3>Lineare Optimierung</h3>
     </div>
   </div>
 
-  <!-- Finanz- und Rechnungswesen Themen -->
+  <!-- FRW Themen -->
   <div class="themen-grid" id="frw" style="display:none">
-    <div class="thema-card">
-      <div class="thema-icon icon-buch">📊</div>
+    <div class="thema-card bg-buch">
+      <div class="thema-icon">📊</div>
       <h3>Kaufmännische Buchführung</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-dopp">🧾</div>
+    <div class="thema-card bg-dopp">
+      <div class="thema-icon">🧾</div>
       <h3>Doppelte Buchführung</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-absch">💰</div>
+    <div class="thema-card bg-absch">
+      <div class="thema-icon">💰</div>
       <h3>Rechnungsabschluss</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-bank">🏦</div>
+    <div class="thema-card bg-bank">
+      <div class="thema-icon">🏦</div>
       <h3>Bankgeschäfte</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-fw">💱</div>
+    <div class="thema-card bg-fw">
+      <div class="thema-icon">💱</div>
       <h3>Fremde Währungen</h3>
     </div>
   </div>
 
-  <!-- Wirtschaft und Recht Themen -->
+  <!-- WuR Themen -->
   <div class="themen-grid" id="wur" style="display:none">
-    <div class="thema-card">
-      <div class="thema-icon icon-recht">⚖️</div>
+    <div class="thema-card bg-recht">
+      <div class="thema-icon">⚖️</div>
       <h3>Vertragsrecht</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-staat">📑</div>
+    <div class="thema-card bg-staat">
+      <div class="thema-icon">📑</div>
       <h3>Staatsrecht</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-polit">🏛️</div>
+    <div class="thema-card bg-polit">
+      <div class="thema-icon">🏛️</div>
       <h3>Politisches System</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-vw">📈</div>
+    <div class="thema-card bg-vw">
+      <div class="thema-icon">📈</div>
       <h3>Volkswirtschaft</h3>
     </div>
-    <div class="thema-card">
-      <div class="thema-icon icon-bw">🏢</div>
+    <div class="thema-card bg-bw">
+      <div class="thema-icon">🏢</div>
       <h3>Betriebswirtschaft</h3>
     </div>
   </div>
@@ -222,20 +222,18 @@
     function showFach(fach) {
       document.querySelectorAll('.themen-grid').forEach(g => g.style.display = 'none');
       document.getElementById(fach).style.display = 'grid';
-
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
-
       const ind = document.querySelector('.indicator');
       const btnRect = event.target.getBoundingClientRect();
       const contRect = event.target.parentElement.getBoundingClientRect();
       ind.style.left = (btnRect.left - contRect.left) + 'px';
       ind.style.width = btnRect.width + 'px';
     }
-
     window.addEventListener('load', () => {
       document.querySelector('.reiter.active').click();
     });
   </script>
+
 </body>
 </html>
