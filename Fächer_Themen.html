@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Fächerübersicht</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* Reiter */
+        .reiter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .reiter {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background: #ffffff;
+            border: 2px solid #2980b9;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .reiter.active, .reiter:hover {
+            background: #2980b9;
+            color: #ffffff;
+        }
+
+        /* Themen Icons */
+        .themen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .thema-card {
+            background: #ffffff;
+            border-radius: 20px;
+            width: 180px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .thema-card:hover {
+            transform: scale(1.05);
+            background-color: #f1f1f1;
+        }
+
+        .thema-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #2980b9;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Reiter für die Fächer -->
+<div class="reiter-container">
+    <button class="reiter active" onclick="showFach('mathe')">Mathematik</button>
+    <button class="reiter" onclick="showFach('frw')">Finanz- und Rechnungswesen</button>
+    <button class="reiter" onclick="showFach('wur')">Wirtschaft und Recht</button>
+</div>
+
+<!-- Mathematik Themen -->
+<div class="themen-grid" id="mathe">
+    <div class="thema-card">
+        <div class="thema-icon">➗</div>
+        <h3>Rechnungen in Z</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">➕</div>
+        <h3>Rechnungen in Q</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">📝</div>
+        <h3>Lineare Gleichungen</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">🧮</div>
+        <h3>Quadratische Gleichungen</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">📐</div>
+        <h3>Potenzen & Logarithmen</h3>
+    </div>
+</div>
+
+<!-- Finanz- und Rechnungswesen Themen -->
+<div class="themen-grid" id="frw" style="display: none;">
+    <div class="thema-card">
+        <div class="thema-icon">📊</div>
+        <h3>Kaufmännische Buchführung</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">🧾</div>
+        <h3>Doppelte Buchführung</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">💰</div>
+        <h3>Rechnungsabschluss</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">🏦</div>
+        <h3>Bankgeschäfte</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">💱</div>
+        <h3>Fremde Währungen</h3>
+    </div>
+</div>
+
+<!-- Wirtschaft und Recht Themen -->
+<div class="themen-grid" id="wur" style="display: none;">
+    <div class="thema-card">
+        <div class="thema-icon">⚖️</div>
+        <h3>Rechtliche Grundlagen</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">📑</div>
+        <h3>Verträge und Vereinbarungen</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">🏛️</div>
+        <h3>Staat und Politik</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">📈</div>
+        <h3>Volkswirtschaft</h3>
+    </div>
+    <div class="thema-card">
+        <div class="thema-icon">🏢</div>
+        <h3>Betriebswirtschaft</h3>
+    </div>
+</div>
+
+<script>
+    function showFach(fach) {
+        // Alle Fächer ausblenden
+        document.querySelectorAll('.themen-grid').forEach((grid) => {
+            grid.style.display = 'none';
+        });
+
+        // Aktives Fach anzeigen
+        document.getElementById(fach).style.display = 'grid';
+
+        // Aktiven Reiter markieren
+        document.querySelectorAll('.reiter').forEach((btn) => {
+            btn.classList.remove('active');
+        });
+
+        // Aktiven Button hervorheben
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
