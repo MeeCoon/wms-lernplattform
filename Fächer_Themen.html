@@ -30,7 +30,7 @@
       position: relative;
       display: flex;
       justify-content: center;
-      padding: 40px 0 20px;
+      padding: 40px 0 30px; /* mehr Abstand unten */
     }
 
     .reiter {
@@ -58,7 +58,7 @@
       transition: left 0.3s ease, width 0.3s ease;
     }
 
-    /* Themen Grid */
+    /* Themen Grid – gerückt unter die Reiter */
     .themen-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -66,6 +66,7 @@
       max-width: 1200px;
       margin: 0 auto 60px;
       padding: 0 20px;
+      padding-top: 20px; /* zusätzlicher Abstand nach oben */
     }
 
     /* Themen Karte */
@@ -83,7 +84,7 @@
       background-color: #f1f1f1;
     }
 
-    /* Icon-Stil */
+    /* Icon-Kreis */
     .thema-icon {
       font-size: 50px;
       width: 80px;
@@ -94,6 +95,27 @@
       color: white;
       display: block;
     }
+
+    /* Individuelle Farben */
+    .icon-z    { background-color: #ffab00; } /* Rechnungen in Z */
+    .icon-q    { background-color: #ff7043; } /* Rechnungen in Q */
+    .icon-lin  { background-color: #4caf50; } /* Lineare Gleichungen */
+    .icon-quad { background-color: #2196f3; } /* Quadratische Gleichungen */
+    .icon-log  { background-color: #673ab7; } /* Potenzen & Logarithmen */
+    .icon-nut  { background-color: #009688; } /* Nutzenschwelle */
+    .icon-opt  { background-color: #795548; } /* Lineare Optimierung */
+
+    .icon-buch { background-color: #009688; } /* Kaufm. Buchführung */
+    .icon-dopp { background-color: #ff5722; } /* Doppelte Buchführung */
+    .icon-absch{ background-color: #3f51b5; } /* Rechnungsabschluss */
+    .icon-bank { background-color: #607d8b; } /* Bankgeschäfte */
+    .icon-fw   { background-color: #f44336; } /* Fremde Währungen */
+
+    .icon-recht{ background-color: #9e9e9e; } /* Vertragsrecht */
+    .icon-staat{ background-color: #607d8b; } /* Staatsrecht */
+    .icon-polit{ background-color: #3f51b5; } /* Politisches System */
+    .icon-vw   { background-color: #009688; } /* Volkswirtschaft */
+    .icon-bw   { background-color: #ff7043; } /* Betriebswirtschaft */
 
     h3 {
       font-size: 1.2rem;
@@ -119,31 +141,31 @@
   <!-- Mathematik Themen -->
   <div class="themen-grid" id="mathematik">
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #ffab00;">➗</div>
+      <div class="thema-icon icon-z">➗</div>
       <h3>Rechnungen in Z</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #ff7043;">➕</div>
+      <div class="thema-icon icon-q">➕</div>
       <h3>Rechnungen in Q</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #4caf50;">📝</div>
+      <div class="thema-icon icon-lin">📝</div>
       <h3>Lineare Gleichungen</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #2196f3;">🧮</div>
+      <div class="thema-icon icon-quad">🧮</div>
       <h3>Quadratische Gleichungen</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #673ab7;">📐</div>
+      <div class="thema-icon icon-log">📐</div>
       <h3>Potenzen & Logarithmen</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #009688;">📊</div>
+      <div class="thema-icon icon-nut">📊</div>
       <h3>Nutzenschwelle</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #795548;">📈</div>
+      <div class="thema-icon icon-opt">📈</div>
       <h3>Lineare Optimierung</h3>
     </div>
   </div>
@@ -151,59 +173,47 @@
   <!-- Finanz- und Rechnungswesen Themen -->
   <div class="themen-grid" id="frw" style="display:none">
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #009688;">📊</div>
+      <div class="thema-icon icon-buch">📊</div>
       <h3>Kaufmännische Buchführung</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #ff5722;">🧾</div>
+      <div class="thema-icon icon-dopp">🧾</div>
       <h3>Doppelte Buchführung</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #3f51b5;">💰</div>
+      <div class="thema-icon icon-absch">💰</div>
       <h3>Rechnungsabschluss</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #607d8b;">🏦</div>
+      <div class="thema-icon icon-bank">🏦</div>
       <h3>Bankgeschäfte</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #f44336;">💱</div>
+      <div class="thema-icon icon-fw">💱</div>
       <h3>Fremde Währungen</h3>
-    </div>
-    <div class="thema-card">
-      <div class="thema-icon" style="background-color: #8bc34a;">🧮</div>
-      <h3>Buchhaltung Warenhandel</h3>
-    </div>
-    <div class="thema-card">
-      <div class="thema-icon" style="background-color: #ffc107;">📋</div>
-      <h3>Mehrwertsteuer</h3>
-    </div>
-    <div class="thema-card">
-      <div class="thema-icon" style="background-color: #9c27b0;">✒️</div>
-      <h3>Kalkulation</h3>
     </div>
   </div>
 
   <!-- Wirtschaft und Recht Themen -->
   <div class="themen-grid" id="wur" style="display:none">
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #9e9e9e;">⚖️</div>
+      <div class="thema-icon icon-recht">⚖️</div>
       <h3>Vertragsrecht</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #607d8b;">📑</div>
+      <div class="thema-icon icon-staat">📑</div>
       <h3>Staatsrecht</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #3f51b5;">🏛️</div>
+      <div class="thema-icon icon-polit">🏛️</div>
       <h3>Politisches System</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #009688;">📈</div>
+      <div class="thema-icon icon-vw">📈</div>
       <h3>Volkswirtschaft</h3>
     </div>
     <div class="thema-card">
-      <div class="thema-icon" style="background-color: #ff7043;">🏢</div>
+      <div class="thema-icon icon-bw">🏢</div>
       <h3>Betriebswirtschaft</h3>
     </div>
   </div>
