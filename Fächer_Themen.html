@@ -10,15 +10,20 @@
       background: #f8f9fa;
       margin: 0;
       padding: 0;
+      padding-top: 80px;
     }
 
     /* Header */
     header {
-      text-align: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
       background-color: #2980b9;
       color: white;
       padding: 20px 0;
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
     header h1 {
       margin: 0;
@@ -136,7 +141,7 @@
 
     .sidebar {
       position: fixed;
-      top: 0;
+      top: 80px;
       right: -300px;
       width: 250px;
       height: 100%;
