@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <title>WMS-Lernplattform</title>
   <style>
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f9fa;
       margin: 0;
-      padding: 0;
       padding-top: 80px;
     }
 
-    /* Header */
     header {
       text-align: center;
       background-color: #2980b9;
@@ -23,24 +20,19 @@
       position: fixed;
       width: 100%;
       top: 0;
-      left: 0;
-      background-color: #2980b9;
-      color: white;
-      padding: 20px 0;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
       z-index: 1000;
     }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
     }
-    
-    /* Reiter-Container */
+
     .reiter-container {
       position: relative;
       display: flex;
       justify-content: center;
-      padding: 40px 0 10px; /* unten verkleinert */
+      padding: 40px 0 10px;
     }
 
     .reiter {
@@ -54,21 +46,20 @@
       outline: none;
       transition: color 0.3s;
     }
+
     .reiter.active {
       color: #2980b9;
       font-weight: bold;
     }
 
-    /* springende Linie */
     .indicator {
       position: absolute;
-      bottom: 5px;           /* näher an die Buttons */
+      bottom: 5px;
       height: 3px;
       background-color: #2980b9;
       transition: left 0.3s ease, width 0.3s ease;
     }
 
-    /* Themen Grid */
     .themen-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -79,7 +70,6 @@
       padding-top: 20px;
     }
 
-    /* Themen Karte */
     .thema-card {
       border-radius: 20px;
       padding: 30px 20px;
@@ -87,21 +77,23 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s, filter 0.3s;
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
+
     .thema-card:hover {
       transform: scale(1.05);
       filter: brightness(1.05);
     }
 
     .thema-icon {
-      aspect-ratio: 1 / 1;              /* Macht das Element quadratisch */
-      width: 80px;                      /* oder 100% je nach Wunsch */
-      object-fit: contain;             /* Bild passt sich ohne Verzerrung an */
+      aspect-ratio: 1 / 1;
+      width: 80px;
+      object-fit: contain;
       display: block;
       margin: 0 auto 15px;
       transition: transform 0.3s ease;
     }
-
 
     h3 {
       font-size: 1.2rem;
@@ -109,7 +101,7 @@
       margin: 0;
     }
 
-    /* individuelle Hintergrund-Klassen */
+    /* Farbhintergründe */
     .bg-z    { background-color: #ffab00; }
     .bg-q    { background-color: #ff7043; }
     .bg-lin  { background-color: #4caf50; }
@@ -194,7 +186,7 @@
       margin-bottom: 20px;
       border-radius: 20px;
       border: 1px solid #ccc;
-    
+    }
   </style>
 </head>
 <body>
@@ -203,55 +195,27 @@
     <h1>WMS-Lernplattform</h1>
   </header>
 
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <h2>Navigation</h2>
-  <input type="text" placeholder="Suche..." class="suche-im-menu">
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input type="text" placeholder="Suche..." class="suche-im-menu">
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary><a href="#">📐 Mathematik</a></summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="lineare_gleichungen.html">Lineare Gleichungen</a>
+          <a href="quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+    </ul>
+  </div>
 
-  <ul class="fach-liste">
-    <li>
-      <details>
-        <summary><a href="mathe.html">📐 Mathematik</a></summary>
-        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-        <a href="#">Rechnungen in Q</a>
-        <a href="#">Lineare Gleichungen & Systeme</a>
-        <a href="#">Quadratische Gleichungen</a>
-        <a href="#">Potenzen & Logarithmen</a>
-        <a href="#">Nutzenschwelle</a>
-        <a href="#">Lineare Optimierung</a>
-      </details>
-    </li>
-    <li>
-      <details>
-        <summary><a href="frw.html">📊 FRW</a></summary>
-        <a href="#">Kaufmännische Buchführung</a>
-        <a href="#">Doppelte Buchführung</a>
-        <a href="#">Rechnungsabschluss</a>
-        <a href="#">Bankgeschäfte</a>
-        <a href="#">Fremde Währungen</a>
-        <a href="#">Warenhandel</a>
-        <a href="#">Mehrwertsteuer</a>
-        <a href="#">Kalkulation</a>
-        <a href="#">Forderungsverlust</a>
-        <a href="#">Abschreibungen</a>
-        <a href="#">Rechnungsabgrenzung</a>
-        <a href="#">Personalaufwand</a>
-        <a href="#">Einzelunternehmen</a>
-      </details>
-    </li>
-    <li>
-      <details>
-        <summary><a href="wur.html">⚖️ WuR</a></summary>
-        <a href="#">(Themen folgen)</a>
-      </details>
-    </li>
-  </ul>
-</div>
-
-  
-  <!-- Reiter + Indicator -->
   <div class="reiter-container">
     <button class="reiter active" onclick="showFach('mathematik')">Mathematik</button>
     <button class="reiter" onclick="showFach('frw')">Finanz- und Rechnungswesen</button>
@@ -260,36 +224,35 @@
   </div>
 
   <!-- Mathematik Themen -->
-    <div class="themen-grid" id="mathematik"> 
-      <a href="rechnungen_in_z.html" class="thema-card bg-z">
-        <img src="Mathe/rechnunge_in_z.png" class="thema-icon" alt="Rechnungen in Z">
-        <h3>Rechnungen in Z</h3>
-      </a>
-    </div>
-    <div class="thema-card bg-q">
+  <div class="themen-grid" id="mathematik">
+    <a href="rechnungen_in_z.html" class="thema-card bg-z">
+      <img src="Mathe/rechnunge_in_z.png" class="thema-icon" alt="Rechnungen in Z">
+      <h3>Rechnungen in Z</h3>
+    </a>
+    <a href="rechnungen_in_q.html" class="thema-card bg-q">
       <img src="Mathe/rechnungen_in_q.png" class="thema-icon" alt="Rechnungen in Q">
       <h3>Rechnungen in Q</h3>
-    </div>
-    <div class="thema-card bg lin">
+    </a>
+    <a href="lineare_gleichungen.html" class="thema-card bg-lin">
       <img src="Mathe/lineare_gleichungen.png" class="thema-icon" alt="Lineare Gleichungen">
       <h3>Lineare Gleichungen & Systeme</h3>
-    </div>
-    <div class="thema-card bg-quad">
+    </a>
+    <a href="quadratische_gleichungen.html" class="thema-card bg-quad">
       <img src="Mathe/quadratische_gleichungen.png" class="thema-icon" alt="Quadratische Gleichungen">
       <h3>Quadratische Gleichungen</h3>
-    </div>
-    <div class="thema-card bg-log">
+    </a>
+    <a href="potenzen_logarithmen.html" class="thema-card bg-log">
       <img src="Mathe/potenzen_logarithmen.png" class="thema-icon" alt="Potenzen & Logarithmen">
       <h3>Potenzen & Logarithmen</h3>
-    </div>
-    <div class="thema-card bg-nut">
+    </a>
+    <a href="nutzenschwelle.html" class="thema-card bg-nut">
       <div class="thema-icon">📊</div>
       <h3>Nutzenschwelle</h3>
-    </div>
-    <div class="thema-card bg-opt">
+    </a>
+    <a href="lineare_optimierung.html" class="thema-card bg-opt">
       <div class="thema-icon">📈</div>
       <h3>Lineare Optimierung</h3>
-    </div>
+    </a>
   </div>
 
   <!-- FRW Themen -->
@@ -352,14 +315,15 @@
       ind.style.left = (btnRect.left - contRect.left) + 'px';
       ind.style.width = btnRect.width + 'px';
     }
+
     window.addEventListener('load', () => {
       document.querySelector('.reiter.active').click();
     });
 
-     function toggleMenu() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("show");
-  }
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
   </script>
 
 </body>
