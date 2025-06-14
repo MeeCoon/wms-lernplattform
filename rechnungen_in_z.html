@@ -1,74 +1,32 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Rechnungen in Z – WMS-Lernplattform</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f9fa;
       margin: 0;
+      padding: 0;
       padding-top: 80px;
     }
 
     header {
       text-align: center;
-      background-color: #c0392b; /* angenehmes Rot */
+      background-color: #c0392b;
       color: white;
       padding: 20px 0;
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
       position: fixed;
       width: 100%;
       top: 0;
+      left: 0;
       z-index: 1000;
     }
-
     header h1 {
       margin: 0;
       font-size: 2.5rem;
-    }
-
-    .reiter-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0 10px;
-    }
-
-    .reiter {
-      padding: 15px 25px;
-      margin: 0 15px;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      color: #777;
-      cursor: pointer;
-      outline: none;
-      transition: color 0.3s;
-    }
-
-    .reiter.active {
-      color: #c0392b;
-      font-weight: bold;
-    }
-
-    .indicator {
-      position: absolute;
-      bottom: 5px;
-      height: 3px;
-      background-color: #c0392b;
-      transition: left 0.3s ease, width 0.3s ease;
-    }
-
-    .content-section {
-      display: none;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .content-section.active {
-      display: block;
     }
 
     .menu-btn {
@@ -80,7 +38,7 @@
       color: white;
       border: none;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 1001;
     }
 
     .sidebar {
@@ -136,6 +94,52 @@
       border-radius: 20px;
       border: 1px solid #ccc;
     }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+
+    .reiter {
+      padding: 15px 25px;
+      margin: 0 15px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #777;
+      cursor: pointer;
+      outline: none;
+      transition: color 0.3s;
+    }
+
+    .reiter.active {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: 5px;
+      height: 3px;
+      background-color: #c0392b;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -148,70 +152,72 @@
 
   <div class="sidebar" id="sidebar">
     <h2>Navigation</h2>
-    <input type="text" placeholder="Suche..." class="suche-im-menu">
+    <input type="text" placeholder="Suche..." class="suche-im-menu" />
     <ul class="fach-liste">
       <li>
-        <details open>
-          <summary><a href="#">📐 Mathematik</a></summary>
+        <details>
+          <summary><a href="mathe.html">📐 Mathematik</a></summary>
           <a href="rechnungen_in_z.html">Rechnungen in Z</a>
           <a href="rechnungen_in_q.html">Rechnungen in Q</a>
-          <a href="lineare_gleichungen.html">Lineare Gleichungen</a>
-          <a href="quadratische_gleichungen.html">Quadratische Gleichungen</a>
-          <a href="potenzen_logarithmen.html">Potenzen & Logarithmen</a>
-          <a href="nutzenschwelle.html">Nutzenschwelle</a>
-          <a href="lineare_optimierung.html">Lineare Optimierung</a>
+          <a href="#">Lineare Gleichungen & Systeme</a>
+          <a href="#">Quadratische Gleichungen</a>
         </details>
       </li>
+      <!-- Weitere Fächer... -->
     </ul>
   </div>
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event, 'theorie')">Theorie</button>
     <button class="reiter" onclick="showTab(event, 'aufgaben')">Aufgaben</button>
-    <button class="reiter" onclick="showTab(event, 'pruefung')">Übungsprüfung</button>
+    <button class="reiter" onclick="showTab(event, 'prüfung')">Übungsprüfung</button>
     <div class="indicator"></div>
   </div>
 
-  <div id="theorie" class="content-section active">
-    <h2>Theorie</h2>
-    <p>Hier kommt die theoretische Einführung zu Rechnungen in Z.</p>
+  <div id="theorie" class="tab-content active">
+    <h2>Was ist die Menge ℤ?</h2>
+    <p>
+      Die Menge der ganzen Zahlen, bezeichnet mit dem Symbol ℤ, umfasst alle Zahlen ohne Dezimalstellen: also sowohl positive als auch negative ganze Zahlen sowie die Null.
+    </p>
+    <p>
+      ℤ = { ..., -3, -2, -1, 0, 1, 2, 3, ... }
+    </p>
+    <p>
+      Diese Zahlenmenge ist unendlich und wird in vielen Bereichen des Alltags und der Mathematik verwendet.
+    </p>
+
+    <h3>Eigenschaften</h3>
     <ul>
-      <li>Zahlenmengen: ℤ (ganze Zahlen)</li>
-      <li>Addition, Subtraktion, Multiplikation mit ganzen Zahlen</li>
-      <li>Rechenregeln und Vorzeichen beachten</li>
+      <li><strong>Abgeschlossenheit:</strong> Addition, Subtraktion und Multiplikation ergeben wieder ganze Zahlen.</li>
+      <li><strong>Keine Brüche oder Kommazahlen:</strong> Werte wie 0.5 oder ⅓ sind <em>nicht</em> Teil der Menge ℤ.</li>
+      <li><strong>Gegenzahlen:</strong> Jede ganze Zahl hat eine Gegenzahl. z.B. ist die Gegenzahl von 7 gleich -7.</li>
+      <li><strong>Die Null:</strong> Sie ist weder positiv noch negativ und wirkt in der Addition neutral.</li>
     </ul>
+
+    <h3>Beispiele</h3>
+    <p>
+      Zahlen wie -5, 0 oder 14 sind ganze Zahlen. Dagegen sind Zahlen wie 3.14 oder -0.5 keine ganzen Zahlen.
+    </p>
+    <h3>Alltagsbezug</h3>
+    <p>
+      Ganze Zahlen finden wir z. B. bei Temperaturen (-4 °C), Geldbeträgen (-20 € Überziehung), Höhenangaben oder Bewertungen mit Punkten.
+    </p>
   </div>
 
-  <div id="aufgaben" class="content-section">
-    <h2>Aufgaben</h2>
-    <p>Hier kannst du Aufgaben zu Rechnungen in Z lösen.</p>
-    <ul>
-      <li>+5 + (–3) = ?</li>
-      <li>–7 – (–2) = ?</li>
-      <li>(–4) × (–6) = ?</li>
-    </ul>
+  <div id="aufgaben" class="tab-content">
+    <p>Hier kommen später interaktive Aufgaben zu Rechnungen in Z hin.</p>
   </div>
 
-  <div id="pruefung" class="content-section">
-    <h2>Übungsprüfung</h2>
-    <p>Teste dein Wissen mit einer Mini-Übungsprüfung.</p>
-    <ol>
-      <li>(–8) + 4 = ?</li>
-      <li>–3 × 7 = ?</li>
-      <li>Welche Zahl ergibt mit 5 addiert 0?</li>
-    </ol>
+  <div id="prüfung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema bereitgestellt.</p>
   </div>
 
   <script>
     function showTab(event, tabId) {
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.reiter').forEach(btn => {
-        btn.classList.remove('active');
-      });
+      document.querySelectorAll('.reiter').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
 
       const ind = document.querySelector('.indicator');
