@@ -20,6 +20,7 @@
       position: fixed;
       width: 100%;
       top: 0;
+      left: 0;
       z-index: 1000;
     }
     header h1 {
@@ -92,11 +93,9 @@
       font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
-    /* Abstände */
     .tab-content p, .tab-content ul, .tab-content ol {
       margin-bottom: 20px;
     }
-    /* Nummerierte Abschnittstitel */
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
@@ -104,13 +103,11 @@
       border-bottom: 3px solid #c0392b;
       padding-bottom: 5px;
     }
-    /* Untertitel */
     .subtitle {
       font-size: 1.4rem; font-weight: bold;
       margin-top: 40px; margin-bottom: 15px;
+      /* keine Unterstreichung mehr */
       display: block; width: 100%;
-      border-bottom: 2px solid #c0392b;
-      padding-bottom: 4px;
     }
     ul, ol { padding-left: 20px; }
     code {
@@ -144,9 +141,7 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Theorie -->
   <div id="theorie" class="tab-content active">
-
     <h2 class="section-title">1. Allgemein</h2>
     <p>Die Menge der ganzen Zahlen, bezeichnet mit dem Symbol ℤ, umfasst alle Zahlen ohne Dezimalstellen: also sowohl positive als auch negative ganze Zahlen sowie die Null.</p>
     <p><strong>ℤ = { ..., -3, -2, -1, 0, 1, 2, 3, ... }</strong></p>
@@ -157,8 +152,6 @@
       <li><strong>Gegenzahlen:</strong> Zu jeder a ∈ ℤ gehört -a, mit a + (-a) = 0.</li>
       <li><strong>Null:</strong> neutrales Element der Addition.</li>
     </ul>
-    <p>Zahlen wie -5, 0 oder 14 sind ganze Zahlen, 3.14 oder -0.5 jedoch nicht.</p>
-    <p>Beispiele im Alltag: Temperatur (-4 °C), Kontostände (-20 €), Höhenangaben (–50 m).</p>
 
     <h2 class="section-title">2. Variabeln</h2>
     <p>Variablen (z. B. a, b, x, y) ersetzen Zahlen und machen Ausdrücke allgemein.</p>
@@ -175,34 +168,16 @@
     <p>Binomische Formeln ermöglichen das schnelle Erweitern und Faktorisieren von Ausdrücken der Form (a ± b)² und (a + b)(a - b).</p>
 
     <h3 class="subtitle">3.1 Herleitung von (a + b)²</h3>
-    <p>Schreibe (a + b)² als (a + b)(a + b) und verwende FOIL:</p>
-    <ul>
-      <li>a·a = a²</li>
-      <li>a·b = ab</li>
-      <li>b·a = ba = ab</li>
-      <li>b·b = b²</li>
-    </ul>
-    <p>Daher: <code>(a + b)² = a² + ab + ab + b² = a² + 2ab + b²</code>.</p>
+    <p>Multipliziere (a + b)(a + b) und fasse zusammen:</p>
+    <p><code>(a + b)² = a² + 2ab + b²</code></p>
 
     <h3 class="subtitle">3.2 Herleitung von (a - b)²</h3>
-    <p>Analog: (a - b)² = (a - b)(a - b):</p>
-    <ul>
-      <li>a·a = a²</li>
-      <li>a·(-b) = -ab</li>
-      <li>-b·a = -ba = -ab</li>
-      <li>-b·(-b) = b²</li>
-    </ul>
-    <p>Daher: <code>(a - b)² = a² - ab - ab + b² = a² - 2ab + b²</code>.</p>
+    <p>Multipliziere (a - b)(a - b) und fasse zusammen:</p>
+    <p><code>(a - b)² = a² - 2ab + b²</code></p>
 
     <h3 class="subtitle">3.3 Herleitung von (a + b)(a - b)</h3>
-    <p>Multipliziere (a + b)(a - b):</p>
-    <ul>
-      <li>a·a = a²</li>
-      <li>a·(-b) = -ab</li>
-      <li>b·a = ba = ab</li>
-      <li>b·(-b) = -b²</li>
-    </ul>
-    <p>Daher: <code>(a + b)(a - b) = a² - ab + ab - b² = a² - b²</code>.</p>
+    <p>Multipliziere (a + b)(a - b) und fasse zusammen:</p>
+    <p><code>(a + b)(a - b) = a² - b²</code></p>
 
     <h3 class="subtitle">3.4 Beispiele</h3>
     <ul>
@@ -212,7 +187,6 @@
     </ul>
 
     <h3 class="subtitle">3.5 Faktorisieren</h3>
-    <p>Erkenne das Muster:</p>
     <ul>
       <li>a² + 2ab + b² → (a + b)²</li>
       <li>a² - 2ab + b² → (a - b)²</li>
@@ -222,18 +196,15 @@
     <h3 class="subtitle">3.6 Tipps</h3>
     <ul>
       <li>Achte auf das Vorzeichen des mittleren Terms 2ab.</li>
-      <li>Suche bei Faktorisierung stets nach perfekten Quadraten oder Differenzen.</li>
-      <li>Teste beim Umformen verschiedener a- und b-Werte, ob der Koeffizient passt.</li>
+      <li>Suche bei Faktorisierung nach perfekten Quadraten oder Differenzen.</li>
+      <li>Teste, ob a und b als Suchgrößen passen.</li>
     </ul>
-
   </div>
 
-  <!-- Aufgaben -->
   <div id="aufgaben" class="tab-content">
     <p>Hier folgen die Übungsaufgaben zu Rechnungen in Z.</p>
   </div>
 
-  <!-- Übungsprüfung -->
   <div id="prüfung" class="tab-content">
     <p>Hier folgt die Übungsprüfung zu Rechnungen in Z.</p>
   </div>
