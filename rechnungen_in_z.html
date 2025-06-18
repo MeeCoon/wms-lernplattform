@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Rechnungen in Z – WMS-Lernplattform</title>
   <style>
-    /* Grundlayout */
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f9fa;
       margin: 0;
-      padding-top: 80px; /* Abstand für fixen Header */
+      padding: 0;
+      padding-top: 80px;
     }
-
-    /* Header */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 60px;
+      text-align: center;
       background-color: #c0392b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: white;
+      padding: 20px 0;
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
       z-index: 1000;
     }
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
-      color: white;
+      font-size: 2.5rem;
     }
-
-    /* Zurück-Link */
+    /* Zurück-Button */
     .back-btn {
       position: absolute;
       left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
       color: white;
       text-decoration: none;
       font-size: 1rem;
-      /* kein Rahmen, kein Pfeil */
+      padding: 0;
     }
-
-    /* Hamburger im Header */
+    .back-btn:hover {
+      opacity: 0.8;
+    }
     .menu-btn {
-      position: absolute;
+      position: fixed;
+      top: 20px;
       right: 20px;
+      font-size: 28px;
       background: none;
-      border: none;
       color: white;
-      font-size: 1.5rem;
+      border: none;
       cursor: pointer;
-      outline: none;
+      z-index: 1001;
     }
-
-    /* Sidebar bleibt unverändert */
     .sidebar {
       position: fixed;
-      top: 60px; /* direkt unter Header */
+      top: 80px;
       right: -300px;
       width: 250px;
-      height: calc(100% - 60px);
+      height: 100%;
       background: white;
       box-shadow: -3px 0 15px rgba(0,0,0,0.1);
       padding: 30px 20px;
@@ -66,78 +65,67 @@
       z-index: 999;
     }
     .sidebar.show { right: 0; }
-    .suche-im-menu {
-      width: 100%; padding: 10px; margin-bottom: 20px;
-      border-radius: 20px; border: 1px solid #ccc;
-    }
-    .fach-liste { list-style: none; padding: 0; margin:0; }
+    .sidebar h2 { font-size: 1.5rem; margin-bottom: 20px; color: #333; }
+    .fach-liste { list-style: none; padding: 0; }
     .fach-liste > li { margin-bottom: 10px; }
-    .fach-liste summary {
-      cursor: pointer; font-weight: bold; margin-bottom: 5px;
-    }
+    .fach-liste summary { cursor: pointer; font-weight: bold; margin-bottom: 5px; }
     .fach-liste a {
       display: block; text-decoration: none; color: #444;
       margin-left: 10px; margin-bottom: 4px;
     }
-
-    /* Reiter */
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
     .reiter-container {
       position: relative;
       display: flex;
       justify-content: center;
-      margin-top: 80px; /* Platz für Header */
-      border-bottom: 1px solid #ddd;
+      padding: 40px 0 10px;
     }
     .reiter {
-      background: none;
-      border: none;
-      padding: 15px 20px;
-      margin: 0 10px;
-      font-size: 1rem;
-      color: #777;
-      cursor: pointer;
-      outline: none;
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
       transition: color 0.3s;
     }
     .reiter:hover { color: #c0392b; }
     .reiter.active {
-      color: #c0392b;
-      font-weight: bold;
+      color: #c0392b; font-weight: bold;
     }
     .indicator {
-      position: absolute;
-      bottom: 0;
-      height: 3px;
-      background: #c0392b;
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #c0392b;
       transition: left 0.3s ease, width 0.3s ease;
     }
-
-    /* Tab-Inhalt */
     .tab-content {
       display: none;
       max-width: 900px;
-      margin: 0 auto 60px;
+      margin: 0 auto;
       padding: 20px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #333;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
-
-    /* Abschnittstitel */
-    .section-title {
-      font-size: 1.6rem;
-      font-weight: bold;
-      margin-top: 40px;
+    .tab-content p, .tab-content ul, .tab-content ol {
       margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      display: block; width: 100%;
       border-bottom: 3px solid #c0392b;
       padding-bottom: 5px;
     }
-
-    ul, ol { padding-left: 20px; margin-bottom: 20px; }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    ul, ol { padding-left: 20px; }
     code {
-      background: #f4f4f4; padding: 2px 6px; border-radius: 4px;
-      font-family: monospace;
+      background-color: #f4f4f4; padding: 2px 6px;
+      border-radius: 4px; font-family: monospace;
     }
   </style>
 </head>
@@ -146,22 +134,21 @@
   <header>
     <a href="index.html" class="back-btn">Zurück zur Startseite</a>
     <h1>Rechnungen in Z</h1>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
   </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
   <div class="sidebar" id="sidebar">
     <h2>Navigation</h2>
-    <input type="text" placeholder="Suche..." class="suche-im-menu">
+    <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
-      <li>
-        <details>
-          <summary><a href="mathe.html">📐 Mathematik</a></summary>
-          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-          <a href="rechnungen_in_q.html">Rechnungen in Q</a>
-          <a href="#">Lineare Gleichungen & Systeme</a>
-          <a href="#">Quadratische Gleichungen</a>
-        </details>
-      </li>
+      <li><details>
+        <summary><a href="mathe.html">📐 Mathematik</a></summary>
+        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+        <a href="rechnungen_in_q.html">Rechnungen in Q</a>
+        <a href="#">Lineare Gleichungen & Systeme</a>
+        <a href="#">Quadratische Gleichungen</a>
+      </details></li>
     </ul>
   </div>
 
@@ -173,13 +160,44 @@
   </div>
 
   <div id="theorie" class="tab-content active">
-    <!-- Theorie-Inhalte hier… -->
     <h2 class="section-title">1. Allgemein</h2>
-    <p>…</p>
-    <h2 class="section-title">2. Variablen</h2>
-    <p>…</p>
+    <p>Die Menge der ganzen Zahlen, bezeichnet mit dem Symbol ℤ, umfasst alle Zahlen ohne Dezimalstellen: also sowohl positive als auch negative ganze Zahlen sowie die Null.</p>
+    <p><strong>ℤ = { ..., -3, -2, -1, 0, 1, 2, 3, ... }</strong></p>
+    <p>Diese Zahlenmenge ist unendlich und wird in vielen Bereichen des Alltags und der Mathematik verwendet.</p>
+    <ul>
+      <li><strong>Abgeschlossenheit:</strong> Add./Subtr./Multiplikation liefern wieder ganze Zahlen.</li>
+      <li><strong>Keine Dezimalwerte:</strong> 0.5 oder ⅓ gehören nicht zu ℤ.</li>
+      <li><strong>Gegenzahlen:</strong> Zu jeder a ∈ ℤ gehört -a, mit a + (-a) = 0.</li>
+      <li><strong>Null:</strong> neutrales Element der Addition.</li>
+    </ul>
+    <p>Zahlen wie -5, 0 oder 14 sind ganze Zahlen, 3.14 oder -0.5 jedoch nicht.</p>
+    <p>Beispiele im Alltag: Temperatur (-4 °C), Kontostände (-20 €), Höhenangaben (–50 m).</p>
+
+    <h2 class="section-title">2. Variabeln</h2>
+    <p>Variablen (z. B. a, b, x, y) ersetzen konkrete Zahlen und machen Terme allgemein.</p>
+    <ul>
+      <li><strong>Addition:</strong> x + x = 2x – Wichtig: Basis gleich lassen und Koeffizienten addieren.</li>
+      <li><strong>Subtraktion:</strong> 2x – x = x – Wichtig: Basis gleich lassen und Koeffizienten subtrahieren.</li>
+    </ul>
+    <p><strong>Multiplikation von Potenzen:</strong><br>
+    Wenn du zwei Potenzen derselben Basis multiplizierst, addierst du ihre Exponenten:</p>
+    <pre><code>
+    x<sup>a</sup> × x<sup>b</sup> = x<sup>a+b</sup>
+    Beispiel: x<sup>2</sup> × x<sup>3</sup> = x<sup>5</sup>
+    </code></pre>
+    <p><strong>Division von Potenzen:</strong><br>
+    Beim Teilen zweier Potenzen derselben Basis subtrahierst du die Exponenten:</p>
+    <pre><code>
+    x<sup>a</sup> ÷ x<sup>b</sup> = x<sup>a−b</sup>
+    Beispiel: x<sup>2</sup> ÷ x = x<sup>1</sup> = x
+    </code></pre>
+    <p><strong>WICHTIG:</strong> Jede Variable <code>x</code> ohne sichtbaren Exponenten entspricht <code>x<sup>1</sup></code>. Die Basis muss stets identisch sein; zwei verschiedene Variablen (z. B. <code>x</code> und <code>y</code>) lassen sich nicht direkt addieren oder subtrahieren.</p>
+
     <h2 class="section-title">3. Binomische Formeln</h2>
-    <p>…</p>
+    <p>Binomische Formeln ermöglichen das schnelle Erweitern und Faktorisieren von Ausdrücken der Form (a ± b)² und (a + b)(a - b).</p>
+
+    <!-- ... weiterer HTML-Inhalt unverändert ... -->
+
   </div>
 
   <div id="aufgaben" class="tab-content">
@@ -191,29 +209,27 @@
   </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
     function showTab(e, id) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       const ind = document.querySelector('.indicator');
-      const btn = e.target.getBoundingClientRect();
-      const cont = e.target.parentElement.getBoundingClientRect();
-      ind.style.left = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
+      const br = e.target.getBoundingClientRect(), cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
     }
     window.addEventListener('load', () => {
-      // Indicator initial position
-      const active = document.querySelector('.reiter.active');
+      const b = document.querySelector('.reiter.active');
       const ind = document.querySelector('.indicator');
-      const btn = active.getBoundingClientRect();
-      const cont = active.parentElement.getBoundingClientRect();
-      ind.style.left = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
+      const br = b.getBoundingClientRect(), cr = b.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
     });
   </script>
+
 </body>
 </html>
