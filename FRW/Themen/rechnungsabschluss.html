@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Rechnungsabschluss – WMS-Lernplattform</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f8f9fa;
       margin: 0;
-      padding: 0;
       padding-top: 80px;
     }
     header {
@@ -25,7 +24,6 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück‐Button */
     .back-btn {
       position: absolute;
       left: 20px; top: 50%;
@@ -33,30 +31,19 @@
       color: white;
       text-decoration: none;
       font-size: 1rem;
-      padding: 0;
     }
-    .back-btn:hover {
-      opacity: 0.8;
-    }
+    .back-btn:hover { opacity: 0.8; }
     .menu-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 28px;
-      background: none;
-      color: white;
-      border: none;
-      cursor: pointer;
+      position: fixed; top: 20px; right: 20px;
+      font-size: 28px; background: none;
+      color: white; border: none; cursor: pointer;
       z-index: 1001;
     }
     .sidebar {
-      position: fixed;
-      top: 80px; right: -300px;
-      width: 250px; height: 100%;
-      background: white;
+      position: fixed; top: 80px; right: -300px;
+      width: 250px; height: 100%; background: white;
       box-shadow: -3px 0 15px rgba(0,0,0,0.1);
-      padding: 30px 20px;
-      transition: right 0.3s ease;
+      padding: 30px 20px; transition: right 0.3s ease;
       z-index: 999;
     }
     .sidebar.show { right: 0; }
@@ -64,84 +51,73 @@
       font-size: 1.5rem; margin-bottom: 20px; color: #333;
     }
     .suche-im-menu {
-      width: 100%; padding: 10px; margin-bottom: 20px;
-      border-radius: 20px; border: 1px solid #ccc;
+      width:100%; padding:10px; margin-bottom:20px;
+      border-radius:20px; border:1px solid #ccc;
     }
-    .fach-liste { list-style: none; padding: 0; }
-    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste { list-style:none; padding:0; }
+    .fach-liste > li { margin-bottom:10px; }
     .fach-liste summary {
-      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+      cursor:pointer; font-weight:bold; margin-bottom:5px;
     }
     .fach-liste a {
-      display: block; text-decoration: none; color: #444;
-      margin-left: 10px; margin-bottom: 4px;
+      display:block; text-decoration:none; color:#444;
+      margin-left:10px; margin-bottom:4px;
     }
 
     .reiter-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0 10px;
+      position:relative; display:flex;
+      justify-content:center; padding:40px 0 10px;
     }
     .reiter {
-      padding: 15px 25px; margin: 0 15px;
-      background: none; border: none;
-      font-size: 1.2rem; color: #777;
-      cursor: pointer; outline: none;
-      transition: color 0.3s;
+      padding:15px 25px; margin:0 15px; background:none;
+      border:none; font-size:1.2rem; color:#777;
+      cursor:pointer; outline:none; transition:color .3s;
     }
-    .reiter:hover { color: #8e44ad; }
+    .reiter:hover { color:#8e44ad; }
     .reiter.active {
-      color: #8e44ad; font-weight: bold;
+      color:#8e44ad; font-weight:bold;
     }
     .indicator {
-      position: absolute; bottom: 5px; height: 3px;
-      background-color: #8e44ad;
-      transition: left 0.3s ease, width 0.3s ease;
+      position:absolute; bottom:5px; height:3px;
+      background-color:#8e44ad;
+      transition:left .3s ease, width .3s ease;
     }
 
     .tab-content {
-      display: none;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      font-size: 1.1rem; line-height: 1.6; color: #333;
+      display:none; max-width:900px;
+      margin:0 auto; padding:20px;
+      font-size:1.1rem; line-height:1.6; color:#333;
     }
-    .tab-content.active { display: block; }
-    .tab-content p,
-    .tab-content ul,
-    .tab-content ol,
-    .tab-content table {
-      margin-bottom: 20px;
+    .tab-content.active { display:block; }
+    .tab-content p, .tab-content ul,
+    .tab-content ol, .tab-content table {
+      margin-bottom:20px;
     }
 
     .section-title {
-      font-size: 1.8rem; font-weight: bold;
-      margin-top: 60px; margin-bottom: 30px;
-      border-bottom: 3px solid #8e44ad;
-      padding-bottom: 5px;
+      font-size:1.8rem; font-weight:bold;
+      margin-top:60px; margin-bottom:30px;
+      border-bottom:3px solid #8e44ad;
+      padding-bottom:5px;
     }
     .subtitle {
-      font-size: 1.4rem; font-weight: bold;
-      margin-top: 40px; margin-bottom: 15px;
-      display: block; width: 100%;
+      font-size:1.4rem; font-weight:bold;
+      margin-top:40px; margin-bottom:15px;
+      display:block; width:100%;
     }
-
     table {
-      width: 100%; border-collapse: collapse;
+      width:100%; border-collapse:collapse;
     }
     table, th, td {
-      border: 1px solid #ccc;
+      border:1px solid #ccc;
     }
-    th, td {
-      padding: 6px; text-align: left;
-    }
+    th, td { padding:6px; text-align:left; }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <a href="index.html" class="back-btn">Zurück zur Startseite</a>
     <h1>Rechnungsabschluss</h1>
   </header>
 
@@ -171,7 +147,69 @@
 
   <!-- Theorie‐Tab -->
   <div id="theorie" class="tab-content active">
-    <!-- … dein bestehender Inhalt … -->
+    <h2 class="section-title">1. Rechnungsabschluss</h2>
+    <p>Wenn man über Wochen oder Monate gebucht hat, fragt man sich am Ende:</p>
+    <ul>
+      <li>Wie steht mein Unternehmen da?</li>
+      <li>Habe ich Gewinn gemacht?</li>
+      <li>Wie viel Geld habe ich noch?</li>
+      <li>Wie viele Rechnungen sind noch offen?</li>
+    </ul>
+    <p>All diese Antworten liefert dir der Rechnungsabschluss.</p>
+
+    <h3 class="subtitle">1.1 Der Rechnungsabschluss</h3>
+    <p>Beim Rechnungsabschluss machst du folgendes:</p>
+    <ul>
+      <li>Alle Konten saldieren (Saldo berechnen und eintragen)</li>
+      <li>Bilanz erstellen (Bestände an Vermögen und Kapital)</li>
+      <li>Erfolgsrechnung erstellen (zeigt Aufwand und Ertrag)</li>
+      <li>Erfolg verbuchen (Gewinn oder Verlust wird ins Eigenkapital eingetragen)</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Konten saldieren</h3>
+    <p>Saldieren bedeutet, dass du bei jedem Konto die Beträge auf der Soll- und der Habenseite addierst und die Differenz berechnest. Diese Differenz ist der Saldo – also der Endbestand des Kontos.</p>
+    <p><em>Beispiel Konto „Kasse“ (Saldo per 31.12.):</em></p>
+    <table>
+      <tr><th>Vorgang</th><th>Soll</th><th>Haben</th></tr>
+      <tr><td>Anfangsbestand</td><td>1000</td><td></td></tr>
+      <tr><td>Bareinnahme</td><td>500</td><td></td></tr>
+      <tr><td>Barzahlung Miete</td><td></td><td>400</td></tr>
+      <tr><td><strong>Saldo</strong></td><td colspan="2" align="right"><strong>1100</strong></td></tr>
+      <tr><td><strong>Total</strong></td><td>1500</td><td>1500</td></tr>
+    </table>
+    <p>Der Saldo zeigt: Am 31.12. hast du 1100 CHF Bargeld.</p>
+
+    <h3 class="subtitle">1.3 Bilanz erstellen</h3>
+    <p>Jetzt nimmst du die Saldi der Aktiv‐ und Passivkonten und überträgst sie in die Bilanz. Sie zeigt die Situation an einem bestimmten Tag (z. B. 31.12.).</p>
+    <table>
+      <tr><th>Aktiven (Vermögen)</th><th>CHF</th><th>Passiven (Kapital)</th><th>CHF</th></tr>
+      <tr><td>Kasse</td><td>1100</td><td>Verbindlichkeiten LL</td><td>1300</td></tr>
+      <tr><td>Bank</td><td>2500</td><td>Darlehen</td><td>3000</td></tr>
+      <tr><td>Fahrzeuge</td><td>10000</td><td>Eigenkapital</td><td>9800</td></tr>
+      <tr><th>Total</th><th>13600</th><th>Total</th><th>13600</th></tr>
+    </table>
+    <p><em>Merke:</em> Die Bilanz ist immer ausgeglichen – beide Seiten sind gleich groß.</p>
+
+    <h3 class="subtitle">1.4 Erfolgsrechnung</h3>
+    <p>Nun kommen alle Erfolgskonten (Aufwand & Ertrag) dran. Du saldierst sie und erstellst daraus die Erfolgsrechnung. Sie zeigt, ob du Gewinn oder Verlust gemacht hast.</p>
+    <table>
+      <tr><th>Erträge</th><th>CHF</th><th>Aufwände</th><th>CHF</th></tr>
+      <tr><td>Warenertrag</td><td>8000</td><td>Warenaufwand</td><td>3000</td></tr>
+      <tr><td>Mietertrag</td><td>500</td><td>Raumaufwand</td><td>1200</td></tr>
+      <tr><td></td><td></td><td>Lohnaufwand</td><td>4000</td></tr>
+      <tr><th>Total Ertrag</th><th>8500</th><th>Total Aufwand</th><th>8200</th></tr>
+    </table>
+    <p><strong>→ Erfolg = Ertrag – Aufwand = 300 CHF Gewinn</strong></p>
+
+    <h3 class="subtitle">1.5 Erfolg verbuchen</h3>
+    <p>Am Schluss musst du den Gewinn (oder Verlust) in der Buchhaltung eintragen. Das passiert im Eigenkapital-Konto:</p>
+    <ul>
+      <li><strong>Bei Gewinn:</strong> Erfolgsrechnung / Eigenkapital → Das Kapital nimmt zu.</li>
+      <li><strong>Bei Verlust:</strong> Eigenkapital / Erfolgsrechnung → Das Kapital nimmt ab.</li>
+    </ul>
+    <p><em>Beispiel:</em> Du hast einen Gewinn von 500 CHF ermittelt.<br>
+    <code>Erfolgsrechnung / Eigenkapital 500.–</code><br>
+    Dein Eigenkapital steigt um 500 CHF.</p>
   </div>
 
   <!-- Aufgaben‐Tab -->
@@ -184,11 +222,12 @@
     <p>Hier wird eine Übungsprüfung zum Thema Rechnungsabschluss bereitgestellt.</p>
   </div>
 
-  <!-- ↓ HIER eingefügt: Kontenplan ↓ -->
+  <!-- Kontenplan am Seitenende -->
   <section style="max-width:900px; margin:0 auto 60px; padding:0 20px;">
     <h2 class="section-title">Kontenplan</h2>
-    <!-- Stelle sicher, dass die Datei 'kontenplan.png' im Ordner 'FRW/Themen' liegt -->
-    <img src="FRW/Themen/kontenplan.png" alt="Kontenplan" style="width:100%; height:auto; display:block; margin-top:20px;">
+    <img src="FRW/Themen/kontenplan.png"
+         alt="Kontenplan"
+         style="width:100%; height:auto; display:block; margin-top:20px;">
   </section>
 
   <script>
