@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Geschäfte mit der Bank – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #8e44ad; /* violett */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    /* Zurück-Button */
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0;
+    }
+    .back-btn:hover {
+      opacity: 0.8;
+    }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px; background: none;
+      color: white; border: none;
+      cursor: pointer; z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 10px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+    }
+    .reiter:hover { color: #8e44ad; }
+    .reiter.active {
+      color: #8e44ad; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #8e44ad;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #8e44ad;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="../frw.html" class="back-btn">← Zurück zu FRW</a>
+    <h1>Geschäfte mit der Bank</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary><a href="../frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+          <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
+          <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
+          <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="bankgeschaefte.html">Bankgeschäfte</a>
+          <a href="fremde_waehrungen.html">Fremde Währungen</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <h2 class="section-title">1. Geschäfte mit der Bank</h2>
+    <p>Viele Zahlungen in einem Unternehmen laufen über ein Bankkonto – ein sogenanntes Kontokorrent. Das heißt: Man kann einzahlen, abheben, überweisen und sogar einen Kreditrahmen nutzen.</p>
+    <p>Ein Bankkonto kann in der Buchhaltung zwei Rollen spielen:</p>
+    <table>
+      <tr><th>Situation</th><th>Kontoart</th><th>Erklärung</th></tr>
+      <tr><td>Guthaben bei der Bank</td><td>Aktivkonto</td><td>Die Bank „verwahrt“ dein Geld für dich</td></tr>
+      <tr><td>Überzogenes Konto (Kredit)</td><td>Passivkonto</td><td>Du schuldest der Bank Geld</td></tr>
+    </table>
+
+    <h2 class="section-title">2. Bankkonto als Aktivkonto</h2>
+    <p>Wenn du z. B. Geld von Kunden erhältst, kommt es auf dein Bankkonto:<br>
+    → Bank nimmt zu = Soll</p>
+    <p>Wenn du z. B. Miete bezahlst, geht Geld weg:<br>
+    → Bank nimmt ab = Haben</p>
+    <p><strong>Beispiel:</strong> Antonio bezahlt 800 CHF Miete per Bank.<br>
+    <strong>Buchungssatz:</strong> Raumaufwand / Bank 800.–</p>
+
+    <h2 class="section-title">3. Bankkonto als Passivkonto</h2>
+    <p>Wenn dein Bankkonto ins Minus rutscht, wird es zu einer Schuld bei der Bank – also ein Passivkonto. Dann gelten andere Regeln:</p>
+    <table>
+      <tr><th>Richtung</th><th>Bedeutung</th><th>Buchung</th></tr>
+      <tr><td>Haben</td><td>Schuld nimmt zu (z. B. Überweisung trotz Minuskonto)</td><td>Haben</td></tr>
+      <tr><td>Soll</td><td>Schuld nimmt ab (z. B. Einzahlung, Kreditrückzahlung)</td><td>Soll</td></tr>
+    </table>
+    <p><strong>Beispiel 1:</strong> Du bist im Minus und zahlst eine Rechnung über 500 CHF.<br>
+    <strong>Buchungssatz:</strong> Warenaufwand / Bankverbindlichkeit 500.–</p>
+    <p><strong>Beispiel 2:</strong> Du bekommst Geld aufs überzogene Konto zurück.<br>
+    <strong>Buchungssatz:</strong> Bankverbindlichkeit / Debitor 1000.–</p>
+
+    <h2 class="section-title">4. Zusammenfassung</h2>
+    <table>
+      <tr><th>Kontoart</th><th>Zunahme</th><th>Abnahme</th></tr>
+      <tr><td>Bank (Aktivkonto)</td><td>Soll</td><td>Haben</td></tr>
+      <tr><td>Bankverbindlichkeit (Passivkonto)</td><td>Haben</td><td>Soll</td></tr>
+    </table>
+    <p>In der täglichen Praxis ergeben sich so Buchungssätze wie:</p>
+    <table>
+      <tr><th>Vorgang</th><th>Kontoart</th><th>Buchungssatz</th></tr>
+      <tr><td>Rechnung per Bank bezahlen</td><td>Aktivkonto</td><td>Aufwandkonto / Bank</td></tr>
+      <tr><td>Zahlung erhalten</td><td>Aktivkonto</td><td>Bank / Ertrag</td></tr>
+      <tr><td>Im Minus, Ausgaben</td><td>Passivkonto</td><td>Aufwand / Bankverbindlichkeit</td></tr>
+      <tr><td>Im Minus, Einzahlung</td><td>Passivkonto</td><td>Bankverbindlichkeit / Debitor</td></tr>
+    </table>
+
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier kommen später interaktive Aufgaben zu „Geschäfte mit der Bank“.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema „Geschäfte mit der Bank“ bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
