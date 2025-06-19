@@ -190,6 +190,14 @@
       border-radius: 20px;
       border: 1px solid #ccc;
     }
+
+    /* Stil für den No-Results-Hinweis */
+    #no-results {
+      display: none;
+      color: #444;
+      margin: 0 10px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -218,6 +226,10 @@
         </details>
       </li>
     </ul>
+    <!-- ✳️ No-Results-Hinweis -->
+    <div id="no-results">
+      Keine Treffer für „<span id="search-term"></span>“ gefunden.
+    </div>
   </div>
 
   <div class="reiter-container">
@@ -227,17 +239,7 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Mathematik Themen -->
-  <div class="themen-grid" id="mathematik">
-    <a href="rechnungen_in_z.html" class="thema-card bg-z">
-      <img src="Mathe/rechnunge_in_z.png" class="thema-icon" alt="Rechnungen in Z">
-      <h3>Rechnungen in Z</h3>
-    </a>
-    <!-- … die anderen Themen-Links … -->
-  </div>
-
-  <!-- FRW Themen … -->
-  <!-- WuR Themen … -->
+  <!-- … dein restliches Grid … -->
 
   <script>
     function showFach(fach) {
@@ -251,12 +253,13 @@
       ind.style.left = (btnRect.left - contRect.left) + 'px';
       ind.style.width = btnRect.width + 'px';
     }
+
     window.addEventListener('load', () => {
       document.querySelector('.reiter.active').click();
     });
+
     function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("show");
+      document.getElementById("sidebar").classList.toggle("show");
     }
   </script>
 
@@ -295,20 +298,33 @@
     // 🔸 Suchfunktion
     function doSearch() {
       const q = searchInput.value.trim();
-      // leeres Feld → alles anzeigen
+      const noResEl = document.getElementById('no-results');
+      const termEl  = document.getElementById('search-term');
+
+      // leeres Feld → alles anzeigen, Nachricht ausblenden
       if (!q) {
         document.querySelectorAll('.fach-liste a').forEach(a => a.style.display = '');
+        noResEl.style.display = 'none';
         return;
       }
+
       // Fuse-Suche
       const results = fuse.search(q).map(r => r.item.id);
+
       // alle Links zeigen/verstecken
       document.querySelectorAll('.fach-liste a').forEach(a => {
         const href = a.getAttribute('href') || '';
-        // id aus href extrahieren
         const id = href.split('/').pop().replace('.html','');
         a.style.display = results.includes(id) ? '' : 'none';
       });
+
+      // No-Results-Hinweis
+      if (results.length === 0) {
+        termEl.textContent = q;
+        noResEl.style.display = '';
+      } else {
+        noResEl.style.display = 'none';
+      }
     }
   </script>
 </body>
