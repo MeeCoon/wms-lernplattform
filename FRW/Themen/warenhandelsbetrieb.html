@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Buchhaltung des Warenhandelsbetriebs – WMS-Lernplattform</title>
   <style>
     body {
@@ -25,7 +25,6 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück-Button */
     .back-btn {
       position: absolute;
       left: 20px; top: 50%;
@@ -35,13 +34,18 @@
       font-size: 1rem;
       padding: 0;
     }
-    .back-btn:hover { opacity: 0.8; }
+    .back-btn:hover {
+      opacity: 0.8;
+    }
     .menu-btn {
       position: fixed;
       top: 20px; right: 20px;
-      font-size: 28px; background: none;
-      color: white; border: none;
-      cursor: pointer; z-index: 1001;
+      font-size: 28px;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
     }
     .sidebar {
       position: fixed;
@@ -50,7 +54,8 @@
       background: white;
       box-shadow: -3px 0 15px rgba(0,0,0,0.1);
       padding: 30px 20px;
-      transition: right 0.3s ease; z-index: 999;
+      transition: right 0.3s ease;
+      z-index: 999;
     }
     .sidebar.show { right: 0; }
     .sidebar h2 {
@@ -70,8 +75,10 @@
       margin-left: 10px; margin-bottom: 4px;
     }
     .reiter-container {
-      position: relative; display: flex;
-      justify-content: center; padding: 40px 0 10px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -90,8 +97,10 @@
       transition: left 0.3s ease, width 0.3s ease;
     }
     .tab-content {
-      display: none; max-width: 900px;
-      margin: 0 auto; padding: 20px;
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
       font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
@@ -126,7 +135,7 @@
 <body>
 
   <header>
-    <a href="../index.html" class="back-btn">Zurück zur Startseite</a>
+    <a href="index.html" class="back-btn">Zurück zur Startseite</a>
     <h1>Buchhaltung des Warenhandelsbetriebs</h1>
   </header>
 
@@ -136,17 +145,15 @@
     <h2>Navigation</h2>
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
-      <li>
-        <details>
-          <summary><a href="../frw.html">📊 Finanz- und Rechnungswesen</a></summary>
-          <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
-          <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
-          <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
-          <a href="bankgeschaefte.html">Bankgeschäfte</a>
-          <a href="fremde_waehrungen.html">Fremde Währungen</a>
-          <a href="buchhaltung_warenhandelsbetriebs.html">Buchhaltung des Warenhandelsbetriebs</a>
-        </details>
-      </li>
+      <li><details>
+        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+        <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
+        <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
+        <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
+        <a href="bankgeschaefte.html">Bankgeschäfte</a>
+        <a href="fremde_waehrungen.html">Fremde Währungen</a>
+        <a href="warenhandelsbuchhaltung.html">Warenhandelsbuchhaltung</a>
+      </details></li>
     </ul>
   </div>
 
@@ -157,18 +164,23 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Theorie-Tab -->
+  <!-- Theorie‐Tab -->
   <div id="theorie" class="tab-content active">
-    <h2 class="section-title">6.1 Handel mit Waren als Geschäftszweck</h2>
-    <h3 class="subtitle">Was ist ein Handelsbetrieb?</h3>
+
+    <h2 class="section-title">📘 Kapitel 6: Buchhaltung des Warenhandelsbetriebs</h2>
+
+    <h3 class="subtitle">6.1 Handel mit Waren als Geschäftszweck</h3>
     <p>Ein Handelsbetrieb ist ein Unternehmen, das keine Waren selbst herstellt, sondern:</p>
     <ul>
       <li>einkauft (z. B. bei Herstellern im In- oder Ausland),</li>
       <li>lagert (z. B. im Lagerhaus oder Verkaufsraum),</li>
       <li>und wieder verkauft (an Kundschaft – im Laden oder online).</li>
     </ul>
-    <p><strong>Beispiele:</strong> Zara, MediaMarkt, Manor.</p>
-    <p>Sie kaufen Ware günstig ein und verkaufen sie mit Gewinn weiter.</p>
+    <p>Beispiele:</p>
+    <ul>
+      <li>Zara, MediaMarkt, Manor = Handelsbetriebe</li>
+      <li>Sie kaufen Ware günstig ein und verkaufen sie mit Gewinn weiter.</li>
+    </ul>
 
     <h3 class="subtitle">Wie verdient ein Handelsbetrieb Geld?</h3>
     <p>Ein Handelsbetrieb hat viele Kosten, z. B.:</p>
@@ -178,77 +190,159 @@
       <tr><td>Gemeinkosten</td><td>Löhne, Miete, Werbung, Büromaterial</td></tr>
       <tr><td>Währungsrisiken</td><td>z. B. beim Einkauf im Ausland</td></tr>
     </table>
-    <p>Dazu muss der Verkaufspreis über allen Kosten liegen:</p>
+    <p>Damit das Unternehmen überlebt, muss es:</p>
     <ul>
-      <li><strong>Bruttogewinn</strong> = Verkaufspreis – Einstandswert</li>
-      <li><strong>Reingewinn</strong> = Bruttogewinn – Gemeinkosten</li>
+      <li>alle Kosten decken</li>
+      <li>zusätzlich einen Gewinn machen</li>
     </ul>
+    <p>Dazu wird die Ware zu einem höheren Preis verkauft als eingekauft. Diese Differenz heißt:</p>
+    <p><strong>Bruttogewinn = Verkaufspreis – Einstandswert (Einkauf + Bezugskosten)</strong></p>
+    <p>Wenn man vom Bruttogewinn noch die Gemeinkosten abzieht, erhält man:</p>
+    <p><strong>Reingewinn (auch: Betriebsgewinn)</strong></p>
 
-    <h2 class="section-title">6.2 Wareneinkauf – komplett erklärt</h2>
-    <p>Beim Wareneinkauf entstehen verschiedene Buchungsfälle:</p>
+    <h3 class="subtitle">Der Weg vom Einkauf zum Gewinn</h3>
     <table>
-      <tr><th>Art</th><th>Was passiert?</th><th>Konto</th><th>Seite</th></tr>
+      <tr><th>Begriff</th><th>Bedeutung</th></tr>
+      <tr><td>Einkaufspreis</td><td>Preis, den der Händler für die Ware zahlt</td></tr>
+      <tr><td>+ Bezugskosten</td><td>Transport, Versicherung, Zoll usw.</td></tr>
+      <tr><td>= Einstandswert (EW)</td><td>Totale Kosten, bis die Ware im Lager liegt</td></tr>
+      <tr><td>+ Bruttogewinn</td><td>Aufschlag für Gemeinkosten + Gewinn</td></tr>
+      <tr><td>= Verkaufspreis (Nettoerlös)</td><td>Betrag, den die Kunden zahlen</td></tr>
+    </table>
+    <p><em>Merksatz:</em> Einstandswert + Bruttogewinn = Nettoerlös<br>
+      Nettoerlös – Gemeinkosten = Reingewinn</p>
+
+    <h3 class="subtitle">📚 Beispiel: Taschenhandel</h3>
+    <p>Sabina kauft in Italien eine Tasche für CHF 55.<br>
+    In der Schweiz kostet dieselbe Tasche CHF 110.</p>
+    <table>
+      <tr><th>Rechnung</th><th>Betrag</th></tr>
+      <tr><td>Einkauf</td><td>CHF 55</td></tr>
+      <tr><td>Verkauf</td><td>CHF 110</td></tr>
+      <tr><td>Bruttogewinn</td><td>CHF 55 → 100 % Aufschlag!</td></tr>
+    </table>
+    <p>Bruttogewinn muss alle Kosten + Gewinn abdecken.</p>
+
+    <h2 class="section-title">📘 Kapitel 6.2 Wareneinkauf – komplett erklärt</h2>
+
+    <h3 class="subtitle">Was passiert beim Einkauf?</h3>
+    <p>Ein Handelsbetrieb kauft bei einem Lieferanten Handelswaren ein, um sie später weiterzuverkaufen. Dabei entstehen oft Zusatzkosten (Transport, Zoll etc.) und Korrekturen (Rabatt, Skonto, Rücksendungen).</p>
+    <p>Diese Geschäftsfälle werden gebucht:</p>
+    <table>
+      <tr><th>Art</th><th>Was passiert?</th><th>Konto</th><th>Buchung auf Seite</th></tr>
       <tr><td>Einkauf</td><td>Ware wird gekauft</td><td>Warenaufwand</td><td>Soll</td></tr>
       <tr><td>Bezugskosten</td><td>z. B. Transport</td><td>Warenaufwand</td><td>Soll</td></tr>
       <tr><td>Rücksendung</td><td>fehlerhafte Ware retour</td><td>Warenaufwand</td><td>Haben</td></tr>
       <tr><td>Rabatt</td><td>Nachlass vom Lieferanten</td><td>Warenaufwand</td><td>Haben</td></tr>
       <tr><td>Skonto</td><td>Abzug bei schneller Zahlung</td><td>Warenaufwand</td><td>Haben</td></tr>
     </table>
-    <p><em>Merksatz:</em> Warenaufwand im Soll, Korrekturen im Haben.</p>
 
-    <h2 class="section-title">6.3 Warenverkauf</h2>
-    <p>Wichtige Konten:</p>
-    <ul>
-      <li><strong>Forderungen LL</strong> (Aktiv)</li>
-      <li><strong>Handelserlöse</strong> (Ertrag)</li>
-      <li><strong>Kasse/Bank</strong> (Aktiv)</li>
-    </ul>
-    <p><strong>Buchungssätze:</strong></p>
-    <ul>
-      <li>Verkauf auf Rechnung: <code>Forderungen LL / Handelserlöse</code></li>
-      <li>Rücksendung: <code>Handelserlöse / Forderungen LL</code></li>
-      <li>Rabatt/Skonto: <code>Handelserlöse / Forderungen LL</code></li>
-      <li>Zahlung: <code>Bank / Forderungen LL</code></li>
-    </ul>
-
-    <h2 class="section-title">6.4 Mehrstufige Erfolgsermittlung</h2>
-    <p>Die Erfolgsrechnung wird gestuft aufgezeigt:</p>
+    <h3 class="subtitle">Welche Konten braucht man?</h3>
     <table>
-      <tr><th>Stufe</th><th>Berechnung</th></tr>
-      <tr><td>Bruttogewinn</td><td>Nettoerlös – Einstandswert</td></tr>
-      <tr><td>Betriebsgewinn</td><td>Bruttogewinn – Betriebsaufwand</td></tr>
-      <tr><td>Unternehmungsgewinn</td><td>Betriebsgewinn ± Finanzergebnis</td></tr>
+      <tr><th>Konto</th><th>Zweck</th><th>Typ</th></tr>
+      <tr><td>Warenaufwand</td><td>Zeigt alle Kosten für Einkäufe</td><td>Aufwandskonto</td></tr>
+      <tr><td>Verbindlichkeiten LL</td><td>Offene Rechnungen beim Lieferanten</td><td>Passivkonto</td></tr>
+      <tr><td>Kasse / Bank</td><td>Wenn bar oder mit Karte gezahlt wird</td><td>Aktivkonto</td></tr>
+      <tr><td>Handelswaren</td><td>Vorräte an Lager (Bestand)</td><td>Aktivkonto – ruhend</td></tr>
     </table>
+    <p><em>Merksatz zum Buchen:</em><br>
+      Warenaufwand wird beim Einkauf belastet (Soll) – alles, was diesen Aufwand mindert, wird im Haben gebucht.</p>
+
+    <h3 class="subtitle">Vorräte: Was passiert am Jahresende?</h3>
+    <p>Während des Jahres bucht man alles direkt in den Aufwand. Nur Ende Jahr: Hat sich der Lagerbestand verändert?</p>
+    <table>
+      <tr><th>Situation</th><th>Was tun?</th><th>Buchungssatz</th></tr>
+      <tr><td>Mehr Vorrat</td><td>Aufwand zu hoch → korrigieren</td><td>Handelswaren / Warenaufwand</td></tr>
+      <tr><td>Weniger Vorrat</td><td>Aufwand zu tief → erhöhen</td><td>Warenaufwand / Handelswaren</td></tr>
+    </table>
+
+    <h3 class="subtitle">Zusammenfassung – Wareneinkauf</h3>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th></tr>
+      <tr><td>Warenaufwand</td><td>Alles, was für Warenbeschaffung ausgegeben wird</td></tr>
+      <tr><td>Einstandswert</td><td>Einkaufspreis + Bezugskosten – Rabatt – Skonto – Rücksendungen</td></tr>
+      <tr><td>Handelswaren (Bestand)</td><td>Lagerwert zu Jahresbeginn und -ende</td></tr>
+      <tr><td>Vorratskorrektur</td><td>Nur Ende Jahr buchen: Zu- oder Abnahme im Lager</td></tr>
+    </table>
+
+    <h2 class="section-title">📘 Kapitel 6.3 Warenverkauf</h2>
+
+    <h3 class="subtitle">Wichtige Konten im Warenverkauf</h3>
+    <table>
+      <tr><th>Konto</th><th>Bedeutung</th><th>Typ</th></tr>
+      <tr><td>Forderungen LL</td><td>Kunden schulden dir Geld</td><td>Aktivkonto</td></tr>
+      <tr><td>Handelserlöse</td><td>Erträge aus Warenverkauf</td><td>Ertragskonto</td></tr>
+      <tr><td>Kasse / Bank</td><td>Kunde zahlt</td><td>Aktivkonto</td></tr>
+    </table>
+
+    <h3 class="subtitle">Grundsatz beim Verkauf</h3>
+    <p>Verkauf → Ertrag entsteht (im Haben)<br>
+    Zahlung → Forderungen oder Kasse im Soll</p>
+
+    <h3 class="subtitle">Beispiele</h3>
+    <ul>
+      <li><strong>Verkauf auf Rechnung:</strong> Forderungen LL / Handelserlöse 3500.–</li>
+      <li><strong>Rücksendung 2 Bretter (700.–):</strong> Handelserlöse / Forderungen LL 700.–</li>
+      <li><strong>Nachträglicher Rabatt 50.–:</strong> Handelserlöse / Forderungen LL 50.–</li>
+      <li><strong>Versandkosten Verkäufer 53.–:</strong> Handelserlöse / Kasse 53.–</li>
+      <li><strong>Zahlung ohne Skonto:</strong> Bank / Forderungen LL</li>
+      <li><strong>Zahlung mit Skonto:</strong> Bank + Handelserlöse / Forderungen LL</li>
+      <li><strong>Abschluss Ertragskonto:</strong> Handelserlöse / Erfolgsrechnung</li>
+    </ul>
+
+    <h2 class="section-title">📘 Kapitel 6.4 Mehrstufige Erfolgsermittlung</h2>
+
+    <h3 class="subtitle">Die 3 Stufen der Erfolgsrechnung</h3>
+    <table>
+      <tr><th>Stufe</th><th>Was zeigt sie?</th></tr>
+      <tr><td>1. Bruttogewinn</td><td>Gewinn nach Einkauf der Waren</td></tr>
+      <tr><td>2. Betriebsgewinn</td><td>Gewinn nach Abzug Betriebskosten</td></tr>
+      <tr><td>3. Unternehmungsgewinn</td><td>Endgewinn inkl. aller Erträge/Aufwände</td></tr>
+    </table>
+
+    <h3 class="subtitle">Wichtige Begriffe</h3>
+    <table>
+      <tr><th>Begriff</th><th>Formel</th><th>Erklärung</th></tr>
+      <tr><td>Einstandswert EWvW</td><td>Warenaufwand ± Vorratsveränderung</td><td>Kosten verkaufter Waren</td></tr>
+      <tr><td>Nettoerlös</td><td>Handelserlöse – Ertragsminderungen</td><td>Effektive Einnahmen</td></tr>
+      <tr><td>Bruttogewinn</td><td>Nettoerlös – Einstandswert</td><td>Marge für Kosten + Gewinn</td></tr>
+      <tr><td>Betriebsaufwand</td><td>…</td><td>Löhne, Miete, Werbung</td></tr>
+      <tr><td>Reingewinn</td><td>Bruttogewinn – Betriebsaufwand</td><td>Kerngeschäftsgewinn</td></tr>
+    </table>
+
   </div>
 
-  <!-- Aufgaben-Tab -->
   <div id="aufgaben" class="tab-content">
-    <p>Hier folgen die Übungsaufgaben zur Buchhaltung des Warenhandelsbetriebs.</p>
+    <p>Hier kommen später interaktive Aufgaben zur Warenhandelsbuchhaltung.</p>
   </div>
 
-  <!-- Übungsprüfung-Tab -->
   <div id="pruefung" class="tab-content">
-    <p>Hier wird eine Übungsprüfung zum Thema bereitgestellt.</p>
+    <p>Hier wird eine Übungsprüfung zur Warenhandelsbuchhaltung bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b=>b.classList.remove('active'));
       e.target.classList.add('active');
       const ind = document.querySelector('.indicator'),
             br = e.target.getBoundingClientRect(),
             cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left  = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
+      ind.style.left = (br.left - cr.left)+'px';
+      ind.style.width = br.width+'px';
     }
-    window.addEventListener('load', () => {
-      document.querySelector('.reiter.active').click();
-    });
     function toggleMenu() {
       document.getElementById('sidebar').classList.toggle('show');
     }
+    window.addEventListener('load', ()=>{
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left)+'px';
+      ind.style.width = br.width+'px';
+    });
   </script>
 
 </body>
