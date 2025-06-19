@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Fremde Währungen – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #8e44ad; /* violett */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    /* Zurück‐Button */
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0;
+    }
+    .back-btn:hover {
+      opacity: 0.8;
+    }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 10px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+    }
+    .reiter:hover { color: #8e44ad; }
+    .reiter.active {
+      color: #8e44ad; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #8e44ad;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+    .tab-content {
+      display: none; max-width: 900px;
+      margin: 0 auto; padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #8e44ad;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+    code {
+      background: #f4f4f4; padding: 2px 4px;
+      border-radius: 4px; font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">← Zurück zur Startseite</a>
+    <h1>Fremde Währungen</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li><details>
+        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+        <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
+        <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+      </details></li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie‐Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <h2 class="section-title">5. Fremde Währungen</h2>
+
+    <h3 class="subtitle">5.1 Was ist ein Wechselkurs?</h3>
+    <p>Ein Wechselkurs zeigt, wie viel CHF du für eine Fremdwährung zahlen musst – oder umgekehrt, wie viel Fremdwährung du für CHF erhältst.</p>
+    <p><strong>Beispiel:</strong><br>
+      EUR 1 = CHF 1.12 → Du bezahlst 1.12 Franken für 1 Euro.</p>
+
+    <h3 class="subtitle">Die 4 wichtigsten Kursarten</h3>
+    <table>
+      <tr>
+        <th>Kursart</th><th>Wofür?</th><th>Wann?</th>
+      </tr>
+      <tr>
+        <td>Notenkurs</td><td>Bargeld (z. B. Bankschalter)</td><td>Wechsel von Papiergeld</td>
+      </tr>
+      <tr>
+        <td>Devisenkurs</td><td>Buchgeld (Überweisung, Kreditkarte)</td><td>Bankzahlungen</td>
+      </tr>
+      <tr>
+        <td>Ankaufskurs</td><td>Bank kauft Fremdwährung von dir</td><td>Rücktausch (z. B. EUR → CHF)</td>
+      </tr>
+      <tr>
+        <td>Verkaufskurs</td><td>Bank verkauft Fremdwährung an dich</td><td>Kauf (z. B. CHF → USD)</td>
+      </tr>
+    </table>
+    <p><em>Merksatz:</em> Immer aus Sicht der Bank denken:<br>
+      „Gebe ich CHF und erhalte Fremdwährung → Verkaufskurs<br>
+      Bringe ich Fremdwährung und erhalte CHF → Ankaufskurs“</p>
+
+    <h3 class="subtitle">5.2 Mit Wechselkursen rechnen</h3>
+    <p><strong>CHF → Fremdwährung (1er-Kurs):</strong><br>
+      <code>Fremdwährung = CHF Betrag ÷ Kurs</code></p>
+    <p><strong>Fremdwährung → CHF (1er-Kurs):</strong><br>
+      <code>CHF = Fremdwährungsbetrag × Kurs</code></p>
+    <p><strong>Spezialfall 100er-Kurs (z. B. JPY, SEK):</strong><br>
+      <code>CHF → FW = CHF Betrag × 100 ÷ Kurs</code><br>
+      <code>FW → CHF = FW Betrag × Kurs ÷ 100</code></p>
+
+    <h3 class="subtitle">Beispiele</h3>
+    <ul>
+      <li><strong>Laura wechselt CHF 800 in Euro (Noten-Verkaufskurs 1.17):<br>
+        CHF 800 ÷ 1.17 = EUR 683.76</strong><br>
+        (Bank rundet oft auf 10er-Scheine → z. B. EUR 680 für CHF 795.60)</li>
+      <li><strong>Kunde überweist EUR an CH-Firma → Devisen-Ankaufskurs</strong></li>
+      <li><strong>Tourist bringt AUD 800 (Devisenkurs 0.75):<br>
+        800 × 0.75 = CHF 600</strong></li>
+      <li><strong>Beispiel 100 SEK → CHF (Kurs 11.53):<br>
+        CHF = 4000 × 11.53 ÷ 100 = CHF 461.20</strong></li>
+    </ul>
+
+    <h3 class="subtitle">Übersicht Formeln</h3>
+    <table>
+      <tr><th>Rechnung</th><th>Formel</th></tr>
+      <tr><td>CHF → FW (1er-Kurs)</td><td>CHF ÷ Kurs</td></tr>
+      <tr><td>FW → CHF (1er-Kurs)</td><td>FW × Kurs</td></tr>
+      <tr><td>CHF → FW (100er-Kurs)</td><td>CHF × 100 ÷ Kurs</td></tr>
+      <tr><td>FW → CHF (100er-Kurs)</td><td>FW × Kurs ÷ 100</td></tr>
+    </table>
+
+  </div>
+
+  <!-- Aufgaben‐Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zu Fremden Währungen.</p>
+  </div>
+
+  <!-- Übungsprüfung‐Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Fremde Währungen bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
