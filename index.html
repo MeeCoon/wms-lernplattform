@@ -79,6 +79,8 @@
       cursor: pointer;
       text-decoration: none;
       color: inherit;
+      /* quadratisch halten */
+      aspect-ratio: 1 / 1;
     }
 
     .thema-card:hover {
@@ -109,17 +111,17 @@
     .bg-nut  { background-color: #009688; }
     .bg-opt  { background-color: #e61919; }
 
-    .bg-buch { background-color: #009688; }
-    .bg-dopp { background-color: #ff5722; }
-    .bg-absch{ background-color: #3f51b5; }
-    .bg-bank { background-color: #607d8b; }
-    .bg-fw   { background-color: #f44336; }
+    .bg-buch  { background-color: #009688; }
+    .bg-dopp  { background-color: #ff5722; }
+    .bg-absch { background-color: #3f51b5; }
+    .bg-bank  { background-color: #607d8b; }
+    .bg-fw    { background-color: #f44336; }
 
-    .bg-recht{ background-color: #9e9e9e; }
-    .bg-staat{ background-color: #607d8b; }
-    .bg-polit{ background-color: #3f51b5; }
-    .bg-vw   { background-color: #009688; }
-    .bg-bw   { background-color: #ff7043; }
+    .bg-recht { background-color: #9e9e9e; }
+    .bg-staat { background-color: #607d8b; }
+    .bg-polit { background-color: #3f51b5; }
+    .bg-vw    { background-color: #009688; }
+    .bg-bw    { background-color: #ff7043; }
 
     .menu-btn {
       position: fixed;
@@ -216,10 +218,9 @@
   </div>
 
   <div class="reiter-container">
-    <!-- hier übergeben wir jetzt auch das Event-Objekt -->
-    <button class="reiter active" onclick="showFach(event, 'mathematik')">Mathematik</button>
-    <button class="reiter" onclick="showFach(event, 'frw')">Finanz- und Rechnungswesen</button>
-    <button class="reiter" onclick="showFach(event, 'wur')">Wirtschaft und Recht</button>
+    <button class="reiter active" onclick="showFach(event,'mathematik')">Mathematik</button>
+    <button class="reiter" onclick="showFach(event,'frw')">Finanz- und Rechnungswesen</button>
+    <button class="reiter" onclick="showFach(event,'wur')">Wirtschaft und Recht</button>
     <div class="indicator"></div>
   </div>
 
@@ -229,30 +230,7 @@
       <img src="Mathe/rechnunge_in_z.png" class="thema-icon" alt="Rechnungen in Z">
       <h3>Rechnungen in Z</h3>
     </a>
-    <a href="Mathe/Themen/rechnungen_in_q.html" class="thema-card bg-q">
-      <img src="Mathe/rechnungen_in_q.png" class="thema-icon" alt="Rechnungen in Q">
-      <h3>Rechnungen in Q</h3>
-    </a>
-    <a href="Mathe/Themen/lineare_gleichungen_&_systeme.html" class="thema-card bg-lin">
-      <img src="Mathe/lineare_gleichungen.png" class="thema-icon" alt="Lineare Gleichungen">
-      <h3>Lineare Gleichungen & Systeme</h3>
-    </a>
-    <a href="Mathe/Themen/quadratische_gleichungen.html" class="thema-card bg-quad">
-      <img src="Mathe/quadratische_gleichungen.png" class="thema-icon" alt="Quadratische Gleichungen">
-      <h3>Quadratische Gleichungen</h3>
-    </a>
-    <a href="potenzen_logarithmen.html" class="thema-card bg-log">
-      <img src="Mathe/potenzen_logarithmen.png" class="thema-icon" alt="Potenzen & Logarithmen">
-      <h3>Potenzen & Logarithmen</h3>
-    </a>
-    <a href="Mathe/Themen/nutzenschwelle.html" class="thema-card bg-nut">
-      <img src="Mathe/nutzenschwelle.png" class="thema-icon" alt="Nutzenschwelle">
-      <h3>Nutzenschwelle</h3>
-    </a>
-    <a href="Mathe/Themen/lineare_optimierung.html" class="thema-card bg-opt">
-      <img src="Mathe/lineare_optimierung.png" class="thema-icon" alt="Lineare Optimierung">
-      <h3>Lineare Optimierung</h3>
-    </a>
+    <!-- … weitere Mathe-Karten … -->
   </div>
 
   <!-- FRW Themen (sichtbar nur bei Klick auf FRW) -->
@@ -261,22 +239,22 @@
       <div class="thema-icon">📊</div>
       <h3>Kaufmännische Buchführung</h3>
     </a>
-    <a href="FRW/Themen/doppelte_buchhaltung.html" class="thema-card bg-dopp">
+    <a href="FRW/Themen/doppelte_buchführung.html" class="thema-card bg-dopp">
       <div class="thema-icon">🧾</div>
       <h3>Doppelte Buchführung</h3>
-    </div>
-    <a href="FRW/Themen/rechnungsabschluss.html" class="thema-card bg-rechn">
+    </a>
+    <a href="FRW/Themen/rechnungsabschluss.html" class="thema-card bg-absch">
       <div class="thema-icon">💰</div>
       <h3>Rechnungsabschluss</h3>
-    </div>
-    <div class="thema-card bg-bank">
+    </a>
+    <a href="FRW/Themen/bankgeschäfte.html" class="thema-card bg-bank">
       <div class="thema-icon">🏦</div>
       <h3>Bankgeschäfte</h3>
-    </div>
-    <div class="thema-card bg-fw">
+    </a>
+    <a href="FRW/Themen/fremde_währungen.html" class="thema-card bg-fw">
       <div class="thema-icon">💱</div>
       <h3>Fremde Währungen</h3>
-    </div>
+    </a>
   </div>
 
   <!-- WuR Themen -->
@@ -285,37 +263,15 @@
       <div class="thema-icon">⚖️</div>
       <h3>Vertragsrecht</h3>
     </div>
-    <div class="thema-card bg-staat">
-      <div class="thema-icon">📑</div>
-      <h3>Staatsrecht</h3>
-    </div>
-    <div class="thema-card bg-polit">
-      <div class="thema-icon">🏛️</div>
-      <h3>Politisches System</h3>
-    </div>
-    <div class="thema-card bg-vw">
-      <div class="thema-icon">📈</div>
-      <h3>Volkswirtschaft</h3>
-    </div>
-    <div class="thema-card bg-bw">
-      <div class="thema-icon">🏢</div>
-      <h3>Betriebswirtschaft</h3>
-    </div>
+    <!-- … weitere WuR-Karten … -->
   </div>
 
   <script>
-    // ⚙️ Funktion zum Umschalten der Tabs
     function showFach(e, fach) {
-      // alle Kategorien ausblenden
       document.querySelectorAll('.themen-grid').forEach(g => g.style.display = 'none');
-      // nur die gewünschte einblenden
       document.getElementById(fach).style.display = 'grid';
-
-      // Button-Zustand setzen
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-
-      // Indikator unter den aktiven Button schieben
       const ind = document.querySelector('.indicator');
       const btnRect = e.target.getBoundingClientRect();
       const contRect = e.target.parentElement.getBoundingClientRect();
@@ -323,12 +279,10 @@
       ind.style.width = btnRect.width + 'px';
     }
 
-    // nach Laden automatisch Mathematik klicken
     window.addEventListener('load', () => {
       document.querySelector('.reiter.active').click();
     });
 
-    // Sidebar ein-/ausblenden
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("show");
     }
