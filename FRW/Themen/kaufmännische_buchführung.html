@@ -8,9 +8,10 @@
       font-family: 'Segoe UI', sans-serif;
       background: #f8f9fa;
       margin: 0;
+      padding: 0;
       padding-top: 80px;
     }
-    /* Header */
+
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
@@ -25,7 +26,7 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück-Button */
+    /* Zurück‐Button */
     .back-btn {
       position: absolute;
       left: 20px; top: 50%;
@@ -39,15 +40,18 @@
       opacity: 0.8;
     }
 
-    /* Hamburger-Menü */
     .menu-btn {
       position: fixed;
-      top: 20px; right: 20px;
+      top: 20px;
+      right: 20px;
       font-size: 28px;
-      background: none; border: none;
-      color: white; cursor: pointer;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
       z-index: 1001;
     }
+
     .sidebar {
       position: fixed;
       top: 80px; right: -300px;
@@ -60,12 +64,16 @@
     }
     .sidebar.show { right: 0; }
     .sidebar h2 {
-      font-size: 1.5rem; margin-bottom: 20px;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
       color: #333;
     }
     .suche-im-menu {
-      width: 100%; padding: 10px; margin-bottom: 20px;
-      border-radius: 20px; border: 1px solid #ccc;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
     }
     .fach-liste { list-style: none; padding: 0; }
     .fach-liste > li { margin-bottom: 10px; }
@@ -77,10 +85,11 @@
       margin-left: 10px; margin-bottom: 4px;
     }
 
-    /* Reiter */
     .reiter-container {
-      position: relative; display: flex;
-      justify-content: center; padding: 40px 0 10px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -99,10 +108,11 @@
       transition: left 0.3s ease, width 0.3s ease;
     }
 
-    /* Tab-Inhalte */
     .tab-content {
-      display: none; max-width: 900px;
-      margin: 0 auto; padding: 20px;
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
       font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
@@ -113,7 +123,6 @@
       margin-bottom: 20px;
     }
 
-    /* Überschriften */
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
@@ -126,7 +135,6 @@
       display: block; width: 100%;
     }
 
-    /* Tabellen */
     table {
       width: 100%; border-collapse: collapse;
     }
@@ -141,23 +149,24 @@
 <body>
 
   <header>
-    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
     <h1>Kaufmännische Buchführung</h1>
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
   <div class="sidebar" id="sidebar">
     <h2>Navigation</h2>
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
       <li><details>
-        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+        <summary><a href="frw.html">📊 Finanz‐ und Rechnungswesen</a></summary>
         <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
         <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
         <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
         <a href="bankgeschaefte.html">Bankgeschäfte</a>
         <a href="fremde_waehrungen.html">Fremde Währungen</a>
-        <!-- …weitere FRW-Themen… -->
+        <!-- … weitere FRW‐Themen … -->
       </details></li>
     </ul>
   </div>
@@ -169,50 +178,98 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Theorie -->
+  <!-- Theorie‐Tab -->
   <div id="theorie" class="tab-content active">
+
     <h2 class="section-title">1. Grundlagen</h2>
 
     <h3 class="subtitle">1.1 Warum überhaupt Buchhaltung?</h3>
-    <p>Stell dir vor, du eröffnest deinen eigenen Bubble-Tea-Stand. Du gibst Geld für Zutaten, Becher und Werbung aus – und verdienst Geld durch Verkäufe. Spätestens nach ein paar Wochen stellst du dir Fragen wie:</p>
+    <p>Stell dir vor, du eröffnest deinen eigenen Bubble-Tea-Stand. Du gibst Geld für Zutaten, Becher und Werbung aus – und du verdienst Geld durch Verkäufe. Spätestens nach ein paar Wochen stellst du dir Fragen wie:</p>
     <ul>
-      <li>Habe ich Gewinn gemacht?</li>
-      <li>Wofür habe ich das meiste Geld ausgegeben?</li>
-      <li>Wie viel Bargeld liegt noch in der Kasse?</li>
-      <li>Muss ich noch Rechnungen bezahlen?</li>
+      <li>Habe ich überhaupt Gewinn gemacht?</li>
+      <li>Wofür habe ich eigentlich das meiste Geld ausgegeben?</li>
+      <li>Wie viel Geld ist noch in der Kasse?</li>
+      <li>Muss ich jemandem noch Geld zahlen? Oder schuldet mir jemand was?</li>
     </ul>
-    <p>Die Buchhaltung ist dein Geld-Tagebuch. Sie zeigt dir:</p>
+    <p>Genau dafür gibt es die Buchhaltung. Sie ist wie ein Tagebuch für dein Geld – sie zeigt dir jederzeit:</p>
     <ul>
-      <li><strong>Aktiven:</strong> Was du besitzt</li>
-      <li><strong>Passiven:</strong> Was du schuldest</li>
-      <li><strong>Erträge:</strong> Was du einnimmst</li>
-      <li><strong>Aufwände:</strong> Was du ausgibst</li>
+      <li><strong>Was du besitzt</strong> (Vermögen – Aktivseite in der Bilanz)</li>
+      <li><strong>Was du schuldest</strong> (Schulden – Fremdkapital auf der Passivseite)</li>
+      <li><strong>Was du verdienst</strong> (Erträge)</li>
+      <li><strong>Was du ausgibst</strong> (Aufwände)</li>
     </ul>
+    <p>Und das Beste: Du kannst jederzeit beweisen, wie deine finanzielle Lage ist – z. B. für das Steueramt oder eine Bank.</p>
 
     <h3 class="subtitle">1.2 Gesetzliche Pflicht</h3>
-    <p>Alle Unternehmen in der Schweiz müssen laut Obligationenrecht eine Buchhaltung führen (Art. 957 OR). Ohne Buchführung drohen Bussen und Ärger mit dem Steueramt.</p>
+    <p>Alle Unternehmen in der Schweiz – egal ob Einzelfirma, GmbH oder AG – müssen laut Obligationenrecht (OR) eine Buchhaltung führen (Art. 957 OR). Wer keine Buchführung macht oder sie unsorgfältig führt, riskiert Bussen oder Probleme mit dem Steueramt.</p>
 
     <h2 class="section-title">2. Bestandeskonten</h2>
 
-    <h3 class="subtitle">2.1 Aktivkonten</h3>
-    <p>Aktivkonten zeigen dein Vermögen:</p>
+    <h3 class="subtitle">2.1 Was sind Bestandeskonten?</h3>
+    <p>Bestandeskonten zeigen, wie viel ein Unternehmen besitzt und wie es finanziert wurde. Sie beantworten Fragen wie:</p>
     <ul>
-      <li><strong>Soll (links):</strong> Mehr Vermögen</li>
-      <li><strong>Haben (rechts):</strong> Weniger Vermögen</li>
+      <li>Wie viel Bargeld liegt in der Kasse?</li>
+      <li>Wie hoch sind unsere Schulden bei der Bank?</li>
     </ul>
+    <p>Man unterscheidet:</p>
+    <ul>
+      <li><strong>🔵 Aktivkonten:</strong> Vermögenswerte (z. B. Kasse, Bank, Vorräte)</li>
+      <li><strong>🔴 Passivkonten:</strong> Finanzierung / Schulden (z. B. Verbindlichkeiten, Darlehen, Eigenkapital)</li>
+    </ul>
+
+    <h3 class="subtitle">2.2 Aktivkonten</h3>
+    <p>Aktivkonten enthalten alles, was das Unternehmen besitzt.</p>
+    <p><strong>Buchungsregeln für Aktivkonten:</strong></p>
+    <ul>
+      <li><strong>Soll (links):</strong> Zunahme des Vermögens (z. B. Geld kommt rein)</li>
+      <li><strong>Haben (rechts):</strong> Abnahme des Vermögens (z. B. Geld geht raus)</li>
+    </ul>
+    <p><em>Beispiel Konto „Kasse“:</em></p>
     <table>
       <tr><th>Datum</th><th>Text</th><th>Soll</th><th>Haben</th><th>Saldo</th></tr>
       <tr><td>01.01.</td><td>Anfangsbestand</td><td>300</td><td></td><td>300</td></tr>
-      <tr><td>03.01.</td><td>Bubble-Tea-Verkauf</td><td>100</td><td></td><td>400</td></tr>
+      <tr><td>03.01.</td><td>Verkauf Bubble-Tea</td><td>100</td><td></td><td>400</td></tr>
       <tr><td>05.01.</td><td>Kauf Becher</td><td></td><td>50</td><td>350</td></tr>
       <tr><td>06.01.</td><td>Saldo</td><td></td><td></td><td>350</td></tr>
     </table>
 
-    <h3 class="subtitle">2.2 Passivkonten</h3>
-    <p>Passivkonten zeigen deine Schulden:</p>
+    <h3 class="subtitle">2.3 Beispiel 1: Konto „Bankguthaben“</h3>
+    <p>Du bekommst eine Überweisung von 200 CHF und bezahlst 50 CHF Miete per Bank.</p>
     <ul>
-      <li><strong>Haben (rechts):</strong> Mehr Schulden</li>
-      <li><strong>Soll (links):</strong> Schuldenabbau</li>
+      <li><code>Kasse / Warenertrag  200.–</code> (Zunahme Bankguthaben im Soll)</li>
+      <li><code>Raumaufwand / Bank   50.–</code> (Abnahme Bankguthaben im Haben)</li>
+    </ul>
+    <table>
+      <tr><th>Datum</th><th>Text</th><th>Soll</th><th>Haben</th><th>Saldo</th></tr>
+      <tr><td>01.03.</td><td>Anfangsbestand</td><td>1 000</td><td></td><td>1 000</td></tr>
+      <tr><td>03.03.</td><td>Zahlung Kunde</td><td>200</td><td></td><td>1 200</td></tr>
+      <tr><td>05.03.</td><td>Miete</td><td></td><td>50</td><td>1 150</td></tr>
+    </table>
+
+    <h3 class="subtitle">2.4 Weitere typische Aktivkonten</h3>
+    <ul>
+      <li><strong>Kasse</strong> – Bargeld im Unternehmen</li>
+      <li><strong>Bank</strong> – Guthaben auf dem Bankkonto</li>
+      <li><strong>Forderungen LL</strong> – Geld, das Kunden noch schulden</li>
+      <li><strong>Vorräte</strong> – Material oder Ware im Lager</li>
+      <li><strong>Sachanlagen</strong> – Fahrzeuge, Maschinen, Mobiliar</li>
+      <li><strong>Immobilien</strong> – Gebäude, Grundstücke</li>
+    </ul>
+
+    <h3 class="subtitle">2.5 Passivkonten</h3>
+    <p>Passivkonten zeigen, woher das Geld für das Vermögen kommt.</p>
+    <p><strong>Buchungsregeln für Passivkonten:</strong></p>
+    <ul>
+      <li><strong>Haben (rechts):</strong> Zunahme der Schulden (z. B. neue Rechnung)</li>
+      <li><strong>Soll (links):</strong> Abnahme der Schulden (z. B. Zahlung)</li>
+    </ul>
+    <p><em>Merksatz:</em> Mehr Schulden im Haben, weniger im Soll.</p>
+
+    <h3 class="subtitle">2.6 Beispiel 2: Konto „Verbindlichkeiten LL“</h3>
+    <p>Rechnung über 1 000 CHF und Teilzahlung von 600 CHF.</p>
+    <ul>
+      <li><code>Warenaufwand / Verbindlichkeiten LL  1 000.–</code> (Zunahme Schuld im Haben)</li>
+      <li><code>Verbindlichkeiten LL / Bank   600.–</code> (Teilzahlung → Schuld sinkt im Soll)</li>
     </ul>
     <table>
       <tr><th>Datum</th><th>Text</th><th>Soll</th><th>Haben</th><th>Saldo</th></tr>
@@ -221,31 +278,41 @@
       <tr><td>06.03.</td><td>Teilzahlung</td><td>600</td><td></td><td>600</td></tr>
     </table>
 
-    <h3 class="subtitle">2.3 Die Bilanz</h3>
-    <p>Die Bilanz listet Aktiven und Passiven gegenüber – beides muss gleich hoch sein.</p>
+    <h3 class="subtitle">2.7 Häufige Passivkonten</h3>
+    <ul>
+      <li><strong>Verbindlichkeiten LL</strong> – offene Lieferantenrechnungen</li>
+      <li><strong>Bankverbindlichkeiten</strong> – Kontokorrentkredit</li>
+      <li><strong>Passivdarlehen</strong> – Kredite von Dritten</li>
+      <li><strong>Hypotheken</strong> – kreditgesicherte Immobilien</li>
+      <li><strong>Eigenkapital</strong> – eingelegtes Kapital des Eigentümers</li>
+    </ul>
+
+    <h3 class="subtitle">2.8 Die Bilanz</h3>
+    <p>Die Bilanz ist ein „Foto“ des Unternehmensvermögens und der Finanzierung an einem Stichtag. Die Summe der Aktiven muss stets gleich sein der Summe der Passiven.</p>
     <table>
-      <tr><th>Aktiven</th><th>CHF</th><th>Passiven</th><th>CHF</th></tr>
-      <tr><td>Kasse</td><td>500</td><td>Verbindlichkeiten</td><td>700</td></tr>
+      <tr><th>Aktiven (Vermögen)</th><th>CHF</th><th>Passiven (Kapital)</th><th>CHF</th></tr>
+      <tr><td>Kasse</td><td>500</td><td>Verbindlichkeiten LL</td><td>700</td></tr>
       <tr><td>Bank</td><td>1 500</td><td>Darlehen</td><td>1 000</td></tr>
       <tr><td>Fahrzeuge</td><td>4 000</td><td>Eigenkapital</td><td>2 300</td></tr>
       <tr><th>Total</th><th>6 000</th><th>Total</th><th>6 000</th></tr>
     </table>
+
   </div>
 
-  <!-- Aufgaben -->
+  <!-- Aufgaben‐Tab -->
   <div id="aufgaben" class="tab-content">
-    <p>Hier kommen später Aufgaben zur kaufmännischen Buchführung.</p>
+    <p>Hier kommen später interaktive Aufgaben zur kaufmännischen Buchführung.</p>
   </div>
 
-  <!-- Übungsprüfung -->
+  <!-- Übungsprüfung‐Tab -->
   <div id="pruefung" class="tab-content">
-    <p>Hier folgt die Übungsprüfung zum Thema Kaufmännische Buchführung.</p>
+    <p>Hier wird eine Übungsprüfung zum Thema Kaufmännische Buchführung bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, id) {
+    function showTab(e, tabId) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       const ind = document.querySelector('.indicator');
@@ -258,7 +325,7 @@
       document.getElementById('sidebar').classList.toggle('show');
     }
     window.addEventListener('load', () => {
-      // Initiale Position des Indikators
+      // Indicator initial position
       const btn = document.querySelector('.reiter.active'),
             ind = document.querySelector('.indicator'),
             br = btn.getBoundingClientRect(),
@@ -267,5 +334,6 @@
       ind.style.width = br.width + 'px';
     });
   </script>
+
 </body>
 </html>
