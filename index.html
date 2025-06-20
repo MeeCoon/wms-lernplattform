@@ -157,4 +157,216 @@
       z-index: 999;
     }
 
-    .sideba
+    .sidebar.show {
+      right: 0;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .fach-liste {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fach-liste > li {
+      margin-bottom: 10px;
+    }
+
+    .fach-liste summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .fach-liste a {
+      display: block;
+      text-decoration: none;
+      color: #444;
+      margin-left: 10px;
+      margin-bottom: 4px;
+    }
+
+    .suche-im-menu {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>WMS-Lernplattform</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input type="text" placeholder="Suche..." class="suche-im-menu">
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary><a href="#">📐 Mathematik</a></summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary><a href="#">📊 Finanz- und Rechnungswesen</a></summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary><a href="#">⚖️ Wirtschaft und Recht</a></summary>
+          <a href="#">Vertragsrecht</a>
+          <a href="#">Staatsrecht</a>
+          <a href="#">Politisches System</a>
+          <a href="#">Volkswirtschaft</a>
+          <a href="#">Betriebswirtschaft</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showFach(event,'mathematik')">Mathematik</button>
+    <button class="reiter" onclick="showFach(event,'frw')">Finanz- und Rechnungswesen</button>
+    <button class="reiter" onclick="showFach(event,'wur')">Wirtschaft und Recht</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Mathematik Themen -->
+  <div class="themen-grid" id="mathematik">
+    <a href="rechnungen_in_z.html" class="thema-card bg-z">
+      <img src="Mathe/rechnunge_in_z.png" class="thema-icon" alt="Rechnungen in Z">
+      <h3>Rechnungen in Z</h3>
+    </a>
+    <a href="Mathe/Themen/rechnungen_in_q.html" class="thema-card bg-q">
+      <img src="Mathe/rechnungen_in_q.png" class="thema-icon" alt="Rechnungen in Q">
+      <h3>Rechnungen in Q</h3>
+    </a>
+    <a href="Mathe/Themen/lineare_gleichungen.html" class="thema-card bg-lin">
+      <img src="Mathe/lineare_gleichungen.png" class="thema-icon" alt="Lineare Gleichungen">
+      <h3>Lineare Gleichungen & Systeme</h3>
+    </a>
+    <a href="Mathe/Themen/quadratische_gleichungen.html" class="thema-card bg-quad">
+      <img src="Mathe/quadratische_gleichungen.png" class="thema-icon" alt="Quadratische Gleichungen">
+      <h3>Quadratische Gleichungen</h3>
+    </a>
+    <a href="Mathe/Themen/potenzen_logarithmen.html" class="thema-card bg-log">
+      <img src="Mathe/potenzen_logarithmen.png" class="thema-icon" alt="Potenzen & Logarithmen">
+      <h3>Potenzen & Logarithmen</h3>
+    </a>
+    <a href="Mathe/Themen/nutzenschwelle.html" class="thema-card bg-nut">
+      <img src="Mathe/nutzenschwelle.png" class="thema-icon" alt="Nutzenschwelle">
+      <h3>Nutzenschwelle</h3>
+    </a>
+    <a href="Mathe/Themen/lineare_optimierung.html" class="thema-card bg-opt">
+      <img src="Mathe/lineare_optimierung.png" class="thema-icon" alt="Lineare Optimierung">
+      <h3>Lineare Optimierung</h3>
+    </a>
+  </div>
+
+  <!-- FRW Themen -->
+  <div class="themen-grid" id="frw" style="display:none">
+    <a href="FRW/Themen/kaufmännische_buchführung.html" class="thema-card bg-buch">
+      <div class="thema-icon">📊</div>
+      <h3>Kaufmännische Buchführung</h3>
+    </a>
+    <a href="FRW/Themen/doppelte_buchführung.html" class="thema-card bg-dopp">
+      <div class="thema-icon">🧾</div>
+      <h3>Doppelte Buchführung</h3>
+    </a>
+    <a href="FRW/Themen/rechnungsabschluss.html" class="thema-card bg-absch">
+      <div class="thema-icon">💰</div>
+      <h3>Rechnungsabschluss</h3>
+    </a>
+    <a href="FRW/Themen/bankgeschaefte.html" class="thema-card bg-bank">
+      <div class="thema-icon">🏦</div>
+      <h3>Bankgeschäfte</h3>
+    </a>
+    <a href="FRW/Themen/fremde_waehrungen.html" class="thema-card bg-fw">
+      <div class="thema-icon">💱</div>
+      <h3>Fremde Währungen</h3>
+    </a>
+    <a href="FRW/Themen/warenhandelsbetrieb.html" class="thema-card bg-wh">
+      <div class="thema-icon">📦</div>
+      <h3>Buchhaltung des Warenhandelsbetriebs</h3>
+    </a>
+    <a href="FRW/Themen/mwst.html" class="thema-card bg-mwst">
+      <div class="thema-icon">🧮</div>
+      <h3>Mehrwertsteuer</h3>
+    </a>
+    <a href="FRW/Themen/betriebliche_kalkulation.html" class="thema-card bg-bk">
+      <div class="thema-icon">🧮</div>
+      <h3>Betriebliche Kalkulation</h3>
+    </a>
+  </div>
+
+  <!-- WuR Themen -->
+  <div class="themen-grid" id="wur" style="display:none">
+    <div class="thema-card bg-recht">
+      <div class="thema-icon">⚖️</div>
+      <h3>Vertragsrecht</h3>
+    </div>
+    <div class="thema-card bg-staat">
+      <div class="thema-icon">📑</div>
+      <h3>Staatsrecht</h3>
+    </div>
+    <div class="thema-card bg-polit">
+      <div class="thema-icon">🏛️</div>
+      <h3>Politisches System</h3>
+    </div>
+    <div class="thema-card bg-vw">
+      <div class="thema-icon">📈</div>
+      <h3>Volkswirtschaft</h3>
+    </div>
+    <div class="thema-card bg-bw">
+      <div class="thema-icon">🏢</div>
+      <h3>Betriebswirtschaft</h3>
+    </div>
+  </div>
+
+  <script>
+    function showFach(e, fach) {
+      document.querySelectorAll('.themen-grid').forEach(g => g.style.display = 'none');
+      document.getElementById(fach).style.display = 'grid';
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator');
+      const btnRect = e.target.getBoundingClientRect();
+      const contRect = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (btnRect.left - contRect.left) + 'px';
+      ind.style.width = btnRect.width + 'px';
+    }
+    window.addEventListener('load', () => {
+      document.querySelector('.reiter.active').click();
+    });
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>
