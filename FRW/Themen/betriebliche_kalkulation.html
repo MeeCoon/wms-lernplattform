@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Betriebliche Kalkulation – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #8e44ad; /* violett */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    /* Zurück-Button */
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0;
+    }
+    .back-btn:hover {
+      opacity: 0.8;
+    }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white; border: none;
+      cursor: pointer; z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 10px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+    }
+    .reiter:hover { color: #8e44ad; }
+    .reiter.active {
+      color: #8e44ad; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #8e44ad;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #8e44ad;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 6px; text-align: left; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Betriebliche Kalkulation</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li><details>
+        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+        <a href="FRW/Themen/kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
+        <a href="FRW/Themen/doppelte_buchfuehrung.html">Doppelte Buchführung</a>
+        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+        <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
+        <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+      </details></li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <p>📘 <strong>Kapitel 8: Betriebliche Kalkulation</strong><br>
+    (Wie ein Unternehmen die Preise richtig berechnet)</p>
+
+    <p>💡 <strong>Warum braucht man überhaupt eine Kalkulation?</strong><br>
+    Ein Handelsbetrieb kauft Waren ein und verkauft sie weiter. Aber zu welchem Preis?<br>
+    → Wenn der Verkaufspreis zu tief ist, macht man Verlust.<br>
+    → Wenn er zu hoch ist, kauft niemand etwas.<br>
+    Deshalb braucht es eine Kalkulation: Sie hilft dabei, den richtigen Preis zu bestimmen – so, dass alle Kosten gedeckt sind und am Schluss Gewinn bleibt.</p>
+
+    <p>📊 <strong>Überblick: Die wichtigsten Begriffe</strong></p>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th></tr>
+      <tr><td>Einstandspreis (EP)</td><td>Einkaufspreis + Bezugskosten</td></tr>
+      <tr><td>Selbstkosten (SK)</td><td>Alle Kosten: EP + Gemeinkosten</td></tr>
+      <tr><td>Nettoerlös (NE)</td><td>Effektiver Verkaufserlös ohne MWST</td></tr>
+      <tr><td>Bruttogewinn</td><td>NE – EP</td></tr>
+      <tr><td>Reingewinn</td><td>NE – SK (also der effektive Gewinn)</td></tr>
+      <tr><td>Bruttogewinnzuschlag</td><td>Bruttogewinn in % vom EP</td></tr>
+      <tr><td>Bruttogewinnmarge</td><td>Bruttogewinn in % vom NE</td></tr>
+    </table>
+
+    <p>🧱 <strong>Das Kalkulationsschema</strong><br>
+    Wir beginnen von unten – mit dem Einstandspreis – und rechnen uns nach oben zum Verkaufspreis:</p>
+    <ul>
+      <li>+ Reingewinn</li>
+      <li>= Nettoerlös (Verkaufspreis ohne MWST)</li>
+      <li>+ Rabatt (falls kalkuliert)</li>
+      <li>= Katalogpreis</li>
+    </ul>
+    <hr>
+    <ul>
+      <li>– Gemeinkosten</li>
+      <li>= Bruttogewinn</li>
+      <li>+ Einstandspreis</li>
+      <li>= Selbstkosten</li>
+      <li>– Bezugskosten</li>
+      <li>= Einkaufspreis</li>
+    </ul>
+    <p>In vielen Fällen ist das Schema vereinfachter:</p>
+    <ul>
+      <li>Einstandspreis</li>
+      <li>+ Gemeinkosten</li>
+      <li>= Selbstkosten</li>
+      <li>+ Reingewinn</li>
+      <li>= Nettoerlös</li>
+    </ul>
+
+    <p>📚 <strong>Beispiel: SkateShop AG</strong><br>
+    Die SkateShop AG kauft Skateboards für CHF 90 (inkl. Bezugskosten)<br>
+    Gemeinkosten pro Stück: CHF 40<br>
+    Gewünschter Gewinn pro Stück: CHF 20<br>
+    → Wie viel muss ein Skateboard mindestens kosten?</p>
+
+    <p>1. Kalkulation auf Basis des Einstandspreises</p>
+    <table>
+      <tr><th>Rechnung</th><th>CHF</th></tr>
+      <tr><td>Einstandspreis (EP)</td><td>90.–</td></tr>
+      <tr><td>+ Gemeinkosten (GK)</td><td>40.–</td></tr>
+      <tr><td>= Selbstkosten (SK)</td><td>130.–</td></tr>
+      <tr><td>+ Reingewinn</td><td>20.–</td></tr>
+      <tr><th>= Nettoerlös</th><th>150.–</th></tr>
+    </table>
+    <p>150.– ← So viel muss verlangt werden!</p>
+
+    <p>📐 <strong>Bruttogewinnzuschlag berechnen</strong><br>
+    Formel:<br>
+    (Bruttogewinn × 100) ÷ Einstandspreis<br>
+    Bruttogewinn = NE – EP = 150 – 90 = 60<br>
+    → (60 × 100) ÷ 90 = 66,7 %<br>
+    → Das heißt: Der Verkaufspreis liegt 66,7 % über dem Einkaufspreis</p>
+
+    <p>📐 <strong>Bruttogewinnmarge berechnen</strong><br>
+    Formel:<br>
+    (Bruttogewinn × 100) ÷ Nettoerlös<br>
+    → (60 × 100) ÷ 150 = 40 %<br>
+    → Das heißt: 40 % vom Verkaufspreis sind Bruttogewinn</p>
+
+    <p>🧠 <strong>Merksätze:</strong></p>
+    <table>
+      <tr><th>Situation</th><th>Formel</th></tr>
+      <tr><td>Zuschlag auf EP</td><td>Bruttogewinn × 100 ÷ EP</td></tr>
+      <tr><td>Marge auf NE</td><td>Bruttogewinn × 100 ÷ NE</td></tr>
+    </table>
+    <p>💡 <strong>Tipp:</strong><br>
+    → Zuschlag rechnet man von unten nach oben (EP → NE)<br>
+    → Marge rechnet man von oben nach unten (NE → EP)</p>
+
+    <p>📊 <strong>Zusammenfassung</strong></p>
+    <table>
+      <tr><th>Begriff</th><th>Bedeutung</th><th>Typ</th></tr>
+      <tr><td>Einstandspreis</td><td>Einkauf + Bezugskosten</td><td>Ausgangspunkt</td></tr>
+      <tr><td>Selbstkosten</td><td>EP + Gemeinkosten</td><td>Total aller Kosten</td></tr>
+      <tr><td>Nettoerlös</td><td>effektiver Verkaufserlös</td><td>Ziel</td></tr>
+      <tr><td>Bruttogewinn</td><td>NE – EP</td><td>Deckung von GK &amp; Gewinn</td></tr>
+      <tr><td>Reingewinn</td><td>NE – SK</td><td>Gewinn fürs Unternehmen</td></tr>
+    </table>
+
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier kommen später interaktive Aufgaben zur betrieblichen Kalkulation.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zur betrieblichen Kalkulation bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
