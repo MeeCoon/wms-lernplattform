@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Betriebliche Kalkulation – WMS-Lernplattform</title>
+  <title>Mehrwertsteuer (MWST) – WMS-Lernplattform</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -11,7 +11,6 @@
       padding: 0;
       padding-top: 80px;
     }
-
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
@@ -26,7 +25,6 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück‐Button */
     .back-btn {
       position: absolute;
       left: 20px; top: 50%;
@@ -39,22 +37,15 @@
     .back-btn:hover {
       opacity: 0.8;
     }
-
     .menu-btn {
       position: fixed;
-      top: 20px;
-      right: 20px;
+      top: 20px; right: 20px;
       font-size: 28px;
-      background: none;
-      color: white;
-      border: none;
-      cursor: pointer;
-      z-index: 1001;
+      background: none; color: white; border: none;
+      cursor: pointer; z-index: 1001;
     }
-
     .sidebar {
-      position: fixed;
-      top: 80px; right: -300px;
+      position: fixed; top: 80px; right: -300px;
       width: 250px; height: 100%;
       background: white;
       box-shadow: -3px 0 15px rgba(0,0,0,0.1);
@@ -79,12 +70,9 @@
       display: block; text-decoration: none; color: #444;
       margin-left: 10px; margin-bottom: 4px;
     }
-
     .reiter-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0 10px;
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -102,29 +90,29 @@
       background-color: #8e44ad;
       transition: left 0.3s ease, width 0.3s ease;
     }
-
     .tab-content {
-      display: none;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
+      display: none; max-width: 900px;
+      margin: 0 auto; padding: 20px;
       font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
     .tab-content p,
     .tab-content ul,
+    .tab-content ol,
     .tab-content table {
       margin-bottom: 20px;
     }
-
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
       border-bottom: 3px solid #8e44ad;
       padding-bottom: 5px;
     }
-
-    ul { padding-left: 20px; }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
     table {
       width: 100%; border-collapse: collapse;
     }
@@ -139,25 +127,26 @@
 <body>
 
   <header>
-    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
-    <h1>Betriebliche Kalkulation</h1>
+    <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+    <h1>Mehrwertsteuer (MWST)</h1>
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
   <div class="sidebar" id="sidebar">
     <h2>Navigation</h2>
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
-      <li><details>
-        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
-        <a href="FRW/Themen/kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
-        <a href="FRW/Themen/doppelte_buchfuehrung.html">Doppelte Buchführung</a>
-        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-        <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
-        <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
-        <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
-      </details></li>
+      <li>
+        <details>
+          <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+          <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
+          <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
+          <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="bankgeschaefte.html">Bankgeschäfte</a>
+          <a href="fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="mehrwertsteuer.html">Mehrwertsteuer</a>
+        </details>
+      </li>
     </ul>
   </div>
 
@@ -168,68 +157,103 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Theorie-Tab -->
+  <!-- Theorie‐Tab -->
   <div id="theorie" class="tab-content active">
 
-    <h2 class="section-title">1. Einstandspreis</h2>
-    <p>Der Einstandspreis ist der Netto-Einkaufspreis der Waren inklusive Bezugskosten, abzüglich Rabatte und Skonti.</p>
+    <h2 class="section-title">Kapitel 7: Mehrwertsteuer (MWST) – verständlich &amp; prüfungstauglich erklärt</h2>
 
-    <h2 class="section-title">2. Selbstkosten</h2>
-    <p>Die Selbstkosten setzen sich zusammen aus dem Einstandspreis plus allen Gemeinkosten (Material-, Fertigungs-, Verwaltungs- und Vertriebsgemeinkosten).</p>
+    <h3 class="subtitle">Was ist die MWST überhaupt?</h3>
+    <p>Die Mehrwertsteuer (MWST) ist eine Verbrauchssteuer – also eine Steuer, die alle zahlen, wenn sie etwas kaufen. Sie wird in der Schweiz vom Bund erhoben und ist eine indirekte Steuer, weil das Unternehmen sie eintreibt, aber der Konsument sie bezahlt.</p> :contentReference[oaicite:10]{index=10}
 
-    <h2 class="section-title">3. Nettoerlös</h2>
-    <p>Der Nettoerlös ist der Verkaufserlös abzüglich aller Ertragsminderungen (Rabatte, Skonti, Rücksendungen, Versandkosten).</p>
+    <h3 class="subtitle">Wie funktioniert’s?</h3>
+    <p>Wenn du etwas kaufst, bezahlst du MWST – z. B. 7.7 % auf den Pizzapreis. → Dieses Geld geht nicht ans Geschäft, sondern wird an die Eidgenössische Steuerverwaltung (ESTV) weitergeleitet.</p>
+    <p>Aber: Unternehmen dürfen die MWST auf Einkäufen (Vorsteuer) abziehen – und nur die Differenz (Zahlungsschuld) abliefern.</p> :contentReference[oaicite:11]{index=11}
 
-    <h2 class="section-title">4. Bruttogewinn</h2>
-    <p>Bruttogewinn = Nettoerlös – Einstandspreis. Er zeigt, wie viel Deckung für Gemeinkosten und Gewinn übrig bleibt.</p>
-
-    <h2 class="section-title">5. Reingewinn</h2>
-    <p>Reingewinn = Nettoerlös – Selbstkosten. Er gibt den tatsächlichen Gewinn des Unternehmens an.</p>
-
-    <h2 class="section-title">Beispiel (durchgehendes Rechenbeispiel)</h2>
-    <ul>
-      <li><strong>Einstandspreis:</strong> CHF 20 000</li>
-      <li><strong>Gemeinkosten gesamt:</strong> CHF 8 000<br>
-          → daraus ergeben sich Selbstkosten von CHF 28 000 (20 000 + 8 000)</li>
-      <li><strong>Verkaufserlös (brutto):</strong> CHF 35 000<br>
-          → keine Ertragsminderungen → Nettoerlös = CHF 35 000</li>
-      <li><strong>Bruttogewinn:</strong> 35 000 – 20 000 = CHF 15 000</li>
-      <li><strong>Reingewinn:</strong> 35 000 – 28 000 = CHF 7 000</li>
-    </ul>
-
-    <h2 class="section-title">Zusammenfassung Kalkulationsschema</h2>
+    <h3 class="subtitle">Der MWST-Kreislauf</h3>
     <table>
-      <tr><th>Position</th><th>Betrag (CHF)</th></tr>
-      <tr><td>Einstandspreis</td><td>20 000</td></tr>
-      <tr><td>+ Gemeinkosten</td><td>  8 000</td></tr>
-      <tr><td>= Selbstkosten</td><td>28 000</td></tr>
-      <tr><td>Nettoerlös</td><td>35 000</td></tr>
-      <tr><td>Nettoerlös – Einstandspreis<br><em>(Bruttogewinn)</em></td><td>15 000</td></tr>
-      <tr><td>Nettoerlös – Selbstkosten<br><em>(Reingewinn)</em></td><td> 7 000</td></tr>
+      <tr><th>Schritt</th><th>Was passiert?</th><th>Konto</th></tr>
+      <tr><td>Einkauf mit MWST</td><td>Unternehmen zahlt MWST</td><td>Vorsteuer</td></tr>
+      <tr><td>Verkauf mit MWST</td><td>Kunde zahlt MWST</td><td>Umsatzsteuer</td></tr>
+      <tr><td>Abrechnung</td><td>Differenz = Steuerschuld oder Rückforderung</td><td>MWST-Zahlung</td></tr>
+    </table> :contentReference[oaicite:12]{index=12}
+
+    <h3 class="subtitle">Beispiel: Firma Hug kauft und verkauft Rollbretter</h3>
+    <p><strong>Einkauf:</strong> CHF 10'000 + 7.7 % MWST = CHF 10'770 → CHF 770 = Vorsteuer, die zurückgefordert wird</p>
+    <p><strong>Verkauf:</strong> CHF 20'000 + 7.7 % MWST = CHF 21'540 → CHF 1'540 = Umsatzsteuer, die an die ESTV muss</p> :contentReference[oaicite:13]{index=13}
+
+    <h2 class="section-title">7.1 MWST-Sätze (Stand 2024)</h2>
+    <table>
+      <tr><th>Typ</th><th>Satz</th><th>Wofür?</th></tr>
+      <tr><td>Normalsatz</td><td>7.7 %</td><td>Fast alles: Konsumgüter, Dienstleistungen</td></tr>
+      <tr><td>Reduzierter Satz</td><td>2.5 %</td><td>Essen, Bücher, Medikamente</td></tr>
+      <tr><td>Sondersatz Beherbergung</td><td>3.7 %</td><td>Hotels, Airbnb</td></tr>
+      <tr><td>Steuerfrei</td><td>–</td><td>Arzt, Schule, Versicherungen, Export</td></tr>
+    </table> :contentReference[oaicite:14]{index=14}
+
+    <h3 class="subtitle">Beispiel-Buchungen mit MWST</h3>
+
+    <h4 class="subtitle">1. Einkauf mit MWST auf Rechnung</h4>
+    <table>
+      <tr><th>Rechnung</th><th>CHF</th></tr>
+      <tr><td>Waren</td><td>10'000</td></tr>
+      <tr><td>MWST (7.7 %)</td><td>770</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>10'770</strong></td></tr>
     </table>
+    <p><strong>Buchungssatz:</strong><br>
+       Warenaufwand / Verbindlichkeiten LL 10'000.–<br>
+       Vorsteuer MWST / Verbindlichkeiten LL 770.–</p> :contentReference[oaicite:15]{index=15}
+
+    <h4 class="subtitle">2. Verkauf mit MWST auf Rechnung</h4>
+    <table>
+      <tr><th>Rechnung</th><th>CHF</th></tr>
+      <tr><td>Ware</td><td>20'000</td></tr>
+      <tr><td>MWST (7.7 %)</td><td>1'540</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>21'540</strong></td></tr>
+    </table>
+    <p><strong>Buchungssatz:</strong><br>
+       Forderungen LL / Handelserlöse 20'000.–<br>
+       Forderungen LL / Umsatzsteuer MWST 1'540.–</p> :contentReference[oaicite:16]{index=16}
+
+    <h4 class="subtitle">3. MWST-Abrechnung am Quartalsende</h4>
+    <table>
+      <tr><th>Rechnung</th><th>CHF</th></tr>
+      <tr><td>Umsatzsteuer</td><td>1'540</td></tr>
+      <tr><td>Vorsteuer</td><td>770</td></tr>
+      <tr><td><strong>Zahlungspflicht</strong></td><td><strong>770</strong></td></tr>
+    </table>
+    <p><strong>Buchungssatz:</strong><br>
+       Umsatzsteuer MWST / Vorsteuer MWST 770.–<br>
+       Umsatzsteuer MWST / Bank 770.–</p>
+    <p>→ MWST wurde korrekt ans Steueramt gezahlt</p> :contentReference[oaicite:17]{index=17}
+
+    <h3 class="subtitle">Zusammengefasst:</h3>
+    <table>
+      <tr><th>Konto</th><th>Bedeutung</th><th>Buchungsrichtung</th></tr>
+      <tr><td>Vorsteuer MWST</td><td>MWST, die du auf Einkäufe zahlst (zurückforderbar)</td><td>Soll</td></tr>
+      <tr><td>Umsatzsteuer MWST</td><td>MWST, die du beim Verkauf einnimmst (schuldest dem Staat)</td><td>Haben</td></tr>
+      <tr><td>Unterschied</td><td>ergibt MWST-Schuld oder -Guthaben</td><td>Saldo wird über Bank beglichen</td></tr>
+    </table> :contentReference[oaicite:18]{index=18}
 
   </div>
 
-  <!-- Aufgaben-Tab -->
   <div id="aufgaben" class="tab-content">
-    <p>Hier folgen interaktive Aufgaben zur betrieblichen Kalkulation.</p>
+    <p>Hier folgen später Aufgaben zur Mehrwertsteuer.</p>
   </div>
 
-  <!-- Übungsprüfung-Tab -->
   <div id="pruefung" class="tab-content">
-    <p>Hier wird eine Übungsprüfung zur betrieblichen Kalkulation bereitgestellt.</p>
+    <p>Hier wird eine Übungsprüfung zum Thema Mehrwertsteuer bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, tabId) {
+    function showTab(e, id) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+      document.getElementById(id).classList.add('active');
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       const ind = document.querySelector('.indicator'),
             br = e.target.getBoundingClientRect(),
             cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.left = (br.left - cr.left) + 'px';
       ind.style.width = br.width + 'px';
     }
     function toggleMenu() {
@@ -240,7 +264,7 @@
             ind = document.querySelector('.indicator'),
             br = btn.getBoundingClientRect(),
             cr = btn.parentElement.getBoundingClientRect();
-      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.left = (br.left - cr.left) + 'px';
       ind.style.width = br.width + 'px';
     });
   </script>
