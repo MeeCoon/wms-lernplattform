@@ -25,7 +25,6 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück-Button */
     .back-btn {
       position: absolute;
       left: 20px; top: 50%;
@@ -42,8 +41,11 @@
       position: fixed;
       top: 20px; right: 20px;
       font-size: 28px;
-      background: none; color: white; border: none;
-      cursor: pointer; z-index: 1001;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
     }
     .sidebar {
       position: fixed;
@@ -57,7 +59,9 @@
     }
     .sidebar.show { right: 0; }
     .sidebar h2 {
-      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
     }
     .suche-im-menu {
       width: 100%; padding: 10px; margin-bottom: 20px;
@@ -73,8 +77,9 @@
       margin-left: 10px; margin-bottom: 4px;
     }
     .reiter-container {
-      position: relative; display: flex;
-      justify-content: center; padding: 40px 0 10px;
+      position: relative;
+      display: flex; justify-content: center;
+      padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -94,18 +99,11 @@
     }
     .tab-content {
       display: none;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      font-size: 1.1rem; line-height: 1.6; color: #333;
+      max-width: 900px; margin: 0 auto;
+      padding: 20px; font-size: 1.1rem;
+      line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
-    .tab-content p,
-    .tab-content ul,
-    .tab-content ol,
-    .tab-content table {
-      margin-bottom: 20px;
-    }
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
@@ -117,9 +115,20 @@
       margin-top: 40px; margin-bottom: 15px;
       display: block; width: 100%;
     }
-    table { width: 100%; border-collapse: collapse; }
-    table, th, td { border: 1px solid #ccc; }
-    th, td { padding: 6px; text-align: left; }
+    table {
+      width: 100%; border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+    pre {
+      background: #f4f4f4; padding: 10px;
+      overflow-x: auto; margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -136,12 +145,14 @@
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
       <li><details>
-        <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
-        <a href="FRW/Themen/kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
-        <a href="FRW/Themen/doppelte_buchfuehrung.html">Doppelte Buchführung</a>
+        <summary><a href="frw.html">📊 Finanz‐ und Rechnungswesen</a></summary>
+        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
         <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
         <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
         <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+        <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+        <a href="FRW/Themen/kalkulation.html">Betriebliche Kalkulation</a>
       </details></li>
     </ul>
   </div>
@@ -153,19 +164,21 @@
     <div class="indicator"></div>
   </div>
 
-  <!-- Theorie-Tab -->
+  <!-- Theorie‐Tab -->
   <div id="theorie" class="tab-content active">
 
-    <p>📘 <strong>Kapitel 8: Betriebliche Kalkulation</strong><br>
-    (Wie ein Unternehmen die Preise richtig berechnet)</p>
+    <p>📘 Kapitel 8: Betriebliche&nbsp;Kalkulation</p>
+    <p>(Wie ein Unternehmen die Preise richtig berechnet)</p>
 
-    <p>💡 <strong>Warum braucht man überhaupt eine Kalkulation?</strong><br>
-    Ein Handelsbetrieb kauft Waren ein und verkauft sie weiter. Aber zu welchem Preis?<br>
-    → Wenn der Verkaufspreis zu tief ist, macht man Verlust.<br>
-    → Wenn er zu hoch ist, kauft niemand etwas.<br>
-    Deshalb braucht es eine Kalkulation: Sie hilft dabei, den richtigen Preis zu bestimmen – so, dass alle Kosten gedeckt sind und am Schluss Gewinn bleibt.</p>
+    <h3 class="subtitle">💡 Warum braucht man überhaupt eine Kalkulation?</h3>
+    <p>Ein Handelsbetrieb kauft Waren ein und verkauft sie weiter. Aber zu welchem Preis?</p>
+    <ul>
+      <li>→ Wenn der Verkaufspreis zu tief ist, macht man Verlust.</li>
+      <li>→ Wenn er zu hoch ist, kauft niemand etwas.</li>
+    </ul>
+    <p>Deshalb braucht es eine Kalkulation: Sie hilft dabei, den richtigen Preis zu bestimmen – so, dass alle Kosten gedeckt sind und am Schluss Gewinn bleibt.</p>
 
-    <p>📊 <strong>Überblick: Die wichtigsten Begriffe</strong></p>
+    <h3 class="subtitle">📊 Überblick: Die wichtigsten Begriffe</h3>
     <table>
       <tr><th>Begriff</th><th>Erklärung</th></tr>
       <tr><td>Einstandspreis (EP)</td><td>Einkaufspreis + Bezugskosten</td></tr>
@@ -177,73 +190,68 @@
       <tr><td>Bruttogewinnmarge</td><td>Bruttogewinn in % vom NE</td></tr>
     </table>
 
-    <p>🧱 <strong>Das Kalkulationsschema</strong><br>
-    Wir beginnen von unten – mit dem Einstandspreis – und rechnen uns nach oben zum Verkaufspreis:</p>
-    <ul>
-      <li>+ Reingewinn</li>
-      <li>= Nettoerlös (Verkaufspreis ohne MWST)</li>
-      <li>+ Rabatt (falls kalkuliert)</li>
-      <li>= Katalogpreis</li>
-    </ul>
-    <hr>
-    <ul>
-      <li>– Gemeinkosten</li>
-      <li>= Bruttogewinn</li>
-      <li>+ Einstandspreis</li>
-      <li>= Selbstkosten</li>
-      <li>– Bezugskosten</li>
-      <li>= Einkaufspreis</li>
-    </ul>
-    <p>In vielen Fällen ist das Schema vereinfachter:</p>
-    <ul>
-      <li>Einstandspreis</li>
-      <li>+ Gemeinkosten</li>
-      <li>= Selbstkosten</li>
-      <li>+ Reingewinn</li>
-      <li>= Nettoerlös</li>
-    </ul>
+    <h3 class="subtitle">🧱 Das Kalkulationsschema</h3>
+    <pre>+ Reingewinn
+= Nettoerlös (Verkaufspreis ohne MWST)
++ Rabatt (falls kalkuliert)
+= Katalogpreis
+------------------------------------
+– Gemeinkosten
+= Bruttogewinn
++ Einstandspreis
+= Selbstkosten
+– Bezugskosten
+= Einkaufspreis
 
-    <p>📚 <strong>Beispiel: SkateShop AG</strong><br>
-    Die SkateShop AG kauft Skateboards für CHF 90 (inkl. Bezugskosten)<br>
-    Gemeinkosten pro Stück: CHF 40<br>
-    Gewünschter Gewinn pro Stück: CHF 20<br>
-    → Wie viel muss ein Skateboard mindestens kosten?</p>
+In vielen Fällen ist das Schema vereinfachter:
 
-    <p>1. Kalkulation auf Basis des Einstandspreises</p>
+Einstandspreis
++ Gemeinkosten
+= Selbstkosten
++ Reingewinn
+= Nettoerlös
+    </pre>
+
+    <h3 class="subtitle">📚 Beispiel: SkateShop AG</h3>
+    <p>Die SkateShop AG kauft Skateboards für CHF 90 (inkl. Bezugskosten)<br>
+       Gemeinkosten pro Stück: CHF 40<br>
+       Gewünschter Gewinn pro Stück: CHF 20</p>
+    <p>→ Wie viel muss ein Skateboard mindestens kosten?</p>
+
     <table>
       <tr><th>Rechnung</th><th>CHF</th></tr>
       <tr><td>Einstandspreis (EP)</td><td>90.–</td></tr>
       <tr><td>+ Gemeinkosten (GK)</td><td>40.–</td></tr>
       <tr><td>= Selbstkosten (SK)</td><td>130.–</td></tr>
       <tr><td>+ Reingewinn</td><td>20.–</td></tr>
-      <tr><th>= Nettoerlös</th><th>150.–</th></tr>
+      <tr><td>= Nettoerlös (Verkaufspreis)</td><td>150.–</td></tr>
     </table>
-    <p>150.– ← So viel muss verlangt werden!</p>
+    <p>← So viel muss verlangt werden!</p>
 
-    <p>📐 <strong>Bruttogewinnzuschlag berechnen</strong><br>
-    Formel:<br>
-    (Bruttogewinn × 100) ÷ Einstandspreis<br>
-    Bruttogewinn = NE – EP = 150 – 90 = 60<br>
-    → (60 × 100) ÷ 90 = 66,7 %<br>
-    → Das heißt: Der Verkaufspreis liegt 66,7 % über dem Einkaufspreis</p>
+    <h3 class="subtitle">📐 Bruttogewinnzuschlag berechnen</h3>
+    <p>Formel:<br>
+       (Bruttogewinn × 100) ÷ Einstandspreis<br>
+       Bruttogewinn = NE – EP = 150 – 90 = 60<br>
+       → (60 × 100) ÷ 90 = 66.7 %<br>
+       → Das heisst: Der Verkaufspreis liegt 66.7 % über dem Einkaufspreis</p>
 
-    <p>📐 <strong>Bruttogewinnmarge berechnen</strong><br>
-    Formel:<br>
-    (Bruttogewinn × 100) ÷ Nettoerlös<br>
-    → (60 × 100) ÷ 150 = 40 %<br>
-    → Das heißt: 40 % vom Verkaufspreis sind Bruttogewinn</p>
+    <h3 class="subtitle">📐 Bruttogewinnmarge berechnen</h3>
+    <p>Formel:<br>
+       (Bruttogewinn × 100) ÷ Nettoerlös<br>
+       → (60 × 100) ÷ 150 = 40 %<br>
+       → Das heisst: 40 % vom Verkaufspreis sind Bruttogewinn</p>
 
-    <p>🧠 <strong>Merksätze:</strong></p>
+    <h3 class="subtitle">🧠 Merksätze</h3>
     <table>
       <tr><th>Situation</th><th>Formel</th></tr>
       <tr><td>Zuschlag auf EP</td><td>Bruttogewinn × 100 ÷ EP</td></tr>
       <tr><td>Marge auf NE</td><td>Bruttogewinn × 100 ÷ NE</td></tr>
     </table>
-    <p>💡 <strong>Tipp:</strong><br>
-    → Zuschlag rechnet man von unten nach oben (EP → NE)<br>
-    → Marge rechnet man von oben nach unten (NE → EP)</p>
+    <p><strong>💡 Tipp:</strong><br>
+       → Zuschlag rechnet man von unten nach oben (EP → NE)<br>
+       → Marge rechnet man von oben nach unten (NE → EP)</p>
 
-    <p>📊 <strong>Zusammenfassung</strong></p>
+    <h3 class="subtitle">📊 Zusammenfassung</h3>
     <table>
       <tr><th>Begriff</th><th>Bedeutung</th><th>Typ</th></tr>
       <tr><td>Einstandspreis</td><td>Einkauf + Bezugskosten</td><td>Ausgangspunkt</td></tr>
@@ -255,20 +263,20 @@
 
   </div>
 
-  <!-- Aufgaben-Tab -->
+  <!-- Aufgaben‐Tab -->
   <div id="aufgaben" class="tab-content">
-    <p>Hier kommen später interaktive Aufgaben zur betrieblichen Kalkulation.</p>
+    <p>Hier folgen die Übungsaufgaben zur betrieblichen Kalkulation.</p>
   </div>
 
-  <!-- Übungsprüfung-Tab -->
+  <!-- Übungsprüfung‐Tab -->
   <div id="pruefung" class="tab-content">
     <p>Hier wird eine Übungsprüfung zur betrieblichen Kalkulation bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, id) {
+    function showTab(e, tabId) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
       const ind = document.querySelector('.indicator'),
