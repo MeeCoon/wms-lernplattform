@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Banken – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grüner Balken */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Banken</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📈 Wirtschaft</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/management_modell.html">Das Management Modell</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/umsetzung_unternehmerischer_ideen.html">Umsetzung unternehmerischer Ideen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/organisationsformen.html">Organisationsformen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/human_resources.html">Human Resources (Personalwesen)</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing_grundlagen.html">Marketing – Grundlagen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing_mix.html">Marketing-Mix – die 4P</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/risiko_versicherungen_vorsorge.html">Risiko, Versicherungen und Vorsorge</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/banken.html">Banken</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">Banken</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>wie Banken arbeiten und warum sie für die Wirtschaft unverzichtbar sind</li>
+      <li>welche Aufgaben Banken haben (z. B. Sparen, Kreditvergabe, Zahlungsverkehr)</li>
+      <li>wie Banken mit Geldanlagen und Krediten umgehen</li>
+      <li>welche Anlagemöglichkeiten es gibt und was dabei wichtig ist (Sicherheit, Liquidität, Rendite)</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist eigentlich eine Bank?</h3>
+    <p>Eine Bank ist ein Unternehmen, das Geld verwaltet und zwischen Sparenden und Kreditnehmenden vermittelt.</p>
+    <ul>
+      <li>Banken sammeln Geld (Einlagen von Privatpersonen und Unternehmen)</li>
+      <li>und verleihen dieses Geld weiter (Kredite, Hypotheken)</li>
+    </ul>
+
+    <h3 class="subtitle">1.3 Dabei verdienen sie Geld über die sogenannte „Zinsmarge“:</h3>
+    <ul>
+      <li>Einlagenseite (Sparende)</li>
+      <li>Kreditseite (Kreditnehmende)</li>
+      <li>Sparzins zahlen</li>
+      <li>Kreditzins verlangen</li>
+      <li>z. B. 0.5 % auf Sparkonto</li>
+      <li>z. B. 4.0 % auf Privatkredit</li>
+    </ul>
+
+    <h3 class="subtitle">1.4 Die Bankbilanz einfach erklärt</h3>
+    <p>Jede Bank hat eine Bilanz – sie zeigt, was die Bank besitzt und was sie schuldet.</p>
+    <table>
+      <tr><th>Seite</th><th>Inhalt</th></tr>
+      <tr><td>Aktiven</td><td>Kredite, Hypotheken, Anlagen</td></tr>
+      <tr><td>Passiven</td><td>Kundengelder (Spar- &amp; Kontoguthaben), Eigenkapital</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.5 Wichtig</h3>
+    <p>Eine Bank muss immer darauf achten, dass sie genug Eigenkapital hat, um Verluste auffangen zu können – sonst droht eine Bankenkrise.</p>
+
+    <h3 class="subtitle">1.6 Beispiel: UBS Basel</h3>
+    <ul>
+      <li>Aktiven: Hypotheken für Immobilien in Basel und Region</li>
+      <li>Passiven: Sparkonten von Basler Studierenden und Unternehmen</li>
+      <li>Eigenkapital: Reserven, falls Kredite ausfallen</li>
+    </ul>
+
+    <h3 class="subtitle">1.7 Kreditvergabe (So läuft ein Kreditprozess)</h3>
+    <p>Bevor eine Bank dir Geld leiht, prüft sie dich genau:</p>
+    <table>
+      <tr><th>Prüfung</th><th>Ziel</th></tr>
+      <tr><td>Kreditfähigkeit</td><td>Kann die Person überhaupt zahlen (Lohn, Budget)?</td></tr>
+      <tr><td>Kreditwürdigkeit</td><td>Ist die Person zuverlässig (Zahlungsverhalten, Betreibungen)?</td></tr>
+    </table>
+    <p>Nur wer beides erfüllt, bekommt einen Kredit.  
+    Sicherheiten sind oft verlangt: z. B. Lohnnachweis, Grundstücke, Bürgschaften.</p>
+
+    <h3 class="subtitle">1.8 Beispiel: Hypothek für eine Wohnung in Binningen</h3>
+    <ul>
+      <li>Kaufpreis Wohnung: CHF 700’000.–</li>
+      <li>Eigenkapital Käuferin: CHF 140’000.– (mind. 20 % erforderlich)</li>
+      <li>Hypothek: CHF 560’000.– → Bank prüft Lohn, Verpflichtungen, Zahlungsfähigkeit</li>
+    </ul>
+
+    <h3 class="subtitle">1.9 Anlegen (was tun mit dem Ersparten?)</h3>
+    <p>Wer Geld übrig hat, will es nicht nur sparen, sondern auch vermehren. Dafür bieten Banken verschiedene Anlagemöglichkeiten.</p>
+    <table>
+      <tr><th>Anlageform</th><th>Erklärung</th><th>Risiko</th></tr>
+      <tr><td>Sparkonto</td><td>sichere Zinsen, sehr flexibel</td><td>sehr gering</td></tr>
+      <tr><td>Obligation</td><td>festverzinsliche Wertpapiere</td><td>gering–mittel</td></tr>
+      <tr><td>Aktie</td><td>Anteil an einem Unternehmen</td><td>mittel–hoch</td></tr>
+      <tr><td>Fonds (ETF)</td><td>Mischung vieler Aktien/Obligationen</td><td>je nach Typ unterschiedlich</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.10 Das magische Dreieck der Geldanlage</h3>
+    <p>Bei jeder Anlage musst du drei Ziele abwägen:</p>
+    <table>
+      <tr><th>Ziel</th><th>Bedeutung</th></tr>
+      <tr><td>Sicherheit</td><td>Wie gross ist das Verlustrisiko?</td></tr>
+      <tr><td>Liquidität</td><td>Wie schnell kommst du an dein Geld?</td></tr>
+      <tr><td>Rendite</td><td>Wie hoch ist der Gewinn?</td></tr>
+    </table>
+    <p>Alles gleichzeitig optimal geht nicht! Du musst Prioritäten setzen.</p>
+
+    <h3 class="subtitle">1.11 Typische Kombinationen</h3>
+    <ul>
+      <li>Hohe Sicherheit + hohe Liquidität → niedrige Rendite (Sparkonto)</li>
+      <li>Hohe Rendite + wenig Sicherheit → eingeschränkte Liquidität (Aktien)</li>
+    </ul>
+
+    <h3 class="subtitle">1.12 Beispiel: Lernende bei der Bank Cler Basel</h3>
+    <ul>
+      <li>Will Ferien in 2 Jahren finanzieren</li>
+      <li>Entscheidet sich: 70 % Sparkonto, 30 % ETF (nachhaltiger Fonds)</li>
+      <li>Priorität: Sicherheit &amp; Verfügbarkeit – aber ein kleiner Gewinn soll auch drin sein</li>
+    </ul>
+
+    <h3 class="subtitle">1.13 Fazit</h3>
+    <table>
+      <tr><th>Bereich</th><th>Zusammengefasst</th></tr>
+      <tr><td>Banken</td><td>Vermittler zwischen Sparenden und Kreditnehmenden</td></tr>
+      <tr><td>Bankbilanz</td><td>zeigt Guthaben und Kredite</td></tr>
+      <tr><td>Kreditvergabe</td><td>erfolgt nur nach genauer Prüfung</td></tr>
+      <tr><td>Anlagen</td><td>bringen Rendite, aber bergen auch Risiko</td></tr>
+      <tr><td>Magisches Dreieck</td><td>Sicherheit, Liquidität und Rendite im Ausgleich wählen</td></tr>
+    </table>
+    <p>Banken sind essenziell für das Funktionieren der modernen Wirtschaft – egal ob für Privatpersonen, Unternehmen oder ganze Staaten.</p>
+  </div>
+
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zu Banken.</p>
+  </div>
+
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Banken bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
