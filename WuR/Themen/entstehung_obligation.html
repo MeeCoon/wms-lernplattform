@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entstehung einer Obligation – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Entstehung einer Obligation</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen & Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öfentliches_recht.html">Öffentliches Recht</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/entstehung_einer_obligation.html">Entstehung einer Obligation</a>
+          <!-- weitere WuR-Themen hier -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <h2 class="section-title">1. Entstehung einer Obligation</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <ul>
+      <li>was eine Obligation ist</li>
+      <li>wie eine Obligation durch Vertrag, unerlaubte Handlung oder ungerechtfertigte Bereicherung entsteht</li>
+      <li>wie du zwischen Verschuldenshaftung und Kausalhaftung unterscheidest</li>
+      <li>wie du die wichtigsten Tatbestandsmerkmale prüfst</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist eine Obligation?</h3>
+    <p>Eine Obligation ist ein rechtliches Verhältnis zwischen mindestens zwei Personen:</p>
+    <ul>
+      <li>Die eine Person hat das Recht auf eine Leistung (z. B. Geld, eine Ware)</li>
+      <li>Die andere Person ist verpflichtet, diese Leistung zu erbringen</li>
+    </ul>
+
+    <h3 class="subtitle">1.3 Beispiel: Zalando-Bestellung</h3>
+    <table>
+      <tr><th>Verpflichtung</th><th>Wer?</th><th>Inhalt</th></tr>
+      <tr>
+        <td>Sneakers liefern</td><td>Zalando</td><td>Lieferung der Ware</td>
+      </tr>
+      <tr>
+        <td>Bezahlung</td><td>Elvira</td><td>Zahlung von CHF 135.–</td>
+      </tr>
+    </table>
+
+    <h3 class="subtitle">1.4 Wie entstehen Obligationen?</h3>
+    <table>
+      <tr><th>Entstehungsgrund</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Vertrag</td><td>freiwillige Vereinbarung</td><td>Kauf eines E-Bikes</td>
+      </tr>
+      <tr>
+        <td>Unerlaubte Handlung</td><td>Schaden durch unerlaubtes Verhalten</td><td>Unfall auf Skipiste</td>
+      </tr>
+      <tr>
+        <td>Ungerechtfertigte Bereicherung</td><td>Geld oder Leistung erhalten ohne rechtlichen Grund</td><td>falsche Überweisung</td>
+      </tr>
+    </table>
+
+    <h2 class="section-title">2. Entstehung durch Vertrag</h2>
+    <p>Ein Vertrag entsteht, wenn sich zwei Parteien freiwillig einigen:</p>
+    <ul>
+      <li>gegenseitige übereinstimmende Willensäußerung</li>
+      <li>Verpflichtung zu einer Leistung</li>
+    </ul>
+    <p><strong>Beispiel:</strong> Du schließt einen Abo-Vertrag für dein Smartphone → du zahlst monatlich, Anbieter liefert Leistung.</p>
+
+    <h2 class="section-title">3. Entstehung durch unerlaubte Handlung</h2>
+    <p>Wenn jemand einem anderen unrechtmäßig einen Schaden zufügt, entsteht eine Obligation:</p>
+    <ul>
+      <li>Der Schädiger muss den Schaden ersetzen.</li>
+    </ul>
+    <p><strong>Grundlage:</strong> Art. 41 OR</p>
+
+    <h3 class="subtitle">3.1 Tatbestandsmerkmale für Schadenersatz</h3>
+    <table>
+      <tr><th>Merkmal</th><th>Bedeutung</th></tr>
+      <tr><td>Widerrechtlichkeit</td><td>Verstoß gegen eine gesetzliche Pflicht</td></tr>
+      <tr><td>Schaden</td><td>Vermögensminderung</td></tr>
+      <tr><td>Adäquater Kausalzusammenhang</td><td>Schaden als direkte Folge der Handlung</td></tr>
+      <tr><td>Verschulden</td><td>absichtlich oder fahrlässig</td></tr>
+    </table>
+
+    <h3 class="subtitle">3.2 Beispiel: Snowboard-Unfall auf der Piste</h3>
+    <p>Eine Snowboarderin wird angerempelt → Handgelenk gebrochen, Jacke kaputt. Der Täter haftet, wenn:</p>
+    <ul>
+      <li>er gegen Verkehrsregeln verstoßen hat (Widerrechtlichkeit)</li>
+      <li>ein echter Schaden entstanden ist (Behandlungskosten, neue Jacke)</li>
+      <li>ein direkter Zusammenhang besteht (Kausalität)</li>
+      <li>er absichtlich oder fahrlässig gehandelt hat</li>
+    </ul>
+
+    <h2 class="section-title">4. Verschuldenshaftung vs. Kausalhaftung</h2>
+    <table>
+      <tr><th>Typ</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Verschuldenshaftung</td><td>Täter muss selbst schuldhaft handeln</td><td>Snowboarderin stößt andere absichtlich</td>
+      </tr>
+      <tr>
+        <td>Kausalhaftung</td><td>Täter haftet, obwohl kein eigenes Verschulden</td><td>Eltern haften für Schäden ihrer Kinder</td>
+      </tr>
+    </table>
+
+    <h3 class="subtitle">4.1 Kausalhaftung – Beispiele aus dem Alltag</h3>
+    <table>
+      <tr><th>Haftungstyp</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Haftung des Geschäftsherrn (Art. 55 OR)</td><td>Dachdecker beschädigt Nachbarsfenster</td>
+      </tr>
+      <tr>
+        <td>Haftung des Tierhalters (Art. 56 OR)</td><td>Hund beißt Jogger</td>
+      </tr>
+      <tr>
+        <td>Haftung des Werkeigentümers (Art. 58 OR)</td><td>Passant wird von Schneemassen verletzt</td>
+      </tr>
+      <tr>
+        <td>Haftung des Familienhauptes (ZGB 333)</td><td>Kind bemalt Mietwohnung</td>
+      </tr>
+    </table>
+
+    <h2 class="section-title">5. Entstehung durch ungerechtfertigte Bereicherung</h2>
+    <p>Wenn jemand Geld oder eine Sache ohne rechtlichen Grund erhält, muss er es zurückgeben.</p>
+    <p><strong>Grundlage:</strong> Art. 62 OR</p>
+
+    <h3 class="subtitle">5.1 Beispiel: Lotto-Verwechslung</h3>
+    <p>Thea erhält CHF 2 000.– von Swiss Lotto, obwohl sie gar nicht gespielt hat. Sie muss das Geld zurückgeben – kein Rechtsgrund vorhanden.</p>
+
+    <h3 class="subtitle">5.2 Tatbestandsmerkmale der ungerechtfertigten Bereicherung</h3>
+    <table>
+      <tr><th>Merkmal</th><th>Bedeutung</th></tr>
+      <tr><td>Vermögensverschiebung</td><td>jemand erhält Geld/Sache</td></tr>
+      <tr><td>Fehlender Rechtsgrund</td><td>keine gültige Begründung dafür</td></tr>
+      <tr><td>Bereicherung</td><td>Empfänger profitiert ungerechtfertigt</td></tr>
+      <tr><td>Rückerstattungspflicht</td><td>Empfänger muss rückerstatten</td></tr>
+    </table>
+
+    <h3 class="subtitle">5.3 Drei typische Fälle von ungerechtfertigter Bereicherung</h3>
+    <table>
+      <tr><th>Art</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Vermögenszuwendung ohne Grund</td><td>Doppelzahlung einer Rechnung</td>
+      </tr>
+      <tr>
+        <td>Zuwendung bei nicht verwirklichtem Rechtsgrund</td><td>Rückzahlung einer Mietkaution, weil Mietvertrag nicht zustande kommt</td>
+      </tr>
+      <tr>
+        <td>Zuwendung bei weggefallenem Rechtsgrund</td><td>Kaufvertrag wird später aufgelöst → Kaufpreis zurückfordern</td>
+      </tr>
+    </table>
+
+    <h2 class="section-title">6. Fazit Kapitel 6</h2>
+    <table>
+      <tr><th>Bereich</th><th>Zusammengefasst</th></tr>
+      <tr>
+        <td>Obligation</td><td>Verpflichtung zwischen mindestens zwei Personen</td>
+      </tr>
+      <tr>
+        <td>Entstehung durch Vertrag</td><td>freiwillige Vereinbarung</td>
+      </tr>
+      <tr>
+        <td>Entstehung durch unerlaubte Handlung</td><td>Schaden verursacht → Pflicht zu zahlen</td>
+      </tr>
+      <tr>
+        <td>Entstehung durch ungerechtfertigte Bereicherung</td><td>Unverdient erhaltenes Geld → Rückgabe</td>
+      </tr>
+      <tr>
+        <td>Verschuldens- und Kausalhaftung</td><td>persönliche Schuld vs. Verantwortung ohne eigenes Verschulden</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zur Entstehung einer Obligation.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Entstehung einer Obligation bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect();
+      ind.style.left = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
