@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rechtsquellen und Mitbestimmung – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* geänderte Farbe */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px;
+      margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px;
+      height: 3px; background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22; /* geänderte Linie */
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Rechtsquellen und Mitbestimmung</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="index.html">Startseite</a>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen_&_systeme.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="WuR/Themen/vertragliche_regeln.html">Vertragliche Regeln</a>
+          <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html">Rechtsquellen und Mitbestimmung</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Rechtsquellen und Mitbestimmung</h2>
+    <!-- ... alle bisherigen Unterpunkte 1.1–1.14 ... -->
+
+    <h3 class="subtitle">1.14 Fazit</h3>
+    <p>Recht entsteht nicht von oben herab – jede:r Bürger:in kann mitbestimmen!</p>
+
+    <h3 class="subtitle">1.15 Übersicht als Grafik</h3>
+    <p>Bedarf → Gesetzesentwurf → Parlament → (evtl. Referendum) → Volksabstimmung → Inkrafttreten</p>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zu Rechtsquellen und Mitbestimmung.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Rechtsquellen und Mitbestimmung bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
