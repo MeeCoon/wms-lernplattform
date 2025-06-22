@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Grundlagen des Rechts – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #27ae60; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px;
+      margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #27ae60; }
+    .reiter.active {
+      color: #27ae60; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px;
+      height: 3px; background-color: #27ae60;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #27ae60; /* grüne Linie */
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">← Zurück zur Startseite</a>
+    <h1>Grundlagen des Rechts</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <!-- weitere WuR‐Themen hier in gleicher Form verlinken -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Grundlagen des Rechts</h2>
+
+    <h3 class="subtitle">1.1 Lernziele (kurz und verständlich)</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>den Unterschied zwischen Recht, Sitte und Moral</li>
+      <li>wie du mit dem Gesetzbuch arbeitest (Artikel richtig lesen und zitieren)</li>
+      <li>wie du bei rechtlichen Problemen Tatbestand und Rechtsfolge erkennst</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Warum brauchen wir überhaupt Regeln?</h3>
+    <p>Stell dir vor, es gäbe keine Gesetze, keine Anstandsregeln, keine Moralvorstellungen:
+    Jeder könnte tun, was er will. → Chaos wäre programmiert.</p>
+    <p>Deshalb gibt es drei Arten von Verhaltensregeln, die unser Zusammenleben steuern:</p>
+    <ul>
+      <li>Recht</li>
+      <li>Sitte</li>
+      <li>Moral</li>
+    </ul>
+
+    <h3 class="subtitle">1.3 Unterschiede: Recht – Sitte – Moral</h3>
+    <table>
+      <tr><th>Begriff</th><th>Beschreibung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Recht</td>
+        <td>vom Staat festgelegte Regeln, die durchgesetzt werden können (z. B. Polizei, Gerichte)</td>
+        <td>Vortritt beachten, Steuern zahlen</td>
+      </tr>
+      <tr>
+        <td>Sitte</td>
+        <td>Gewohnheiten oder Regeln des Anstands, nicht staatlich erzwungen</td>
+        <td>Begrüssen mit Handschlag, pünktlich sein</td>
+      </tr>
+      <tr>
+        <td>Moral</td>
+        <td>persönliche innere Haltung (Werte, Gewissen)</td>
+        <td>nicht lügen, freiwillig helfen</td>
+      </tr>
+    </table>
+    <p><strong>Nur das Recht</strong> kann vom Staat erzwingbar durchgesetzt werden.</p>
+
+    <h3 class="subtitle">1.4 Beispiel Alltag Basel</h3>
+    <ul>
+      <li><strong>Recht:</strong> Bei Rot über die Strasse → Busse von der Polizei</li>
+      <li><strong>Sitte:</strong> Im Tram anderen Platz anbieten → kein Gesetz, aber höflich</li>
+      <li><strong>Moral:</strong> Für alte Menschen einkaufen gehen → freiwillig aus innerem Antrieb</li>
+    </ul>
+
+    <h3 class="subtitle">1.5 Einstiegsbeispiele: Recht und persönliche Einstellung</h3>
+    <p><strong>Beispiel 1: </strong>Mordfall in Basel<br>
+    Recht &amp; Moral stimmen überein: Mord ist strafbar und moralisch falsch.</p>
+    <p><strong>Beispiel 2: </strong>Fussgängerstreifen ignorieren<br>
+    Sitte: Viele schauen zuerst, bevor sie illegal die Strasse überqueren.<br>
+    Recht: Wer den Zebrastreifen nicht benutzt, handelt ordnungswidrig.</p>
+
+    <h3 class="subtitle">1.6 Arbeiten mit dem Gesetzbuch</h3>
+    <p>Wer Recht anwenden will, muss schnell und korrekt Gesetze finden und verstehen können.<br>
+    → Das Gesetzbuch (z. B. ZGB, OR, StGB) hilft dabei.</p>
+
+    <h3 class="subtitle">1.7 Aufbau eines Gesetzartikels</h3>
+    <table>
+      <tr><th>Element</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Rechtserlass</td><td>Übergeordnete Sammlung</td><td>Obligationenrecht (OR)</td></tr>
+      <tr><td>Artikel (Art.)</td><td>Einzelregel im Gesetz</td><td>Art. 271a OR</td></tr>
+      <tr><td>Absatz</td><td>Abschnitt innerhalb eines Artikels</td><td>Abs. 1</td></tr>
+      <tr><td>Litera</td><td>Buchstabe bei Aufzählungen</td><td>lit. b</td></tr>
+      <tr><td>Ziffer</td><td>Nummer innerhalb von Buchstabenlisten</td><td>Ziff. 3</td></tr>
+    </table>
+    <p>Beispiel komplett: OR 271a Abs. 1 lit. e Ziff. 4</p>
+
+    <h3 class="subtitle">1.8 Beispiel: Gesetzesartikel finden</h3>
+    <p>Du willst wissen, wann ein Mietvertrag gekündigt werden darf:</p>
+    <ol>
+      <li>Inhaltsverzeichnis → Mietrecht (Obligationenrecht)</li>
+      <li>Suche nach „Kündigung Mietvertrag“</li>
+      <li>Du findest: OR Art. 266 ff.</li>
+      <li>Im Artikel OR 266g stehen die Regeln für Kündigungsfristen.</li>
+    </ol>
+
+    <h3 class="subtitle">1.9 Tipps für die Arbeit mit dem Gesetzbuch</h3>
+    <ul>
+      <li>Inhaltsverzeichnis vorne nutzen (Themenübersicht)</li>
+      <li>Stichwortverzeichnis hinten verwenden (z. B. unter „Miete“)</li>
+      <li>Auf die richtige Sammlung achten (OR, ZGB, StGB etc.)</li>
+      <li>Rote Randtitel helfen beim schnellen Finden</li>
+      <li>Genau lesen: Artikel, Absätze und Buchstaben beachten!</li>
+    </ul>
+
+    <h3 class="subtitle">1.10 Tatbestand und Rechtsfolge erkennen</h3>
+    <p>Jeder Gesetzesartikel hat grundsätzlich folgende Struktur:</p>
+    <table>
+      <tr><th>Teil</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Tatbestand</td><td>Voraussetzung: Wenn bestimmte Bedingungen erfüllt sind</td><td>Wenn jemand eine fremde Sache beschädigt</td></tr>
+      <tr><td>Rechtsfolge</td><td>Konsequenz: Dann tritt eine Wirkung ein</td><td>Dann muss der Schaden ersetzt werden</td></tr>
+    </table>
+    <p>Merksatz: Wenn … dann …</p>
+
+    <h3 class="subtitle">1.11 Beispiel: Unfall auf der Piste</h3>
+    <p><strong>Tatbestand:</strong> Robert wird von Angelina angerempelt → Bruch am Handgelenk, Jacke kaputt</p>
+    <p><strong>Rechtsfolge:</strong> Schadenersatz gemäss Obligationenrecht (Art. 41 OR)</p>
+
+    <h3 class="subtitle">1.12 Zusammengefasst: Grundlagen des Rechts</h3>
+    <table>
+      <tr><th>Thema</th><th>Bedeutung</th></tr>
+      <tr><td>Recht</td><td>staatlich durchsetzbare Regeln</td></tr>
+      <tr><td>Sitte</td><td>gesellschaftliche Erwartungen</td></tr>
+      <tr><td>Moral</td><td>persönliche Werte</td></tr>
+      <tr><td>Gesetzesarbeit</td><td>Gesetze finden, Artikel korrekt lesen</td></tr>
+      <tr><td>Tatbestand / Rechtsfolge</td><td>Rechtliche Fälle verstehen und anwenden</td></tr>
+    </table>
+    <p>Nur Recht wird vom Staat erzwungen. Sitte und Moral helfen freiwillig beim guten Zusammenleben.</p>
+
+    <h3 class="subtitle">1.13 Fazit: Recht einfach erklärt</h3>
+    <table>
+      <tr><th>Bereich</th><th>Zusammenfassung</th></tr>
+      <tr><td>Recht, Sitte, Moral</td><td>regeln unser Verhalten unterschiedlich</td></tr>
+      <tr><td>Gesetzesartikel</td><td>richtig zitieren und anwenden ist eine Schlüsselkompetenz</td></tr>
+      <tr><td>Tatbestand & Rechtsfolge</td><td>zentrale Begriffe bei jedem juristischen Problem</td></tr>
+    </table>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zu den Grundlagen des Rechts.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Grundlagen des Rechts bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
