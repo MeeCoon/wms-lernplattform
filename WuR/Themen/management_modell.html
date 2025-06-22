@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Das Management-Modell – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR/Wirtschaft */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 300px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px;
+      margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Das Management-Modell</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <!-- … -->
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <!-- … -->
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft &amp; Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/management_modell.html">Das Management-Modell</a>
+          <!-- weitere WuR-Themen … -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Das Management-Modell</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>wie ein Unternehmen sein Umfeld analysiert</li>
+      <li>welche Gruppen Ansprüche an eine Firma stellen</li>
+      <li>was Zielkonflikte sind</li>
+      <li>was nachhaltiges Wirtschaften bedeutet</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist ein Management-Modell?</h3>
+    <p>Ein Unternehmen ist wie ein Mensch in der Gesellschaft – es lebt nicht isoliert, sondern ist von vielem abhängig:</p>
+    <ul>
+      <li>Kunden wollen faire Preise</li>
+      <li>Mitarbeitende erwarten gute Arbeitsbedingungen</li>
+      <li>Umweltregeln müssen eingehalten werden</li>
+      <li>Trends und Gesetze verändern sich ständig</li>
+    </ul>
+    <p>→ Ein Unternehmen muss alle diese Einflüsse beobachten, einordnen und reagieren. Dafür braucht es ein Modell, das zeigt, was rund um die Firma geschieht – das Management-Modell. :contentReference[oaicite:7]{index=7}</p>
+
+    <h3 class="subtitle">1.3 Stakeholder (Wer will was von der Firma?)</h3>
+    <table>
+      <tr><th>Stakeholder</th><th>Was sie wollen</th></tr>
+      <tr><td>Eigentümer:innen</td><td>Gewinn, Erfolg, Mitbestimmung</td></tr>
+      <tr><td>Mitarbeitende</td><td>Lohn, Sicherheit, Wertschätzung</td></tr>
+      <tr><td>Kundschaft</td><td>Gutes Produkt, fairer Preis, Service</td></tr>
+      <tr><td>Staat</td><td>Steuern, Gesetze einhalten</td></tr>
+      <tr><td>Lieferanten</td><td>Zuverlässige Zahlungen, langfristige Beziehung</td></tr>
+      <tr><td>Banken</td><td>Rückzahlung von Krediten, Vertrauen</td></tr>
+      <tr><td>Öffentlichkeit/NGOs</td><td>Nachhaltigkeit, Transparenz</td></tr>
+      <tr><td>Konkurrenz</td><td>Fairer Wettbewerb, keine Tricks</td></tr>
+    </table>
+    <p>Beispiel: Ein Bio-Takeaway in Zürich</p>
+    <ul>
+      <li>Kund:innen wollen leckeres, günstiges Essen</li>
+      <li>Mitarbeitende möchten faire Löhne</li>
+      <li>Die Stadt will saubere Mülltrennung</li>
+      <li>Eine NGO beobachtet, ob alles wirklich nachhaltig ist</li>
+    </ul>
+    <p>→ Die Firma muss allen zuhören, auch wenn es nicht immer einfach ist. :contentReference[oaicite:8]{index=8}</p>
+
+    <h3 class="subtitle">1.4 Zielbeziehungen (Wenn Interessen sich vertragen… oder eben nicht)</h3>
+    <table>
+      <tr><th>Art</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Konflikt</td><td>zwei Ziele widersprechen sich</td><td>Mehr Lohn für Mitarbeitende ↔ weniger Gewinn für Eigentümer</td></tr>
+      <tr><td>Harmonie</td><td>zwei Ziele ergänzen sich</td><td>Faire Produkte ↔ loyale Kundschaft</td></tr>
+      <tr><td>Neutralität</td><td>zwei Ziele haben keinen Einfluss aufeinander</td><td>Recyclingquote ↔ neue Softwareversion im Büro</td></tr>
+    </table>
+    <p>→ Das Unternehmen muss oft abwägen, was Priorität hat. :contentReference[oaicite:9]{index=9}</p>
+
+    <h3 class="subtitle">1.5 Umweltsphären – Was beeinflusst die Firma von außen?</h3>
+    <table>
+      <tr><th>Sphäre</th><th>Inhalt</th><th>Beispiel</th></tr>
+      <tr><td>Wirtschaft</td><td>Zinsen, Inflation, Konkurrenz</td><td>Hohe Inflation = Kunden kaufen weniger</td></tr>
+      <tr><td>Technologie</td><td>Digitalisierung, Innovation</td><td>Neue App-Funktionen verändern Kundenverhalten</td></tr>
+      <tr><td>Gesellschaft</td><td>Werte, Trends, Demografie</td><td>Junge Menschen kaufen bewusster ein</td></tr>
+      <tr><td>Natur/Ökologie</td><td>Umwelt, Ressourcen, Klima</td><td>Verpackungsgesetz zwingt zur Umstellung</td></tr>
+      <tr><td>Recht</td><td>Gesetze, Vorschriften</td><td>Datenschutzverordnung → neue Regeln für Websites</td></tr>
+    </table>
+    <p>Beispiel: Eine Gaming-Plattform in der Schweiz</p>
+    <ul>
+      <li>Technologie: Neue Streaming-Techniken machen Games flüssiger</li>
+      <li>Gesellschaft: Viele User fordern Inklusivität (barrierefreies Design)</li>
+      <li>Recht: Jugendschutz-Vorgaben in der Werbung</li>
+    </ul>
+    <p>→ Die Plattform muss sich ständig anpassen. :contentReference[oaicite:10]{index=10}</p>
+
+    <h3 class="subtitle">1.6 Nachhaltigkeit (Verantwortung übernehmen)</h3>
+    <p>Ein Unternehmen sollte nicht nur an Profit denken, sondern auch an Umwelt und Gesellschaft. Das nennt man Nachhaltigkeit – sie basiert auf drei Säulen:</p>
+    <table>
+      <tr><th>Säule</th><th>Ziel</th><th>Beispiel</th></tr>
+      <tr><td>Wirtschaftlich</td><td>Gewinn, Arbeitsplätze sichern</td><td>Stabil wachsen ohne Schulden</td></tr>
+      <tr><td>Sozial</td><td>Fairness, Förderung, Zusammenhalt</td><td>Faire Löhne, Weiterbildung</td></tr>
+      <tr><td>Ökologisch</td><td>Umwelt schützen</td><td>Strom aus erneuerbarer Energie, weniger Plastik</td></tr>
+    </table>
+    <p>→ Alle drei Bereiche sind gleich wichtig, nur so funktioniert nachhaltiges Wirtschaften. :contentReference[oaicite:11]{index=11}</p>
+
+    <h3 class="subtitle">1.7 Fazit (Management bedeutet Überblick &amp; Balance)</h3>
+    <table>
+      <tr><th>Thema</th><th>Was du mitnehmen solltest</th></tr>
+      <tr><td>Stakeholder</td><td>Jede Gruppe hat andere Erwartungen</td></tr>
+      <tr><td>Zielbeziehungen</td><td>Nicht alle Wünsche passen zusammen</td></tr>
+      <tr><td>Umweltsphären</td><td>Firmen müssen auf Trends, Gesetze und Klima reagieren</td></tr>
+      <tr><td>Nachhaltigkeit</td><td>Ökologie, Soziales &amp; Wirtschaft gehören zusammen</td></tr>
+    </table>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Management-Modell.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Management-Modell bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
