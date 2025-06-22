@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>1. Kaufvertrag – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grüner Balken */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">← Startseite</a>
+    <h1>1. Kaufvertrag</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li><details>
+        <summary>📐 Mathematik</summary>
+        <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+        <!-- … weitere Mathe-Themen … -->
+      </details></li>
+      <li><details>
+        <summary>📊 Finanz- und Rechnungswesen</summary>
+        <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+        <!-- … weitere FRW-Themen … -->
+      </details></li>
+      <li><details open>
+        <summary>⚖️ Wirtschaft und Recht</summary>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öfentliches_recht.html">Öffentliches Recht</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/kaufvertrag.html">Kaufvertrag</a>
+        <!-- … weitere WuR-Themen … -->
+      </details></li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <h2 class="section-title">1. Kaufvertrag</h2>
+
+    <h3 class="subtitle">1.1 Lernziele (kurz und verständlich)</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>wie Kaufverträge abgeschlossen werden</li>
+      <li>den Unterschied zwischen Fahrniskauf und Grundstückkauf</li>
+      <li>wie Eigentum, Nutzen und Gefahr übergehen</li>
+      <li>was bei Vertragsverletzungen wie Lieferverzug, Mängeln oder Zahlungsverzug passiert</li>
+      <li>welche Pflichten Käufer:innen und Verkäufer:innen haben</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist ein Kaufvertrag?</h3>
+    <p>Ein Kaufvertrag ist eine gegenseitige Verpflichtung:</p>
+    <ul>
+      <li>Verkäufer:in muss die Ware liefern</li>
+      <li>Käufer:in muss den Kaufpreis bezahlen</li>
+    </ul>
+    <p>Schon durch einfache Willensäusserung (z. B. „Ich nehme den Pullover für CHF 80.–“) entsteht ein gültiger Kaufvertrag.</p>
+
+    <h3 class="subtitle">1.3 Allgemeine Bestimmungen zum Fahrniskauf</h3>
+    <h4>1.3.1 Arten von Kaufverträgen</h4>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Fahrniskauf</td><td>Kauf beweglicher Sachen</td><td>Laptop, Pullover, Auto</td></tr>
+      <tr><td>Grundstückkauf</td><td>Kauf unbeweglicher Sachen</td><td>Haus, Wohnung, Grundstück</td></tr>
+    </table>
+    <p>Fahrniskäufe sind viel häufiger im Alltag!</p>
+
+    <h4>1.3.2 Speziesware vs. Gattungsware</h4>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Speziesware</td><td>Einzelstück – genau dieses Objekt</td><td>Occasionsvelo, handgemaltes Bild</td></tr>
+      <tr><td>Gattungsware</td><td>Ware aus einer Gattung – beliebiges Stück</td><td>Jeans, iPhone, Wasserflasche</td></tr>
+    </table>
+
+    <h4>1.3.3 Ort und Zeit der Erfüllung</h4>
+    <table>
+      <tr><th>Thema</th><th>Regeln</th></tr>
+      <tr><td>Ort</td><td>Holschuld beim Verkäufer</td></tr>
+      <tr><td>Zeit</td><td>Sofort, wenn nichts anderes vereinbart ist</td></tr>
+    </table>
+    <p>Transport- und Verpackungskosten trägt normalerweise der Käufer, ausser es wurde anders abgemacht.</p>
+
+    <h3 class="subtitle">1.4 Eigentumsrechte beim Fahrniskauf</h3>
+    <h4>1.4.1 Eigentumsübertragung</h4>
+    <p>Beim Kauf geht das Eigentum nicht automatisch beim Vertragsabschluss über, sondern erst bei der Übergabe.</p>
+    <p><strong>Art. 714 ZGB</strong></p>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th></tr>
+      <tr><td>Eigentum</td><td>volle rechtliche Verfügung über die Sache</td></tr>
+      <tr><td>Besitz</td><td>tatsächliche Kontrolle über die Sache<br>Besitz ≠ Eigentum</td></tr>
+    </table>
+    <p>Beispiel: Pulloverkauf<br>
+    Beim Versand wird Herr Bauer Besitzer; erst nach Zustellung wird er Eigentümer.</p>
+
+    <h4>1.4.2 Übergang von Nutzen und Gefahr</h4>
+    <p>Nutzen und Gefahr = Risiko, dass die Ware kaputtgeht oder verloren geht.</p>
+    <table>
+      <tr><th>Situation</th><th>Übergang</th></tr>
+      <tr><td>Speziesware</td><td>sofort bei Vertragsabschluss</td></tr>
+      <tr><td>Gattungsware – Platzkauf</td><td>bei Ausscheidung (Ware bereitgestellt)</td></tr>
+      <tr><td>Gattungsware – Distanzkauf</td><td>bei Übergabe an Versanddienstleister</td></tr>
+    </table>
+    <p>Beispiel: Paketverlust<br>
+    Herr Bauer trägt das Risiko, sobald Zalando das Paket bei der Post aufgibt.</p>
+
+    <h4>1.4.3 Eigentumsvorbehalt</h4>
+    <p>Verkäufer kann im Eigentum bleiben, bis der Kaufpreis gezahlt ist.<br>
+    Muss ins Eigentumsvorbehaltsregister (Art. 715 ZGB).</p>
+
+    <h3 class="subtitle">1.5 Vertragsverletzungen beim Fahrniskauf</h3>
+    <h4>1.5.1 Lieferverzug des Verkäufers</h4>
+    <table>
+      <tr><th>Problem</th><th>Folge</th></tr>
+      <tr><td>Lieferung nicht rechtzeitig</td><td>Käufer kann Lieferung fordern oder Schadenersatz verlangen</td></tr>
+    </table>
+    <p><strong>Mahnkauf vs. Fixkauf</strong></p>
+    <table>
+      <tr><th>Kaufart</th><th>Verzug</th></tr>
+      <tr><td>Mahnkauf</td><td>Mahnung nötig</td></tr>
+      <tr><td>Fixkauf</td><td>Rücktritt ohne Mahnung möglich</td></tr>
+    </table>
+
+    <h4>1.5.2 Mangelhafte Lieferung</h4>
+    <p>Ware defekt oder nicht wie abgemacht:</p>
+    <ul>
+      <li>Käufer: Ware prüfen (Art. 201 OR), Mängel melden, Ware aufbewahren</li>
+    </ul>
+    <table>
+      <tr><th>Recht</th><th>Bedeutung</th></tr>
+      <tr><td>Wandelung</td><td>Rücktritt vom Vertrag</td></tr>
+      <tr><td>Minderung</td><td>Preisnachlass</td></tr>
+      <tr><td>Ersatzlieferung</td><td>neue Ware verlangen</td></tr>
+    </table>
+    <p>Beispiel: Kaputtes Schwimmbecken – Herr Morgenthaler kann Rücktritt, Minderung oder Ersatz wählen.</p>
+
+    <h4>1.5.3 Annahmeverzug</h4>
+    <p>Käufer nimmt Ware nicht an → Verkäufer kann einlagern oder klagen.</p>
+
+    <h4>1.5.4 Zahlungsverzug</h4>
+    <p>Käufer zahlt nicht pünktlich → Verzugszins 5 % p.a. (Art. 104 OR) oder Klage.</p>
+
+    <h3 class="subtitle">1.6 Grundstückkauf – Spezialfall</h3>
+    <p>Formvorschrift: Öffentliche Beurkundung nötig!<br>
+    Eintrag ins Grundbuch → Übergang erst mit Eintrag.</p>
+    <p>Beispiel: Wohnungskauf – erst Grundbucheintrag macht Käufer Eigentümer.</p>
+
+    <h3 class="subtitle">1.7 Fazit Kapitel 1 – Kaufvertrag vollständig zusammengefasst</h3>
+    <table>
+      <tr><th>Bereich</th><th>Zusammengefasst</th></tr>
+      <tr><td>Kaufvertrag</td><td>gegenseitige Verpflichtung: Ware gegen Geld</td></tr>
+      <tr><td>Fahrniskauf vs. Grundstückkauf</td><td>bewegliche vs. unbewegliche Sachen</td></tr>
+      <tr><td>Eigentumsübergang</td><td>Besitz ≠ Eigentum</td></tr>
+      <tr><td>Nutzen und Gefahr</td><td>Übergang je nach Art des Kaufs</td></tr>
+      <tr><td>Vertragsverletzungen</td><td>Lieferverzug, Mängel, Annahme-/Zahlungsverzug</td></tr>
+      <tr><td>Grundstückkauf</td><td>notarielle Beurkundung, Grundbuch</td></tr>
+    </table>
+
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Kaufvertrag.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Kaufvertrag bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
