@@ -14,7 +14,7 @@
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background-color: #228B22; /* violett für FRW/Wirtschaftsthemen */
+      background-color: #228B22; /* grün für Wirtschaft & Recht */
       color: white;
       text-align: center;
       padding: 20px 0;
@@ -68,8 +68,8 @@
       cursor: pointer; font-weight: bold; margin-bottom: 5px;
     }
     .fach-liste a {
-      display: block; text-decoration: none;
-      color: #444; margin-left: 15px; margin-bottom: 4px;
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
     }
 
     .reiter-container {
@@ -86,13 +86,13 @@
       transition: color 0.3s;
       z-index: 1;
     }
-    .reiter:hover { color: #8e44ad; }
+    .reiter:hover { color: #228B22; }
     .reiter.active {
-      color: #8e44ad; font-weight: bold;
+      color: #228B22; font-weight: bold;
     }
     .indicator {
-      position: absolute; bottom: 5px;
-      height: 3px; background-color: #8e44ad;
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
       transition: left 0.3s ease, width 0.3s ease;
       pointer-events: none;
     }
@@ -102,8 +102,7 @@
       max-width: 900px;
       margin: 0 auto;
       padding: 20px;
-      font-size: 1.1rem; line-height: 1.6;
-      color: #333;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
     .tab-content p,
@@ -116,7 +115,7 @@
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
-      border-bottom: 3px solid #8e44ad;
+      border-bottom: 3px solid #228B22;
       padding-bottom: 5px;
     }
     .subtitle {
@@ -139,7 +138,7 @@
 <body>
 
   <header>
-    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing-mix-4p.html" class="back-btn">Zurück zur Themenübersicht</a>
     <h1>Marketing-Mix – die 4P</h1>
   </header>
 
@@ -148,18 +147,41 @@
     <h2>Navigation</h2>
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
-      <li><details>
-        <summary>📊 Wirtschaft & Recht</summary>
-        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
-        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-        <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
-        <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
-        <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
-        <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
-        <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
-        <a href="FRW/Themen/marketing_mix.html">Marketing-Mix – die 4P</a>
-      </details></li>
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen & Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft & Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öffentliches_recht.html">Öffentliches Recht</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing-grundlagen.html">Marketing – Grundlagen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing-mix-4p.html">Marketing-Mix – die 4P</a>
+          <!-- weitere WuR-Themen hier -->
+        </details>
+      </li>
     </ul>
   </div>
 
@@ -186,34 +208,41 @@
     <h3 class="subtitle">1.2 Was ist der Marketing-Mix?</h3>
     <p>Das beste Produkt bringt nichts, wenn es falsch beworben, zu teuer oder am falschen Ort verkauft wird.<br>
     Der Marketing-Mix bedeutet:<br>
-    → Unternehmen müssen vier Bereiche gleichzeitig durchdenken und aufeinander abstimmen.<br>
-    Man spricht von den 4P:</p>
+    → Unternehmen müssen vier Bereiche gleichzeitig durchdenken und aufeinander abstimmen.</p>
+    <p>Man spricht von den 4P:</p>
     <table>
-      <tr><th>Kürzel</th><th>Übersetzung</th><th>Bedeutung</th></tr>
-      <tr><td>Product</td><td>Produkt</td><td>Produktgestaltung</td></tr>
-      <tr><td>Price</td><td>Preis</td><td>Preisstrategie</td></tr>
-      <tr><td>Place</td><td>Platz</td><td>Vertrieb / Distribution</td></tr>
-      <tr><td>Promotion</td><td>Promotion</td><td>Werbung / Kommunikation</td></tr>
+      <thead>
+        <tr><th>Kürzel</th><th>Übersetzung</th><th>Bedeutung</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Product</td><td>Produkt</td><td>Produktgestaltung</td></tr>
+        <tr><td>Price</td><td>Preis</td><td>Preisstrategie</td></tr>
+        <tr><td>Place</td><td>Platz</td><td>Vertrieb / Distribution</td></tr>
+        <tr><td>Promotion</td><td>Promotion</td><td>Werbung / Kommunikation</td></tr>
+      </tbody>
     </table>
-    <p>→ Erst das perfekte Zusammenspiel führt zum Erfolg.</p>
 
-    <h3 class="subtitle">1.3 Product (das richtige Produkt entwickeln)</h3>
+    <h2 class="section-title">2. Product (das richtige Produkt entwickeln)</h2>
     <p>Ein Unternehmen muss genau überlegen:</p>
     <ul>
       <li>Was bieten wir an? (Produkt oder Dienstleistung)</li>
       <li>Wie soll es aussehen, riechen, schmecken, klingen?</li>
       <li>Was unterscheidet uns von der Konkurrenz?</li>
     </ul>
-    <p><strong>Wichtige Elemente beim Produkt:</strong></p>
+    <h3 class="subtitle">2.1 Wichtige Elemente beim Produkt</h3>
     <table>
-      <tr><th>Element</th><th>Beispiel</th></tr>
-      <tr><td>Qualität</td><td>langlebige Jeans aus Bio-Baumwolle</td></tr>
-      <tr><td>Design</td><td>stylische Verpackung bei Sneakers</td></tr>
-      <tr><td>Marke</td><td>Swisscom, Red Bull, Nike</td></tr>
-      <tr><td>Zusatzleistungen</td><td>24h-Kundendienst, Gratisreparatur</td></tr>
+      <thead>
+        <tr><th>Element</th><th>Beispiel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Qualität</td><td>langlebige Jeans aus Bio-Baumwolle</td></tr>
+        <tr><td>Design</td><td>stylische Verpackung bei Sneakers</td></tr>
+        <tr><td>Marke</td><td>Swisscom, Red Bull, Nike</td></tr>
+        <tr><td>Zusatzleistungen</td><td>24h-Kundendienst, Gratisreparatur</td></tr>
+      </tbody>
     </table>
 
-    <h3 class="subtitle">1.4 Price (der passende Preis)</h3>
+    <h2 class="section-title">3. Price (der passende Preis)</h2>
     <p>Der Preis ist extrem wichtig – er entscheidet oft über Kauf oder Nichtkauf.<br>
     Preisfindung hängt ab von:</p>
     <ul>
@@ -222,70 +251,102 @@
       <li>Konkurrenzpreisen</li>
       <li>Image der Marke</li>
     </ul>
-    <p><strong>Typische Preisstrategien:</strong></p>
+    <h3 class="subtitle">3.1 Typische Preisstrategien</h3>
     <table>
-      <tr><th>Strategie</th><th>Erklärung</th><th>Beispiel</th></tr>
-      <tr><td>Hochpreisstrategie</td><td>Premiumprodukt, hohe Qualität</td><td>Apple, Tesla</td></tr>
-      <tr><td>Tiefpreisstrategie</td><td>günstige Preise für Massenmarkt</td><td>Denner, Aldi</td></tr>
-      <tr><td>Psychologische Preise</td><td>Preise knapp unter einer runden Zahl</td><td>CHF 9.95 statt CHF 10.00</td></tr>
-      <tr><td>Preisdifferenzierung</td><td>verschiedene Preise für verschiedene Gruppen</td><td>Rabatt für Lernende</td></tr>
+      <thead>
+        <tr><th>Strategie</th><th>Erklärung</th><th>Beispiel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hochpreisstrategie</td><td>Premiumprodukt, hohe Qualität</td><td>Apple, Tesla</td></tr>
+        <tr><td>Tiefpreisstrategie</td><td>günstige Preise für Massenmarkt</td><td>Denner, Aldi</td></tr>
+        <tr><td>Psychologische Preise</td><td>Preise knapp unter einer runden Zahl</td><td>CHF 9.95 statt CHF 10.00</td></tr>
+        <tr><td>Preisdifferenzierung</td><td>verschiedene Preise für verschiedene Gruppen</td><td>Rabatt für Lernende</td></tr>
+      </tbody>
     </table>
     <p><strong>Beispiel: Kino Pathé Basel</strong><br>
-    Normalpreis: CHF 18.–<br>
-    Studentenspecial: CHF 14.–<br>
-    Dienstag-Rabatt: CHF 10.– für alle</p>
+    • Normalpreis: CHF 18.–<br>
+    • Studentenspecial: CHF 14.–<br>
+    • Dienstag-Rabatt: CHF 10.– für alle</p>
 
-    <h3 class="subtitle">1.5 Place (der richtige Vertriebsweg)</h3>
+    <h2 class="section-title">4. Place (der richtige Vertriebsweg)</h2>
     <p>Wie und wo kommt das Produkt zur Kundschaft?</p>
     <table>
-      <tr><th>Vertriebsform</th><th>Erklärung</th><th>Beispiel</th></tr>
-      <tr><td>Direkt</td><td>Verkauf ohne Zwischenhändler</td><td>eigene Shops, Webshop</td></tr>
-      <tr><td>Indirekt</td><td>Verkauf über Händler</td><td>Migros, Galaxus, Zalando</td></tr>
+      <thead>
+        <tr><th>Vertriebsform</th><th>Erklärung</th><th>Beispiel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Direkt</td><td>Verkauf ohne Zwischenhändler</td><td>eigene Shops, Webshop</td></tr>
+        <tr><td>Indirekt</td><td>Verkauf über Händler</td><td>Migros, Galaxus, Zalando</td></tr>
+      </tbody>
     </table>
-    <p><strong>Wichtige Entscheidungen beim Place:</strong></p>
+    <p>Wichtige Entscheidungen beim Place:</p>
     <ul>
       <li>Standort (zentral, leicht erreichbar)</li>
       <li>Online-Verfügbarkeit (Webshop, App)</li>
       <li>Lieferzeiten und Servicequalität</li>
     </ul>
 
-    <h3 class="subtitle">1.6 Promotion (die perfekte Werbung)</h3>
-    <p>Instrumente der Promotion:</p>
+    <h2 class="section-title">5. Promotion (die perfekte Werbung)</h2>
+    <h3 class="subtitle">5.1 Instrumente der Promotion</h3>
     <table>
-      <tr><th>Bereich</th><th>Beispiele</th></tr>
-      <tr><td>Klassische Werbung</td><td>Plakate, Radio, Printanzeigen</td></tr>
-      <tr><td>Online-Marketing</td><td>Instagram, TikTok, Google Ads</td></tr>
-      <tr><td>Events & Messen</td><td>Fashion Week Basel, Gaming-Expo</td></tr>
-      <tr><td>Sponsoring</td><td>FC Basel-Trikotsponsor, Festivalsupport</td></tr>
-      <tr><td>Verkaufsförderung</td><td>Rabatte, Gutscheine, Sonderaktionen</td></tr>
+      <thead>
+        <tr><th>Bereich</th><th>Beispiele</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Klassische Werbung</td><td>Plakate, Radio, Printanzeigen</td></tr>
+        <tr><td>Online-Marketing</td><td>Instagram, TikTok, Google Ads</td></tr>
+        <tr><td>Events & Messen</td><td>Fashion Week Basel, Gaming-Expo</td></tr>
+        <tr><td>Sponsoring</td><td>FC Basel-Trikotsponsor, Festivalsupport</td></tr>
+        <tr><td>Verkaufsförderung</td><td>Rabatte, Gutscheine, Sonderaktionen</td></tr>
+      </tbody>
     </table>
 
-    <h3 class="subtitle">1.7 Das AIDA-Modell (Wie Werbung wirkt)</h3>
+    <h3 class="subtitle">5.2 Das AIDA-Modell</h3>
+    <p>Eine erfolgreiche Werbung folgt oft dem AIDA-Prinzip:</p>
     <table>
-      <tr><th>Buchstabe</th><th>Bedeutung</th><th>Ziel</th></tr>
-      <tr><td>Attention</td><td>Aufmerksamkeit erzeugen</td><td>Auffällige Farben, Slogans</td></tr>
-      <tr><td>Interest</td><td>Interesse wecken</td><td>Spannende Story, spannende Infos</td></tr>
-      <tr><td>Desire</td><td>Wunsch auslösen</td><td>„Will ich haben!“</td></tr>
-      <tr><td>Action</td><td>Handlung auslösen</td><td>Klick, Kauf, Bestellung</td></tr>
+      <thead>
+        <tr><th>Buchstabe</th><th>Bedeutung</th><th>Ziel</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Attention</td><td>Aufmerksamkeit erzeugen</td><td>Auffällige Farben, Slogans</td></tr>
+        <tr><td>Interest</td><td>Interesse wecken</td><td>Spannende Story, spannende Infos</td></tr>
+        <tr><td>Desire</td><td>Wunsch auslösen</td><td>„Will ich haben!“</td></tr>
+        <tr><td>Action</td><td>Handlung auslösen</td><td>Klick, Kauf, Bestellung</td></tr>
+      </tbody>
     </table>
 
-    <h3 class="subtitle">1.8 Beispiel: Launch eines veganen Eistees in Basel</h3>
-    <ul>
-      <li><strong>Attention:</strong> Plakat am Bahnhof SBB mit cooler Grafik</li>
-      <li><strong>Interest:</strong> Infos über Fairtrade‐Zutaten</li>
-      <li><strong>Desire:</strong> Influencer erzählen, wie lecker & fair der Tee ist</li>
-      <li><strong>Action:</strong> QR-Code führt direkt zum Webshop für Rabattaktion</li>
-    </ul>
+    <p><strong>Beispiel: Launch eines veganen Eistees in Basel</strong><br>
+    • Attention: Plakat am Bahnhof SBB mit cooler Grafik<br>
+    • Interest: Infos über Fairtrade-Zutaten<br>
+    • Desire: Influencer erzählen, wie lecker & fair der Tee ist<br>
+    • Action: QR-Code führt direkt zum Webshop für Rabattaktion</p>
 
-    <h3 class="subtitle">1.9 Zusammengefasst: Erfolgreiches Marketing braucht Balance</h3>
+    <h2 class="section-title">6. Zusammengefasst: Erfolgreiches Marketing braucht Balance</h2>
     <table>
-      <tr><th>P</th><th>Frage</th><th>Wichtigster Punkt</th></tr>
-      <tr><td>Product</td><td>Was genau verkaufen wir?</td><td>Qualität & Marke</td></tr>
-      <tr><td>Price</td><td>Wie teuer ist es?</td><td>Wertwahrnehmung vs. Konkurrenz</td></tr>
-      <tr><td>Place</td><td>Wo & wie wird verkauft?</td><td>Verfügbarkeit & Image</td></tr>
-      <tr><td>Promotion</td><td>Wie machen wir Werbung?</td><td>Aufmerksamkeit & Emotionen</td></tr>
+      <thead>
+        <tr><th>P</th><th>Frage</th><th>Wichtigster Punkt</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Product</td><td>Was genau verkaufen wir?</td><td>Qualität & Marke</td></tr>
+        <tr><td>Price</td><td>Wie teuer ist es?</td><td>Wertwahrnehmung vs. Konkurrenz</td></tr>
+        <tr><td>Place</td><td>Wo & wie wird verkauft?</td><td>Verfügbarkeit & Image</td></tr>
+        <tr><td>Promotion</td><td>Wie machen wir Werbung?</td><td>Aufmerksamkeit & Emotionen</td></tr>
+      </tbody>
     </table>
-    <p>Nur wenn alle vier P perfekt zusammenspielen, wird ein Produkt oder eine Dienstleistung langfristig erfolgreich.</p>
+
+    <h2 class="section-title">7. Fazit</h2>
+    <table>
+      <thead>
+        <tr><th>Bereich</th><th>Kurz zusammengefasst</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Product</td><td>Produktgestaltung und Nutzen</td></tr>
+        <tr><td>Price</td><td>richtige Preisstrategie</td></tr>
+        <tr><td>Place</td><td>optimaler Vertrieb</td></tr>
+        <tr><td>Promotion</td><td>gezielte Werbung</td></tr>
+      </tbody>
+    </table>
+    <p>➡️ In der Realität müssen Unternehmen ihre 4P ständig anpassen: Trends ändern sich, neue Konkurrenten tauchen auf, Erwartungen der Kund:innen steigen.</p>
 
   </div>
 
@@ -296,18 +357,18 @@
 
   <!-- Übungsprüfung-Tab -->
   <div id="pruefung" class="tab-content">
-    <p>Hier wird eine Übungsprüfung zum Thema Marketing-Mix bereitgestellt.</p>
+    <p>Hier wird eine Übungsprüfung zum Marketing-Mix bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, id) {
+    function showTab(e, tabId) {
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      const btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
+      const ind = document.querySelector('.indicator'),
+            btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect();
       ind.style.left  = (btn.left - cont.left) + 'px';
       ind.style.width = btn.width + 'px';
     }
