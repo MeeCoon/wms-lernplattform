@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>WMS-Lernplattform</title>
   <style>
     body {
@@ -18,7 +18,7 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.2);
       position: fixed;
       width: 100%;
-      top: 0; left: 0;
+      top: 0;
       z-index: 1000;
     }
     header h1 {
@@ -62,10 +62,8 @@
     }
 
     .reiter-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0 10px;
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -75,10 +73,7 @@
       transition: color 0.3s;
       z-index: 1;
     }
-    .reiter:hover { color: #2980b9; }
-    .reiter.active {
-      color: #2980b9; font-weight: bold;
-    }
+    .reiter.active { color: #2980b9; font-weight: bold; }
     .indicator {
       position: absolute; bottom: 5px; height: 3px;
       background-color: #2980b9;
@@ -92,27 +87,26 @@
       gap: 30px;
       max-width: 1200px;
       margin: 0 auto 60px;
-      padding: 20px;
+      padding: 0 20px; padding-top: 20px;
     }
     .thema-card {
-      border-radius: 20px;
-      padding: 30px 20px;
+      border-radius: 20px; padding: 30px 20px;
       text-align: center;
       box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      transition: transform 0.2s, filter 0.3s;
-      cursor: pointer; text-decoration: none; color: inherit;
-      aspect-ratio: 1/1;
+      cursor: pointer; text-decoration: none;
+      color: inherit; transition: transform .2s, filter .3s;
       display: flex; flex-direction: column; justify-content: center;
+      aspect-ratio: 1/1;
     }
-    .thema-card:hover {
-      transform: scale(1.05); filter: brightness(1.05);
-    }
+    .thema-card:hover { transform: scale(1.05); filter: brightness(1.05); }
     .thema-icon {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
+      width: 80px; height: 80px;
+      object-fit: contain;
+      display: block; margin: 0 auto 15px;
     }
     h3 {
-      font-size: 1.2rem; color: #2c3e50; margin: 0; line-height: 1.4;
+      font-size: 1.2rem; color: #2c3e50;
+      margin: 0; line-height: 1.4;
     }
 
     /* Mathe */
@@ -132,14 +126,18 @@
     .bg-fw    { background-color: #f44336; }
     .bg-wh    { background-color: #A2B5CD; }
     .bg-mwst  { background-color: #e61919; }
-    .bg-bk    { background-color: #D1EEEE; }
+    .bg-bk    { background-color: #3f51b5; }
 
-    /* WuR: Recht */
+    /* WuR (vorläufig leer) */
     .bg-recht { background-color: #9e9e9e; }
     .bg-staat { background-color: #607d8b; }
     .bg-polit { background-color: #3f51b5; }
     .bg-vw    { background-color: #009688; }
     .bg-bw    { background-color: #ff7043; }
+    .bg-pvt   { background-color: #ff5722; }
+    .bg-prr   { background-color: #ffab00; }
+    .bg-rqm   { background-color: #2196f3; }
+    .bg-zvs   { background-color: #009688; }
   </style>
 </head>
 <body>
@@ -147,94 +145,89 @@
   <header>
     <h1>WMS-Lernplattform</h1>
   </header>
-  <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
   <div class="sidebar" id="sidebar">
     <h2>Navigation</h2>
     <input class="suche-im-menu" placeholder="Suche..." />
     <ul class="fach-liste">
-      <li><details>
-        <summary>📐 Mathematik</summary>
-        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-        <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
-        <a href="Mathe/Themen/lineare_gleichungen_&_systeme.html">Lineare Gleichungen &amp; Systeme</a>
-        <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
-        <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
-        <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
-        <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
-      </details></li>
-      <li><details>
-        <summary>📊 Finanz- und Rechnungswesen</summary>
-        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
-        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-        <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
-        <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
-        <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
-        <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
-        <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
-      </details></li>
-      <li><details open>
-        <summary>⚖️ Wirtschaft und Recht</summary>
-        <!-- zuerst Wirtschaft -->
-        <a href="WuR/Themen/kaufmaennische_grundbildung.html">Kaufmännische Grundbildung</a>
-        <a href="WuR/Themen/management_modell.html">Management Modell</a>
-        <a href="WuR/Themen/umsetzung_ideen.html">Umsetzung unternehmerischer Ideen</a>
-        <a href="WuR/Themen/organisationsformen.html">Organisationsformen</a>
-        <a href="WuR/Themen/hr.html">Human Resources (Personalwesen)</a>
-        <a href="WuR/Themen/marketing_grundlagen.html">Marketing – Grundlagen</a>
-        <a href="WuR/Themen/marketing_mix.html">Marketing-Mix – die 4P</a>
-        <a href="WuR/Themen/risiko_versicherungen_vorsorge.html">Risiko, Versicherungen &amp; Vorsorge</a>
-        <a href="WuR/Themen/banken.html">Banken</a>
-        <!-- dann Recht -->
-        <a href="WuR/Themen/allgemeine_vertragslehre.html">Allgemeine Vertragslehre</a>
-        <a href="WuR/Themen/entstehung_obligation.html">Entstehung Obligation</a>
-        <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
-        <a href="WuR/Themen/kaufvertrag.html">Kaufvertrag</a>
-        <a href="WuR/Themen/mietvertrag.html">Mietvertrag</a>
-        <a href="WuR/Themen/prozessrecht.html">Prozessrecht</a>
-        <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html">Rechtsquellen &amp; Mitbestimmung</a>
-        <a href="WuR/Themen/oefentliches_recht.html">Öffentliches Recht</a>
-        <a href="WuR/Themen/zwangsvollstreckung.html">Zwangsvollstreckung</a>
-      </details></li>
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen & Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Warenhandelsbetrieb</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>⚖️ Wirtschaft & Recht</summary>
+          <a href="WuR/Themen/allgemeine_vertragslehre.html">Allgemeine Vertragslehre</a>
+          <a href="WuR/Themen/entstehung_obligation.html">Entstehung Obligation</a>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="WuR/Themen/öffentliches_recht.html">Öffentliches Recht</a>
+          <a href="WuR/Themen/mietvertrag.html">Mietvertrag</a>
+          <a href="WuR/Themen/privatrecht.html">Privatrecht</a>
+          <a href="WuR/Themen/prozessrecht.html">Prozessrecht</a>
+          <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html">Rechtsquellen & Mitbestimmung</a>
+          <a href="WuR/Themen/zwangsvollstreckung.html">Zwangsvollstreckung</a>
+        </details>
+      </li>
     </ul>
   </div>
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showFach(event,'mathematik')">Mathematik</button>
     <button class="reiter" onclick="showFach(event,'frw')">Finanz- und Rechnungswesen</button>
-    <button class="reiter" onclick="showFach(event,'wur')">Wirtschaft und Recht</button>
+    <button class="reiter" onclick="showFach(event,'wur')">Wirtschaft & Recht</button>
     <div class="indicator"></div>
   </div>
 
-  <!-- Mathe -->
+  <!-- Mathematik -->
   <div class="themen-grid" id="mathematik">
     <a href="rechnungen_in_z.html" class="thema-card bg-z">
-      <div class="thema-icon">ℤ</div>
+      <img src="Mathe/rechnungen_in_z.png" class="thema-icon" alt="Rechnungen in Z">
       <h3>Rechnungen in Z</h3>
     </a>
     <a href="Mathe/Themen/rechnungen_in_q.html" class="thema-card bg-q">
-      <div class="thema-icon">ℚ</div>
+      <img src="Mathe/rechnungen_in_q.png" class="thema-icon" alt="Rechnungen in Q">
       <h3>Rechnungen in Q</h3>
     </a>
-    <a href="Mathe/Themen/lineare_gleichungen_&_systeme.html" class="thema-card bg-lin">
-      <div class="thema-icon">⟼</div>
-      <h3>Lineare Gleichungen &amp; Systeme</h3>
+    <a href="Mathe/Themen/lineare_gleichungen.html" class="thema-card bg-lin">
+      <img src="Mathe/lineare_gleichungen.png" class="thema-icon" alt="Lineare Gleichungen & Systeme">
+      <h3>Lineare Gleichungen & Systeme</h3>
     </a>
     <a href="Mathe/Themen/quadratische_gleichungen.html" class="thema-card bg-quad">
-      <div class="thema-icon">x²</div>
+      <img src="Mathe/quadratische_gleichungen.png" class="thema-icon" alt="Quadratische Gleichungen">
       <h3>Quadratische Gleichungen</h3>
     </a>
     <a href="Mathe/Themen/potenzen_logarithmen.html" class="thema-card bg-log">
-      <div class="thema-icon">log</div>
-      <h3>Potenzen &amp; Logarithmen</h3>
+      <img src="Mathe/potenzen_logarithmen.png" class="thema-icon" alt="Potenzen & Logarithmen">
+      <h3>Potenzen & Logarithmen</h3>
     </a>
     <a href="Mathe/Themen/nutzenschwelle.html" class="thema-card bg-nut">
-      <div class="thema-icon">💰</div>
+      <img src="Mathe/nutzenschwelle.png" class="thema-icon" alt="Nutzenschwelle">
       <h3>Nutzenschwelle</h3>
     </a>
     <a href="Mathe/Themen/lineare_optimierung.html" class="thema-card bg-opt">
-      <div class="thema-icon">📈</div>
+      <img src="Mathe/lineare_optimierung.png" class="thema-icon" alt="Lineare Optimierung">
       <h3>Lineare Optimierung</h3>
     </a>
   </div>
@@ -242,113 +235,75 @@
   <!-- FRW -->
   <div class="themen-grid" id="frw" style="display:none">
     <a href="FRW/Themen/kaufmännische_buchführung.html" class="thema-card bg-buch">
-      <div class="thema-icon">📊</div>
+      <img src="FRW/Bilder/kaufmännische_buchführung.png" class="thema-icon" alt="Kaufmännische Buchführung">
       <h3>Kaufmännische Buchführung</h3>
     </a>
     <a href="FRW/Themen/doppelte_buchführung.html" class="thema-card bg-dopp">
-      <div class="thema-icon">🧾</div>
+      <img src="FRW/Bilder/doppelte_buchführung.png" class="thema-icon" alt="Doppelte Buchführung">
       <h3>Doppelte Buchführung</h3>
     </a>
     <a href="FRW/Themen/rechnungsabschluss.html" class="thema-card bg-absch">
-      <div class="thema-icon">🔢</div>
+      <img src="FRW/Bilder/rechnungsabschluss.png" class="thema-icon" alt="Rechnungsabschluss">
       <h3>Rechnungsabschluss</h3>
     </a>
-    <a href="FRW/Themen/bankgeschaefte.html" class="thema-card bg-bank">
-      <div class="thema-icon">🏦</div>
+    <a href="FRW/Themen/bankgeschäfte.html" class="thema-card bg-bank">
+      <img src="FRW/Bilder/bankgeschäfte.png" class="thema-icon" alt="Bankgeschäfte">
       <h3>Bankgeschäfte</h3>
     </a>
-    <a href="FRW/Themen/fremde_waehrungen.html" class="thema-card bg-fw">
-      <div class="thema-icon">💱</div>
+    <a href="FRW/Themen/fremde_währungen.html" class="thema-card bg-fw">
+      <img src="FRW/Bilder/fremde_währungen.png" class="thema-icon" alt="Fremde Währungen">
       <h3>Fremde Währungen</h3>
     </a>
     <a href="FRW/Themen/warenhandelsbetrieb.html" class="thema-card bg-wh">
-      <div class="thema-icon">📈</div>
-      <h3>Buchhaltung des Warenhandelsbetriebs</h3>
+      <img src="FRW/Bilder/warenhandelsbetrieb.png" class="thema-icon" alt="Warenhandelsbetrieb">
+      <h3>Warenhandelsbetrieb</h3>
     </a>
     <a href="FRW/Themen/mwst.html" class="thema-card bg-mwst">
-      <div class="thema-icon">🏷️</div>
+      <img src="FRW/Bilder/mwst.png" class="thema-icon" alt="Mehrwertsteuer">
       <h3>Mehrwertsteuer</h3>
     </a>
     <a href="FRW/Themen/betriebliche_kalkulation.html" class="thema-card bg-bk">
-      <div class="thema-icon">🧮</div>
+      <img src="FRW/Bilder/betriebliche_kalkulation.png" class="thema-icon" alt="Betriebliche Kalkulation">
       <h3>Betriebliche Kalkulation</h3>
     </a>
   </div>
 
-  <!-- Wirtschaft & Recht -->
+  <!-- WuR -->
   <div class="themen-grid" id="wur" style="display:none">
-    <!-- Wirtschaft -->
-    <a href="WuR/Themen/kaufmaennische_grundbildung.html" class="thema-card bg-wh">
-      <div class="thema-icon">🎓</div>
-      <h3>Kaufmännische Grundbildung</h3>
-    </a>
-    <a href="WuR/Themen/management_modell.html" class="thema-card bg-wh">
-      <div class="thema-icon">🎯</div>
-      <h3>Management Modell</h3>
-    </a>
-    <a href="WuR/Themen/umsetzung_ideen.html" class="thema-card bg-wh">
-      <div class="thema-icon">💡</div>
-      <h3>Umsetzung unternehmerischer Ideen</h3>
-    </a>
-    <a href="WuR/Themen/organisationsformen.html" class="thema-card bg-wh">
-      <div class="thema-icon">🏢</div>
-      <h3>Organisationsformen</h3>
-    </a>
-    <a href="WuR/Themen/hr.html" class="thema-card bg-wh">
-      <div class="thema-icon">👥</div>
-      <h3>Human Resources (Personalwesen)</h3>
-    </a>
-    <a href="WuR/Themen/marketing_grundlagen.html" class="thema-card bg-wh">
-      <div class="thema-icon">📈</div>
-      <h3>Marketing – Grundlagen</h3>
-    </a>
-    <a href="WuR/Themen/marketing_mix.html" class="thema-card bg-wh">
-      <div class="thema-icon">🛍️</div>
-      <h3>Marketing-Mix – die 4P</h3>
-    </a>
-    <a href="WuR/Themen/risiko_versicherungen_vorsorge.html" class="thema-card bg-wh">
-      <div class="thema-icon">🛡️</div>
-      <h3>Risiko, Versicherungen &amp; Vorsorge</h3>
-    </a>
-    <a href="WuR/Themen/banken.html" class="thema-card bg-wh">
-      <div class="thema-icon">🏦</div>
-      <h3>Banken</h3>
-    </a>
-    <!-- Recht -->
     <a href="WuR/Themen/allgemeine_vertragslehre.html" class="thema-card bg-recht">
-      <div class="thema-icon">📜</div>
+      <div class="thema-icon"></div>
       <h3>Allgemeine Vertragslehre</h3>
     </a>
-    <a href="WuR/Themen/entstehung_obligation.html" class="thema-card bg-recht">
-      <div class="thema-icon">📄</div>
+    <a href="WuR/Themen/entstehung_obligation.html" class="thema-card bg-staat">
+      <div class="thema-icon"></div>
       <h3>Entstehung Obligation</h3>
     </a>
-    <a href="WuR/Themen/grundlagen_des_rechts.html" class="thema-card bg-recht">
-      <div class="thema-icon">⚖️</div>
+    <a href="WuR/Themen/grundlagen_des_rechts.html" class="thema-card bg-polit">
+      <div class="thema-icon"></div>
       <h3>Grundlagen des Rechts</h3>
     </a>
-    <a href="WuR/Themen/kaufvertrag.html" class="thema-card bg-recht">
-      <div class="thema-icon">🤝</div>
-      <h3>Kaufvertrag</h3>
-    </a>
-    <a href="WuR/Themen/mietvertrag.html" class="thema-card bg-recht">
-      <div class="thema-icon">🏠</div>
-      <h3>Mietvertrag</h3>
-    </a>
-    <a href="WuR/Themen/prozessrecht.html" class="thema-card bg-recht">
-      <div class="thema-icon">⚙️</div>
-      <h3>Prozessrecht</h3>
-    </a>
-    <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html" class="thema-card bg-recht">
-      <div class="thema-icon">📚</div>
-      <h3>Rechtsquellen &amp; Mitbestimmung</h3>
-    </a>
-    <a href="WuR/Themen/oefentliches_recht.html" class="thema-card bg-recht">
-      <div class="thema-icon">🏛️</div>
+    <a href="WuR/Themen/öffentliches_recht.html" class="thema-card bg-vw">
+      <div class="thema-icon"></div>
       <h3>Öffentliches Recht</h3>
     </a>
-    <a href="WuR/Themen/zwangsvollstreckung.html" class="thema-card bg-recht">
-      <div class="thema-icon">🔨</div>
+    <a href="WuR/Themen/mietvertrag.html" class="thema-card bg-bw">
+      <div class="thema-icon"></div>
+      <h3>Mietvertrag</h3>
+    </a>
+    <a href="WuR/Themen/privatrecht.html" class="thema-card bg-pvt">
+      <div class="thema-icon"></div>
+      <h3>Privatrecht</h3>
+    </a>
+    <a href="WuR/Themen/prozessrecht.html" class="thema-card bg-prr">
+      <div class="thema-icon"></div>
+      <h3>Prozessrecht</h3>
+    </a>
+    <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html" class="thema-card bg-rqm">
+      <div class="thema-icon"></div>
+      <h3>Rechtsquellen & Mitbestimmung</h3>
+    </a>
+    <a href="WuR/Themen/zwangsvollstreckung.html" class="thema-card bg-zvs">
+      <div class="thema-icon"></div>
       <h3>Zwangsvollstreckung</h3>
     </a>
   </div>
@@ -359,10 +314,10 @@
       document.getElementById(fach).style.display = 'grid';
       document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
       e.target.classList.add('active');
-      const ind = document.querySelector('.indicator'),
-            btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect();
-      ind.style.left  = (btn.left - cont.left) + 'px';
+      const btn = e.target.getBoundingClientRect(),
+            cr  = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cr.left) + 'px';
       ind.style.width = btn.width + 'px';
     }
     function toggleMenu() {
@@ -372,6 +327,5 @@
       document.querySelector('.reiter.active').click();
     });
   </script>
-
 </body>
 </html>
