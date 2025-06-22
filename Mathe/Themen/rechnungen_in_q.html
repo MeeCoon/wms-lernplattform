@@ -146,24 +146,8 @@
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input type="text" placeholder="Suche..." class="suche-im-menu">
-    <ul class="fach-liste">
-      <li>
-        <details open>
-          <summary><a href="#">📐 Mathematik</a></summary>
-          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-          <a href="rechnungen_in_q.html">Rechnungen in Q</a>
-          <a href="lineare_gleichungen.html">Lineare Gleichungen</a>
-          <a href="quadratische_gleichungen.html">Quadratische Gleichungen</a>
-          <a href="potenzen_logarithmen.html">Potenzen & Logarithmen</a>
-          <a href="nutzenschwelle.html">Nutzenschwelle</a>
-          <a href="lineare_optimierung.html">Lineare Optimierung</a>
-        </details>
-      </li>
-    </ul>
-  </div>
+  <div class="sidebar" id="sidebar"></div>
+
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event, 'theorie')">Theorie</button>
@@ -202,38 +186,8 @@
     </ol>
   </div>
 
-  <script>
-    function showTab(event, tabId) {
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
 
-      document.querySelectorAll('.reiter').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      event.target.classList.add('active');
-
-      const ind = document.querySelector('.indicator');
-      const btnRect = event.target.getBoundingClientRect();
-      const contRect = event.target.parentElement.getBoundingClientRect();
-      ind.style.left = (btnRect.left - contRect.left) + 'px';
-      ind.style.width = btnRect.width + 'px';
-    }
-
-    function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("show");
-    }
-
-    window.addEventListener('load', () => {
-      const active = document.querySelector('.reiter.active');
-      const ind = document.querySelector('.indicator');
-      const btnRect = active.getBoundingClientRect();
-      const contRect = active.parentElement.getBoundingClientRect();
-      ind.style.left = (btnRect.left - contRect.left) + 'px';
-      ind.style.width = btnRect.width + 'px';
-    });
-  </script>
 
 </body>
 </html>
