@@ -143,35 +143,8 @@
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li>
-        <details>
-          <summary>📐 Mathematik</summary>
-          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_z.html">Rechnungen in Z</a>
-          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
-          <!-- … -->
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>📊 Finanz- und Rechnungswesen</summary>
-          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-          <!-- … -->
-        </details>
-      </li>
-      <li>
-        <details open>
-          <summary>⚖️ Wirtschaft &amp; Recht</summary>
-          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
-          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/management_modell.html">Das Management-Modell</a>
-          <!-- weitere WuR-Themen … -->
-        </details>
-      </li>
-    </ul>
-  </div>
+  <div class="sidebar" id="sidebar"></div>
+
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -280,30 +253,8 @@
     <p>Hier wird eine Übungsprüfung zum Thema Management-Modell bereitgestellt.</p>
   </div>
 
-  <script>
-    function showTab(e, id) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const active = document.querySelector('.reiter.active'),
-            btn = active.getBoundingClientRect(),
-            cont = active.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
-    });
-  </script>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
+
 
 </body>
 </html>
