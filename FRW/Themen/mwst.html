@@ -132,23 +132,7 @@
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li>
-        <details>
-          <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
-          <a href="kaufmaennische_buchfuehrung.html">Kaufmännische Buchführung</a>
-          <a href="doppelte_buchfuehrung.html">Doppelte Buchführung</a>
-          <a href="rechnungsabschluss.html">Rechnungsabschluss</a>
-          <a href="bankgeschaefte.html">Bankgeschäfte</a>
-          <a href="fremde_waehrungen.html">Fremde Währungen</a>
-          <a href="mehrwertsteuer.html">Mehrwertsteuer</a>
-        </details>
-      </li>
-    </ul>
-  </div>
+  <div class="sidebar" id="sidebar"></div>
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -239,31 +223,8 @@
   <div id="pruefung" class="tab-content">
     <p>Hier wird eine Übungsprüfung zum Thema Mehrwertsteuer bereitgestellt.</p>
   </div>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
 
-  <script>
-    function showTab(e, id) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const ind = document.querySelector('.indicator'),
-            br = e.target.getBoundingClientRect(),
-            cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const btn = document.querySelector('.reiter.active'),
-            ind = document.querySelector('.indicator'),
-            br = btn.getBoundingClientRect(),
-            cr = btn.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    });
-  </script>
 
 </body>
 </html>
