@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Human Resources (Personalwesen) – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #27ae60; /* grün für Wirtschaft & Recht */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #27ae60; }
+    .reiter.active {
+      color: #27ae60; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #27ae60;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #27ae60;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Human Resources (Personalwesen)</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/ökonomische_grundbildung.html">Kaufmännische Grundbildung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/management_modell.html">Das Management Modell</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/umsetzung_unternehmerischer_ideen.html">Umsetzung unternehmerischer Ideen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/organisationsformen.html">Organisationsformen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/human_resources.html">Human Resources</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">Lernziele</h2>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>wie Mitarbeitende rekrutiert, betreut und weiterentwickelt werden</li>
+      <li>welche Arten von Lohn es gibt und was auf dem Lohnzettel steht</li>
+      <li>warum Motivation und Beteiligung wichtig sind</li>
+      <li>wie Kündigungen fair ablaufen können</li>
+      <li>welche Führungsstile es gibt und wie sie wirken</li>
+    </ul>
+
+    <h2 class="section-title">Was ist „Human Resources“?</h2>
+    <p>Human Resources (HR) bedeutet: Personalwesen also alles, was mit den Mitarbeitenden eines Unternehmens zu tun hat.</p>
+
+    <h2 class="section-title">Ziele des HR-Managements</h2>
+    <table>
+      <tr><th>Zielart</th><th>Inhalt</th></tr>
+      <tr><td>Wirtschaftlich</td><td>hohe Leistung, Qualität, Effizienz</td></tr>
+      <tr><td>Sozial</td><td>faire Bedingungen, gutes Arbeitsklima</td></tr>
+      <tr><td>Individuell</td><td>Zufriedenheit &amp; Entwicklung der einzelnen Person</td></tr>
+    </table>
+
+    <h2 class="section-title">Personalplanung &amp; Rekrutierung</h2>
+    <p>Bevor man jemanden einstellt, muss klar sein:</p>
+    <ul>
+      <li>Wie viele Leute brauchen wir?</li>
+      <li>Welche Fähigkeiten sollen sie haben?</li>
+      <li>Wie finden wir die Richtigen?</li>
+    </ul>
+    <h3 class="subtitle">Beispiel: Das Café „BaselBrew“ sucht neue Leute</h3>
+    <p>Sie brauchen:</p>
+    <ul>
+      <li>1 Barista für den Frühdienst</li>
+      <li>1 Social-Media-Talent für Werbung auf Insta &amp; TikTok</li>
+      <li>1 Lernende KV, die auch Events mitplant</li>
+    </ul>
+    <p>→ Es folgt die Stellenausschreibung, das Bewerbungsgespräch und evtl. ein Testtag</p>
+
+    <h2 class="section-title">Bewerbungsprozess und Auswahlmethoden</h2>
+    <table>
+      <tr><th>Schritt</th><th>Beschreibung</th></tr>
+      <tr><td>Bewerbungsdossier</td><td>Lebenslauf, Motivationsschreiben, Zeugnisse</td></tr>
+      <tr><td>Interview</td><td>Persönliches Gespräch</td></tr>
+      <tr><td>Testverfahren</td><td>z. B. Logik-, Sprach-, IT-Tests</td></tr>
+      <tr><td>Assessment</td><td>Gruppenübungen, Rollenspiele (z. B. bei der Post, SBB)</td></tr>
+    </table>
+    <p>→ Ziel: die Person finden, die fachlich UND menschlich passt</p>
+
+    <h2 class="section-title">Personaladministration</h2>
+    <ul>
+      <li>Arbeitsverträge &amp; Kündigungen schreiben</li>
+      <li>Löhne zahlen</li>
+      <li>Personaldossiers verwalten</li>
+      <li>auf Gesetze achten (z. B. Arbeitszeit, Ferien, Datenschutz)</li>
+    </ul>
+
+    <h2 class="section-title">Personalentwicklung</h2>
+    <p>Gute Firmen investieren in ihre Leute:</p>
+    <table>
+      <tr><th>Vorteil für die Person</th><th>Vorteil für die Firma</th></tr>
+      <tr><td>persönliche Entwicklung</td><td>höhere Produktivität</td></tr>
+      <tr><td>mehr Motivation</td><td>weniger Kündigungen</td></tr>
+      <tr><td>Karrierechancen</td><td>besseres Image</td></tr>
+    </table>
+
+    <h2 class="section-title">Löhne und Entschädigung</h2>
+    <p>Was du verdienst, hängt von mehreren Dingen ab: Job, Ausbildung, Erfahrung aber auch Region und Branche.</p>
+    <table>
+      <tr><th>Lohnart</th><th>Erklärung</th></tr>
+      <tr><td>Zeitlohn</td><td>fester Monats- oder Stundenlohn</td></tr>
+      <tr><td>Akkordlohn / Stücklohn</td><td>nach Anzahl geleisteter Stücke</td></tr>
+      <tr><td>Prämienlohn</td><td>fixer Lohn + Leistungsbonus</td></tr>
+      <tr><td>Naturallohn</td><td>z. B. Wohnung, Auto, Essen als Teil des Lohns</td></tr>
+    </table>
+
+    <h2 class="section-title">Beispiel: Lohnabrechnung</h2>
+    <p>Wenn dein Bruttolohn CHF 6'100.– ist, werden z. B. abgezogen:</p>
+    <ul>
+      <li>AHV/IV/EO</li>
+      <li>ALV</li>
+      <li>BVG</li>
+      <li>NBU</li>
+      <li>Quellensteuer (falls nötig)</li>
+    </ul>
+    <p>→ Dein Nettolohn ist das, was du wirklich bekommst.</p>
+
+    <h2 class="section-title">Motivation</h2>
+    <p>Mitarbeitende, die motiviert sind, leisten mehr. Man unterscheidet:</p>
+    <table>
+      <tr><th>Art</th><th>Beispiele</th></tr>
+      <tr><td>Materiell</td><td>Lohn, Bonus, Geschenke, Ferien</td></tr>
+      <tr><td>Immateriell</td><td>Lob, Teamgeist, Entwicklungsmöglichkeiten</td></tr>
+    </table>
+
+    <h2 class="section-title">Mitarbeitendenbeteiligung</h2>
+    <p>Gute Firmen geben Mitarbeitenden Mitspracherecht z. B. bei:</p>
+    <ul>
+      <li>internen Projekten</li>
+      <li>Arbeitszeiten</li>
+      <li>der Gestaltung ihres Arbeitsplatzes</li>
+    </ul>
+    <p>→ Das steigert Zufriedenheit, Motivation &amp; Loyalität</p>
+
+    <h2 class="section-title">Führungsstile</h2>
+    <table>
+      <tr><th>Stil</th><th>Merkmale</th><th>Wann sinnvoll?</th></tr>
+      <tr><td>Autoritär</td><td>Chef entscheidet allein</td><td>bei Zeitdruck oder Verantwortung</td></tr>
+      <tr><td>Kooperativ</td><td>Chef fragt das Team</td><td>wenn Motivation &amp; Ideen gefragt sind</td></tr>
+      <tr><td>Laissez-faire</td><td>Team entscheidet alles</td><td>bei erfahrenen &amp; selbständigen Teams</td></tr>
+    </table>
+
+    <h2 class="section-title">Beispiel: Team im „Basler Musikhaus KlangArt“</h2>
+    <p>Der Inhaber plant alles allein (autoritär)<br>
+    → Mitarbeitende fühlen sich nicht einbezogen<br>
+    → Stimmung leidet, Leute kündigen</p>
+    <p>→ Nach Workshop: mehr Mitsprache → bessere Stimmung → Umsatz steigt</p>
+
+    <h2 class="section-title">Fazit (HR ist mehr als „nur Verwaltung“)</h2>
+    <table>
+      <tr><th>Bereich</th><th>Bedeutung</th></tr>
+      <tr><td>Planung &amp; Rekrutierung</td><td>die richtigen Leute finden</td></tr>
+      <tr><td>Administration</td><td>Verträge, Löhne, Abläufe</td></tr>
+      <tr><td>Entwicklung</td><td>Schulung, Coaching, Feedback</td></tr>
+      <tr><td>Motivation &amp; Beteiligung</td><td>Wertschätzung &amp; Mitdenken fördern</td></tr>
+      <tr><td>Führungsstil</td><td>beeinflusst direkt, wie gut ein Team funktioniert</td></tr>
+    </table>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier kommen später interaktive Aufgaben zum Thema Human Resources.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Human Resources bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
