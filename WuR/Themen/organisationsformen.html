@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Kaufmännische Grundbildung – WMS-Lernplattform</title>
+  <title>Organisationsformen – WMS-Lernplattform</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -14,7 +14,7 @@
     header {
       position: fixed;
       top: 0; left: 0; width: 100%;
-      background-color: #4caf50; /* grün für Wirtschaft & Recht */
+      background-color: #4caf50; /* grün für WuR */
       color: white;
       text-align: center;
       padding: 20px 0;
@@ -34,6 +34,7 @@
       font-size: 1rem;
     }
     .back-btn:hover { opacity: 0.8; }
+
     .menu-btn {
       position: fixed;
       top: 20px; right: 20px;
@@ -42,10 +43,11 @@
       border: none; cursor: pointer;
       z-index: 1001;
     }
+
     .sidebar {
       position: fixed;
       top: 80px; right: -300px;
-      width: 300px; height: 100%;
+      width: 250px; height: 100%;
       background: white;
       box-shadow: -3px 0 15px rgba(0,0,0,0.1);
       padding: 30px 20px;
@@ -54,31 +56,25 @@
     }
     .sidebar.show { right: 0; }
     .sidebar h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #333;
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
     }
     .suche-im-menu {
-      width: 100%; padding: 10px;
-      margin-bottom: 20px;
+      width: 100%; padding: 10px; margin-bottom: 20px;
       border-radius: 20px; border: 1px solid #ccc;
     }
     .fach-liste { list-style: none; padding: 0; }
     .fach-liste > li { margin-bottom: 15px; }
     .fach-liste summary {
-      cursor: pointer; font-weight: bold;
-      margin-bottom: 5px;
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
     }
     .fach-liste a {
-      display: block; text-decoration: none;
-      color: #444; margin-left: 15px;
-      margin-bottom: 4px;
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
     }
+
     .reiter-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0 10px;
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
     }
     .reiter {
       padding: 15px 25px; margin: 0 15px;
@@ -93,16 +89,15 @@
       color: #4caf50; font-weight: bold;
     }
     .indicator {
-      position: absolute; bottom: 5px;
-      height: 3px; background-color: #4caf50;
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #4caf50;
       transition: left 0.3s ease, width 0.3s ease;
       pointer-events: none;
     }
+
     .tab-content {
       display: none;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 900px; margin: 0 auto; padding: 20px;
       font-size: 1.1rem; line-height: 1.6; color: #333;
     }
     .tab-content.active { display: block; }
@@ -112,6 +107,7 @@
     .tab-content table {
       margin-bottom: 20px;
     }
+
     .section-title {
       font-size: 1.8rem; font-weight: bold;
       margin-top: 60px; margin-bottom: 30px;
@@ -123,6 +119,7 @@
       margin-top: 40px; margin-bottom: 15px;
       display: block; width: 100%;
     }
+
     table {
       width: 100%; border-collapse: collapse;
     }
@@ -137,8 +134,8 @@
 <body>
 
   <header>
-    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
-    <h1>1. Kaufmännische Grundbildung</h1>
+    <a href="https://meecoon.github.io/wms-lernplattform/wur.html" class="back-btn">Zurück zur Übersicht</a>
+    <h1>Organisationsformen</h1>
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
@@ -149,24 +146,21 @@
       <li><details>
         <summary>📐 Mathematik</summary>
         <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
-        <!-- … weitere Mathe-Themen … -->
+        <!-- … restliche Mathe-Links … -->
       </details></li>
       <li><details>
-        <summary>📊 Finanz-und Rechnungswesen</summary>
+        <summary>📊 Finanz- und Rechnungswesen</summary>
         <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-        <!-- … weitere FRW-Themen … -->
-      </details></li>
-      <li><details>
-        <summary>⚖️ Wirtschaft und Recht</summary>
-        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
-        <!-- … weitere WuR-Themen … -->
+        <!-- … restliche FRW-Links … -->
       </details></li>
       <li><details open>
-        <summary>💼 Wirtschaft</summary>
-        <a href="https://meecoon.github.io/wms-lernplattform/WiSo/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
-        <a href="https://meecoon.github.io/wms-lernplattform/WiSo/Themen/das_management_modell.html">Das Management Modell</a>
-        <a href="https://meecoon.github.io/wms-lernplattform/WiSo/Themen/umsetzung_unternehmerischer_ideen.html">Umsetzung unternehmerischer Ideen</a>
-        <a href="https://meecoon.github.io/wms-lernplattform/WiSo/Themen/organisationsformen.html">Organisationsformen</a>
+        <summary>⚖️ Wirtschaft &amp; Recht</summary>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öffentliches_recht.html">Öffentliches Recht</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/organisationsformen.html">Organisationsformen</a>
+        <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/human_resources.html">Human Resources</a>
+        <!-- … ggf. weitere WuR-Links … -->
       </details></li>
     </ul>
   </div>
@@ -180,133 +174,163 @@
 
   <!-- Theorie-Tab -->
   <div id="theorie" class="tab-content active">
-    <h2 class="section-title">1. Kaufmännische Grundbildung</h2>
+    <h2 class="section-title">1. Organisationsformen</h2>
 
     <h3 class="subtitle">1.1 Lernziele</h3>
-    <p>In diesem Kapitel lernst du:</p>
     <ul>
-      <li>was Kaufleute machen und warum die Ausbildung so beliebt ist</li>
-      <li>wie Unternehmen nach Grösse, Branche und Sektor eingeteilt werden</li>
-      <li>was ein Traumarbeitgeber ist und was dir persönlich wichtig ist</li>
+      <li>wie ein Unternehmen organisiert ist</li>
+      <li>was Organigramme zeigen</li>
+      <li>welche Strukturen (Linienorganisation, Stablinien, funktional, divisional etc.) es gibt</li>
+      <li>wie Jobbeschreibungen und Funktionsdiagramme funktionieren</li>
+      <li>was eine Ablauforganisation ist</li>
     </ul>
 
-    <h3 class="subtitle">1.2 Was ist „kaufmännisch“?</h3>
-    <p>„Kaufmännisch“ heisst: organisieren, rechnen, kommunizieren, planen.  
-    Als Kauffrau oder Kaufmann arbeitest du z. B. in der Administration, beim Kundenservice, im Rechnungswesen oder im Verkauf.  
-    Du bekommst Einblick in viele Bereiche eines Betriebs – egal ob Schule, Hotel, Modefirma oder Gaming-Start-up. :contentReference[oaicite:6]{index=6}</p>
-
-    <h3 class="subtitle">1.3 Was du in der Lehre lernst</h3>
-    <table>
-      <tr><th>Bereich</th><th>Was du machst</th></tr>
-      <tr><td>Organisation</td><td>Termine, Projekte, Dokumente verwalten</td></tr>
-      <tr><td>Rechnungswesen</td><td>Zahlungen, Budgets, Buchhaltung</td></tr>
-      <tr><td>Kundenkontakt</td><td>Anfragen beantworten, Bestellungen bearbeiten</td></tr>
-      <tr><td>Kommunikation</td><td>Mails schreiben, Protokolle führen, Gespräche vorbereiten</td></tr>
-      <tr><td>Digitales Arbeiten</td><td>Excel, Word, Datenbanken, ERP-Systeme nutzen</td></tr>
-    </table>
-    <p>Du wirst zum Allrounder, den jedes Unternehmen brauchen kann.</p>
-
-    <h3 class="subtitle">1.4 Beispiel: Eine KV-Lernende im Sportverein</h3>
+    <h3 class="subtitle">1.2 Was heisst „Organisation“ überhaupt?</h3>
+    <p>Organisation heisst: klare Strukturen schaffen, damit alle wissen:</p>
     <ul>
-      <li>Selin macht ihre KV-Lehre beim regionalen Fussballverband:</li>
-      <li>Sie organisiert Spielpläne</li>
-      <li>Verrechnet Startgebühren</li>
-      <li>Schreibt den Newsletter</li>
-      <li>Hilft bei Sponsorengesprächen</li>
+      <li>Was muss gemacht werden?</li>
+      <li>Wer macht was?</li>
+      <li>Wer entscheidet was?</li>
     </ul>
-    <p>→ Sie ist das organisatorische Rückgrat – ohne sie läuft nichts.</p>
+    <p>Beispiel: Stell dir vor, ihr organisiert an der KVBL Reinach eine grosse Abschlussfeier. Ohne Plan? Chaos.<br>
+    → Mit klarer Organisation: Essen, Musik, Budget, Werbung alles läuft nach Plan.</p>
 
-    <h3 class="subtitle">1.5 Wo du arbeiten kannst</h3>
-    <p>Kaufleute braucht’s fast überall:</p>
+    <h3 class="subtitle">1.3 Das Organigramm (das Grundgerüst der Firma)</h3>
+    <p>Ein Organigramm zeigt in einer grafischen Übersicht:</p>
     <ul>
-      <li>in Schulen, Spitälern, Versicherungen</li>
-      <li>in Reisebüros, Fashion-Brands, Eventagenturen</li>
-      <li>in Tech-Start-ups oder Architekturbüros</li>
+      <li>welche Stellen es gibt</li>
+      <li>wer wem unterstellt ist</li>
+      <li>wie die Aufgaben verteilt sind</li>
     </ul>
-
-    <h3 class="subtitle">1.6 Unternehmensgrössen</h3>
     <table>
-      <tr><th>Typ</th><th>Mitarbeitende</th><th>Abkürzung</th></tr>
-      <tr><td>Mikrounternehmen</td><td>1–9</td><td>–</td></tr>
-      <tr><td>Kleinunternehmen</td><td>10–49</td><td>KMU</td></tr>
-      <tr><td>Mittelunternehmen</td><td>50–249</td><td>KMU</td></tr>
-      <tr><td>Grossunternehmen</td><td>250+</td><td>GU</td></tr>
-    </table>
-    <p>In der Schweiz sind 99 % aller Unternehmen KMU. :contentReference[oaicite:7]{index=7}</p>
-
-    <h3 class="subtitle">1.7 Branchen – was eine Firma macht</h3>
-    <table>
-      <tr><th>Branche</th><th>Beispiele</th></tr>
-      <tr><td>Gesundheit</td><td>Spital, Versicherung, Apotheke</td></tr>
-      <tr><td>Tourismus</td><td>Reisebüro, Hotel, Eventfirma</td></tr>
-      <tr><td>Mode</td><td>Fashionlabels, Retail, Onlineshops</td></tr>
-      <tr><td>Bau</td><td>Architektur, Handwerk</td></tr>
-      <tr><td>Technologie</td><td>IT-Support, Softwareentwicklung</td></tr>
+      <tr><th>Vorteil</th><th>Warum wichtig</th></tr>
+      <tr><td>Übersicht</td><td>Wer ist wofür zuständig?</td></tr>
+      <tr><td>Klarheit</td><td>Wen muss ich fragen?</td></tr>
+      <tr><td>Kommunikation</td><td>Wer arbeitet mit wem zusammen?</td></tr>
     </table>
 
-    <h3 class="subtitle">1.8 Die drei Wirtschaftssektoren</h3>
-    <table>
-      <tr><th>Sektor</th><th>Tätigkeiten</th><th>Beispielberufe</th></tr>
-      <tr><td>Primär</td><td>Rohstoffe gewinnen</td><td>Landwirtin, Förster, Fischer</td></tr>
-      <tr><td>Sekundär</td><td>Rohstoffe verarbeiten</td><td>Schreiner, Automechaniker</td></tr>
-      <tr><td>Tertiär</td><td>Dienstleistungen</td><td>KV, Verkäuferin, Reiseleiter</td></tr>
-    </table>
-    <p>In der Schweiz arbeiten über 75 % im Tertiärsektor :contentReference[oaicite:8]{index=8}</p>
+    <h2 class="section-title">2. Aufbauorganisation</h2>
+    <p>Es gibt verschiedene Möglichkeiten, wie man eine Firma „aufteilt“:</p>
 
-    <h3 class="subtitle">1.9 Was ist ein „Traumarbeitgeber“?</h3>
-    <p>Ein Traumarbeitgeber ist ein Betrieb, bei dem du dich wohlfühlst und entwickeln kannst. Typische Kriterien:</p>
+    <h3 class="subtitle">2.1 Funktionale Organisation</h3>
+    <p>→ nach Aufgaben gegliedert (typisch für kleinere Firmen)</p>
+    <table>
+      <tr><th>Bereich</th><th>Beispiel</th></tr>
+      <tr><td>Einkauf</td><td>bestellt Ware</td></tr>
+      <tr><td>Verkauf</td><td>kümmert sich um Kunden</td></tr>
+      <tr><td>Buchhaltung</td><td>macht die Rechnungen</td></tr>
+    </table>
+    <p><strong>Vorteil:</strong> klare Spezialisierung<br>
+    <strong>Nachteil:</strong> wenig flexibel, wenn viele Produkte</p>
+
+    <h3 class="subtitle">2.2 Divisionale Organisation</h3>
+    <p>→ nach Produkten, Regionen oder Kundengruppen gegliedert</p>
+    <table>
+      <tr><th>Gliederung</th><th>Beispiel</th></tr>
+      <tr><td>nach Produkten</td><td>Sportschuhe / Casual Sneaker / Laufmode</td></tr>
+      <tr><td>nach Regionen</td><td>Deutschschweiz / Romandie / Tessin</td></tr>
+      <tr><td>nach Kundengruppen</td><td>Privatkunden / Geschäftskunden</td></tr>
+    </table>
+    <p><strong>Vorteil:</strong> kunden- oder marktnah<br>
+    <strong>Nachteil:</strong> evtl. doppelte Arbeiten (z. B. zwei Buchhaltungen)</p>
+
+    <h3 class="subtitle">2.3 Profit-Center-Organisation</h3>
     <ul>
-      <li>cooles Team</li>
-      <li>moderne Unternehmenskultur</li>
-      <li>nachhaltige Werte</li>
-      <li>Aufstiegsmöglichkeiten</li>
-      <li>flexible Arbeitszeit oder Homeoffice</li>
+      <li>Jede Abteilung (z. B. Filiale in Basel) funktioniert wie ein eigenes Unternehmen</li>
+      <li>Eigene Kosten- und Gewinnverantwortung</li>
+      <li>Ziel: wirtschaftlich erfolgreich sein</li>
     </ul>
-    <p>Ein Traumarbeitgeber sieht für jede Person anders aus – wichtig ist, dass du selbst weisst, was dir im Beruf wirklich wichtig ist. :contentReference[oaicite:9]{index=9}</p>
+    <p><strong>Vorteil:</strong> hohe Motivation, klare Verantwortung<br>
+    <strong>Nachteil:</strong> Konkurrenz innerhalb der Firma möglich</p>
 
-    <h3 class="subtitle">1.10 Fazit Kaufmännische Grundbildung</h3>
+    <h2 class="section-title">3. Formen der Organisation</h2>
+    <h3 class="subtitle">3.1 Linienorganisation</h3>
+    <ul>
+      <li>einfache, klare Struktur</li>
+      <li>jede Person hat nur eine vorgesetzte Stelle</li>
+      <li>direkte Kommunikation</li>
+    </ul>
+    <p>Beispiel: Eine Pizzeria mit Chef → Küche, Service, Buchhaltung</p>
+
+    <h3 class="subtitle">3.2 Stablinienorganisation</h3>
+    <ul>
+      <li>zusätzlich Berater (Stabstellen) ohne Entscheidungsgewalt</li>
+      <li>z. B. Rechtsberatung, IT-Support, Assistenz</li>
+    </ul>
+    <p>Beispiel: Eine Klinik mit juristischer Fachberatung – diese Person hilft der Direktion, hat aber keine Weisungsbefugnis</p>
+
+    <h2 class="section-title">4. Breite und Tiefe</h2>
+    <p>↕️ Wie viele Chefs? Wie viele Ebenen?</p>
+    <table>
+      <tr><th>Begriff</th><th>Bedeutung</th></tr>
+      <tr><td>Breite</td><td>Wie viele Leute sind einem Chef direkt unterstellt</td></tr>
+      <tr><td>Tiefe</td><td>Wie viele Hierarchiestufen gibt es insgesamt</td></tr>
+    </table>
+    <p>Flache Strukturen = moderne, schnelle Kommunikation<br>
+    Tiefe Strukturen = klarer Befehlskanal, aber langsamer</p>
+
+    <h2 class="section-title">5. Instrumente</h2>
+    <h3 class="subtitle">5.1 Stellenbeschreibung</h3>
+    <p>Internes Dokument mit:</p>
+    <ul>
+      <li>Aufgaben</li>
+      <li>Kompetenzen (Was darf ich entscheiden?)</li>
+      <li>Verantwortung</li>
+      <li>Vertretung</li>
+    </ul>
+    <h3 class="subtitle">5.2 Funktionsdiagramm</h3>
+    <p>Zeigt, wer welche Aufgabe hat, z. B.:</p>
+    <table>
+      <tr><th>Aufgabe</th><th>Projektleitung</th><th>HR</th><th>Finanzen</th></tr>
+      <tr><td>Bewerbungsprozess</td><td>M</td><td>A</td><td>I</td></tr>
+    </table>
+    <p>(M = macht, A = arbeitet mit, I = informiert)</p>
+
+    <h2 class="section-title">6. Ablauforganisation</h2>
+    <p>Während die Aufbauorganisation zeigt, wer was macht, zeigt die Ablauforganisation:</p>
+    <ul>
+      <li>in welcher Reihenfolge die Arbeit gemacht wird</li>
+      <li>wie lange etwas dauert</li>
+      <li>wer wann zuständig ist</li>
+    </ul>
+    <p>→ Oft als Flussdiagramm oder „Workflow“ dargestellt</p>
+
+    <h2 class="section-title">7. Fazit</h2>
     <table>
       <tr><th>Thema</th><th>Was du mitnehmen solltest</th></tr>
-      <tr><td>KV EFZ + BM</td><td>ist eine vielseitige, gefragte Ausbildung</td></tr>
-      <tr><td>Berufsfeld</td><td>Organisation, Kommunikation, Zahlen & Kunden</td></tr>
-      <tr><td>Branchen & Sektoren</td><td>zeigen, wo du überall arbeiten kannst</td></tr>
-      <tr><td>KMU & Grossunternehmen</td><td>bieten dir verschiedene Arbeitswelten</td></tr>
-      <tr><td>Traumarbeitgeber</td><td>hilft dir zu erkennen, was dir im Job wichtig ist</td></tr>
+      <tr><td>Organigramm</td><td>Zeigt, wer was macht und wie die Firma aufgebaut ist</td></tr>
+      <tr><td>Aufbauorganisation</td><td>Gliederung nach Funktion, Division oder Profitcenter</td></tr>
+      <tr><td>Formen</td><td>Linien, Stablinien, Breite, Tiefe</td></tr>
+      <tr><td>Instrumente</td><td>Stellenbeschreibung, Stellenanzeige, Funktionsdiagramm</td></tr>
+      <tr><td>Ablauforganisation</td><td>zeigt den Ablauf der Arbeit (Workflow)</td></tr>
     </table>
+
   </div>
 
   <!-- Aufgaben-Tab -->
   <div id="aufgaben" class="tab-content">
-    <p>Hier folgen später interaktive Aufgaben zur Kaufmännischen Grundbildung.</p>
+    <p>Hier folgen später interaktive Aufgaben zu Organisationsformen.</p>
   </div>
 
   <!-- Übungsprüfung-Tab -->
   <div id="pruefung" class="tab-content">
-    <p>Hier wird eine Übungsprüfung zur Kaufmännischen Grundbildung bereitgestellt.</p>
+    <p>Hier wird eine Übungsprüfung zu Organisationsformen bereitgestellt.</p>
   </div>
 
   <script>
-    function showTab(e, id) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    function showTab(e,id) {
+      document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
       document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.reiter').forEach(b=>b.classList.remove('active'));
       e.target.classList.add('active');
-      const btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
+      const btn=e.target.getBoundingClientRect(), cr=e.target.parentElement.getBoundingClientRect(), ind=document.querySelector('.indicator');
+      ind.style.left=(btn.left-cr.left)+'px'; ind.style.width=btn.width+'px';
     }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const btn = document.querySelector('.reiter.active'),
-            cont = btn.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
-      const rect = btn.getBoundingClientRect();
-      ind.style.left  = (rect.left - cont.left) + 'px';
-      ind.style.width = rect.width + 'px';
+    function toggleMenu(){ document.getElementById('sidebar').classList.toggle('show'); }
+    window.addEventListener('load',()=>{
+      const active=document.querySelector('.reiter.active'),
+            btn=active.getBoundingClientRect(), cr=active.parentElement.getBoundingClientRect(), ind=document.querySelector('.indicator');
+      ind.style.left=(btn.left-cr.left)+'px'; ind.style.width=btn.width+'px';
     });
   </script>
 
