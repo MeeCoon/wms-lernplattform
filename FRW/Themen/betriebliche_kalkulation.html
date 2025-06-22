@@ -140,22 +140,7 @@
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li><details>
-        <summary><a href="frw.html">📊 Finanz‐ und Rechnungswesen</a></summary>
-        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
-        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-        <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
-        <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
-        <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
-        <a href="FRW/Themen/kalkulation.html">Betriebliche Kalkulation</a>
-      </details></li>
-    </ul>
-  </div>
+  <div class="sidebar" id="sidebar"></div>
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -271,30 +256,7 @@ Einstandspreis
     <p>Hier wird eine Übungsprüfung zur betrieblichen Kalkulation bereitgestellt.</p>
   </div>
 
-  <script>
-    function showTab(e, tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const ind = document.querySelector('.indicator'),
-            br = e.target.getBoundingClientRect(),
-            cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const btn = document.querySelector('.reiter.active'),
-            ind = document.querySelector('.indicator'),
-            br = btn.getBoundingClientRect(),
-            cr = btn.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    });
-  </script>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
 
 </body>
 </html>
