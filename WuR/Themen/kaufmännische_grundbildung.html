@@ -126,52 +126,8 @@
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li>
-        <details>
-          <summary>📐 Mathematik</summary>
-          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
-          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
-          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
-          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
-          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
-          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>📊 Finanz- und Rechnungswesen</summary>
-          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
-          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-          <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
-          <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
-          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
-          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
-          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>⚖️ Wirtschaft und Recht</summary>
-          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
-          <a href="WuR/Themen/öffentlichtes_recht.html">Öffentliches Recht</a>
-          <!-- … weitere WuR-Themen … -->
-        </details>
-      </li>
-      <li>
-        <details open>
-          <summary>💼 Wirtschafts-Themen</summary>
-          <a href="Wi/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
-          <!-- … weitere Wirtschafts-Themen … -->
-        </details>
-      </li>
-    </ul>
-  </div>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
+
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -289,25 +245,8 @@
     <p>Hier wird eine Übungsprüfung zum Thema Kaufmännische Grundbildung bereitgestellt.</p>
   </div>
 
-  <script>
-    function showTab(e, tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect(),
-            ind = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      document.querySelector('.reiter.active').click();
-    });
-  </script>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
+
 
 </body>
 </html>
