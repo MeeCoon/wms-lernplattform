@@ -135,9 +135,7 @@
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <!-- Navigation wie gehabt -->
-  </div>
+  <div class="sidebar" id="sidebar"></div>
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -309,30 +307,8 @@
     <p>Hier wird eine Übungsprüfung zum öffentlichen Recht bereitgestellt.</p>
   </div>
 
-  <script>
-    function showTab(e, id) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const btn = e.target.getBoundingClientRect(),
-            cont = e.target.parentElement.getBoundingClientRect(),
-            ind  = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const active = document.querySelector('.reiter.active'),
-            btn    = active.getBoundingClientRect(),
-            cont   = active.parentElement.getBoundingClientRect(),
-            ind    = document.querySelector('.indicator');
-      ind.style.left  = (btn.left - cont.left) + 'px';
-      ind.style.width = btn.width + 'px';
-    });
-  </script>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
+
 
 </body>
 </html>
