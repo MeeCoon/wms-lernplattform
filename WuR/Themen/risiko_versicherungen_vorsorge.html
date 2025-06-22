@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Risiko, Versicherungen und Vorsorge – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* Grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px;
+      height: 3px; background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>1. Risiko, Versicherungen und Vorsorge</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <!-- … weitere Mathe-Links … -->
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <!-- … weitere FRW-Links … -->
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öffentlichtes_recht.html">Öffentliches Recht</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/risiko_versicherungen_und_vorsorge.html">Risiko, Versicherungen und Vorsorge</a>
+          <!-- … weitere WuR-Links … -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie‐Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Risiko & Versicherungen</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>was Risiko genau bedeutet und wie Unternehmen und Privatpersonen damit umgehen</li>
+      <li>welche Versicherungen es gibt und was sie abdecken</li>
+      <li>was das berühmte 3-Säulen-System der Altersvorsorge in der Schweiz bedeutet</li>
+      <li>warum präventives Denken (= Risiken vermeiden) klüger ist als „nur reagieren“</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Risiko (was alles schiefgehen könnte)</h3>
+    <p>Risiko bedeutet: Etwas Unangenehmes oder Teures könnte passieren, ist aber nicht sicher.</p>
+    <p>Risiken können entstehen durch:</p>
+    <ul>
+      <li>eigenes Verhalten</li>
+      <li>Fehler von anderen</li>
+      <li>Naturereignisse (Unwetter, Lawinen, Überschwemmungen)</li>
+      <li>Wirtschaftliche Entwicklungen (Arbeitslosigkeit)</li>
+    </ul>
+
+    <h3 class="subtitle">1.3 Beispiele für Risiken</h3>
+    <table>
+      <tr><th>Bereich</th><th>Risiko</th></tr>
+      <tr><td>Persönlich</td><td>Unfall, Krankheit, Arbeitslosigkeit</td></tr>
+      <tr><td>Vermögen</td><td>Schaden an fremdem Eigentum</td></tr>
+      <tr><td>Sachwerte</td><td>Auto-Diebstahl, Brand im Haus</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.4 Risikomanagement (Wie man Risiken klug angeht)</h3>
+    <p>Risikomanagement besteht aus vier Schritten:</p>
+    <ul>
+      <li><strong>Erkennen:</strong> Was könnte schiefgehen?</li>
+      <li><strong>Bewerten:</strong> Wie schlimm wäre der Schaden? Wie wahrscheinlich ist es?</li>
+      <li><strong>Vermeiden:</strong> Risiko reduzieren oder verhindern (z. B. Helm beim Velofahren)</li>
+      <li><strong>Absichern:</strong> Risiko bleibt → Versicherung abschliessen</li>
+    </ul>
+
+    <h3 class="subtitle">1.5 Versicherungen (die wichtigsten Schutzmechanismen)</h3>
+    <p>Eine Versicherung funktioniert nach dem Solidaritätsprinzip: Viele zahlen Prämien ein, aber nur wenige brauchen im Ernstfall Leistungen. Das heisst: du hilfst anderen, andere helfen dir.</p>
+
+    <h3 class="subtitle">1.6 Wichtige Versicherungsbegriffe</h3>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th></tr>
+      <tr><td>Prämie</td><td>Regelmässiger Betrag, den du zahlst (monatlich / jährlich)</td></tr>
+      <tr><td>Franchise</td><td>Betrag, den du zuerst selbst zahlen musst (nur bei Krankenkasse)</td></tr>
+      <tr><td>Selbstbehalt</td><td>Anteil an den Kosten, den du zusätzlich selbst trägst</td></tr>
+      <tr><td>Unterversicherung</td><td>Versicherungssumme zu tief angesetzt → Schaden nicht vollständig gedeckt</td></tr>
+      <tr><td>Überversicherung</td><td>Versicherungssumme höher als Wert → unnötige Prämien</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.7 Versicherungsarten (Ein Überblick)</h3>
+    <table>
+      <tr><th>Typ</th><th>Beispiele</th><th>Was wird geschützt?</th></tr>
+      <tr><td>Personenversicherung</td><td>AHV, IV, ALV, BVG, Krankenkasse</td><td>Menschen (Einkommen, Gesundheit)</td></tr>
+      <tr><td>Sachversicherung</td><td>Hausratversicherung, Motorfahrzeug-Kaskoversicherung</td><td>Sachen (Gegenstände, Fahrzeuge, Gebäude)</td></tr>
+      <tr><td>Vermögensversicherung</td><td>Privathaftpflichtversicherung, Rechtsschutzversicherung</td><td>Finanzielles Risiko (z. B. Schadenersatzansprüche)</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.8 Beispiel: Alltag an der KVBL</h3>
+    <ul>
+      <li>Du verschüttest versehentlich Cola über den Laptop eines Mitschülers → Privathaftpflicht deckt den Schaden</li>
+      <li>Du stürzt auf dem Pausenplatz → deine Unfallversicherung zahlt den Spitalaufenthalt</li>
+      <li>Dein Fahrrad wird geklaut → Hausratversicherung (sofern Fahrrad eingeschlossen)</li>
+    </ul>
+
+    <h2 class="section-title">2. Vorsorge</h2>
+
+    <h3 class="subtitle">2.1 Das 3-Säulen-System der Vorsorge in der Schweiz</h3>
+    <p>Die Schweiz hat ein sehr bekanntes und wichtiges System für die Altersvorsorge – das sogenannte 3-Säulen-Prinzip.</p>
+    <p>Die drei Säulen einfach erklärt:</p>
+    <table>
+      <tr><th>Säule</th><th>Zweck</th><th>Beispiele</th><th>Finanzierung</th></tr>
+      <tr><td>1. Säule</td><td>Existenzsicherung</td><td>AHV, IV, Ergänzungsleistungen</td><td>Umlageverfahren: Jüngere finanzieren Ältere</td></tr>
+      <tr><td>2. Säule</td><td>Sicherung des Lebensstandards</td><td>Pensionskasse (BVG)</td><td>Kapitaldeckungsverfahren: Eigene Beiträge werden angespart</td></tr>
+      <tr><td>3. Säule</td><td>Zusätzliche Vorsorge</td><td>Säule 3a (gebunden) / 3b (frei)</td><td>Freiwillige Sparbeiträge</td></tr>
+    </table>
+
+    <h3 class="subtitle">2.2 Was bedeutet das für dich?</h3>
+    <ul>
+      <li>1. Säule = Pflicht ab dem 1. Januar nach dem 17. Geburtstag bei Erwerbstätigkeit</li>
+      <li>2. Säule = Pflicht ab einem gewissen Mindestlohn (~CHF 22 050 pro Jahr)</li>
+      <li>3. Säule = freiwillig → aber sinnvoll für mehr Freiheit später</li>
+    </ul>
+
+    <h3 class="subtitle">2.3 Beispiel: Ein typisches Szenario</h3>
+    <ul>
+      <li>Du arbeitest nach der Lehre in Basel bei einer Versicherung</li>
+      <li>Du zahlst in die AHV ein (1. Säule)</li>
+      <li>Dein Arbeitgeber zahlt zusätzlich Beiträge in die Pensionskasse (2. Säule)</li>
+      <li>Du entscheidest dich, monatlich CHF 100 in eine Säule 3a einzuzahlen</li>
+    </ul>
+
+    <h3 class="subtitle">2.4 Vorsicht bei Vorsorge – ein Tipp für dich</h3>
+    <ul>
+      <li>Zinseszinseffekt bei der 3. Säule: Mehr Zeit = mehr Vermögen</li>
+      <li>Günstige Prämien in jungen Jahren bei Lebensversicherungen</li>
+      <li>Finanzielle Freiheit im Alter oder für grössere Wünsche (z. B. Eigenheim)</li>
+    </ul>
+
+    <h2 class="section-title">3. Fazit – Risiken und Vorsorge gehen uns alle an</h2>
+    <table>
+      <tr><th>Bereich</th><th>ZUSAMMENGEFASST</th></tr>
+      <tr><td>Risiko</td><td>Immer da – klug damit umgehen ist entscheidend</td></tr>
+      <tr><td>Versicherungen</td><td>Schützen Menschen, Sachen und Vermögen</td></tr>
+      <tr><td>Vorsorge</td><td>Sichert Leben nach der Pensionierung</td></tr>
+      <tr><td>3-Säulen-System</td><td>Ein weltweit bewundertes Konzept</td></tr>
+    </table>
+    <p>Wer früh Verantwortung übernimmt, lebt entspannter – heute und in Zukunft.</p>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Thema Risiko, Versicherungen und Vorsorge.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Risiko, Versicherungen und Vorsorge bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
