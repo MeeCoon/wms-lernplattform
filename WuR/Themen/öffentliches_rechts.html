@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Öffentliches Recht – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #4caf50; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 10px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #4caf50; }
+    .reiter.active {
+      color: #4caf50; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #4caf50;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #4caf50;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">← Zurück zur Startseite</a>
+    <h1>2. Öffentliches Recht</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary><a href="mathe.html">📐 Mathematik</a></summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen & Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary><a href="frw.html">📊 Finanz- und Rechnungswesen</a></summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary><a href="wur.html">⚖️ Wirtschaft und Recht</a></summary>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="WuR/Themen/öfentliches_recht.html">Öffentliches Recht</a>
+          <!-- Weitere WuR-Themen folgen hier -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">2. Öffentliches Recht</h2>
+    <h3 class="subtitle">2.1 Lernziele</h3>
+    <ul>
+      <li>den Unterschied zwischen öffentlichem Recht und Privatrecht</li>
+      <li>welche wichtigen Rechtsgebiete es im öffentlichen Recht gibt</li>
+      <li>was ein Rechtsstaat ist und warum Grundrechte so wichtig sind</li>
+      <li>wie Gewaltentrennung funktioniert</li>
+      <li>den Unterschied zwischen direkter und indirekter Demokratie</li>
+      <li>welche Rechte und Pflichten du als Bürger:in hast</li>
+    </ul>
+    <h3 class="subtitle">2.2 Einstieg: Wer regelt was?</h3>
+    <p>Wenn du z. B. einen Vertrag mit jemandem abschliesst, geht es um das Privatrecht.<br>
+    Wenn du aber deine Steuern nicht zahlst und der Staat eingreift, betrifft dich das öffentliche Recht.</p>
+    <h3 class="subtitle">2.3 Beispiel: Der Rennradkauf</h3>
+    <p>Max kauft Felix ein Rennrad ab.<br>
+    Felix wartet 5 Wochen auf das Geld → keine Zahlung.<br>
+    Felix will Max betreiben (Staat hilft bei der Eintreibung).</p>
+    <p>👉 Vertrag zwischen Max und Felix = Privatrecht<br>
+    👉 Betreibung durch das Betreibungsamt = öffentliches Recht</p>
+    <h3 class="subtitle">2.4 Öffentliches Recht vs. Privatrecht – Unterschiede</h3>
+    <table>
+      <tr>
+        <th>Kriterium</th><th>Öffentliches Recht</th><th>Privatrecht</th>
+      </tr>
+      <tr>
+        <td>Beziehung</td><td>Staat ↔ Privatperson</td><td>Privatperson ↔ Privatperson</td>
+      </tr>
+      <tr>
+        <td>Verhältnis</td><td>Über-/Unterordnung</td><td>Gleichstellung</td>
+      </tr>
+      <tr>
+        <td>Beispiele</td><td>Steuerrecht, Strafrecht, Verwaltungsrecht</td><td>Mietvertrag, Kaufvertrag, Scheidung</td>
+      </tr>
+      <tr>
+        <td>Eingriffsmöglichkeit</td><td>Staat greift direkt ein</td><td>Staat mischt sich nicht direkt ein</td>
+      </tr>
+    </table>
+    <h3 class="subtitle">2.5 Wichtigste Gebiete im öffentlichen Recht</h3>
+    <table>
+      <tr>
+        <th>Rechtsgebiet</th><th>Was regelt es?</th><th>Beispiel</th>
+      </tr>
+      <tr>
+        <td>Staatsrecht</td><td>Aufbau und Aufgaben von Bund, Kanton, Gemeinde</td><td>Bundesverfassung (BV)</td>
+      </tr>
+      <tr>
+        <td>Verwaltungsrecht</td><td>Tätigkeiten der Behörden</td><td>Baubewilligung, Steuereinzug</td>
+      </tr>
+      <tr>
+        <td>Strafrecht</td><td>Was verboten ist und welche Strafen es gibt</td><td>Diebstahl, Betrug, Körperverletzung</td>
+      </tr>
+      <tr>
+        <td>Verfahrensrecht</td><td>Wie Prozesse ablaufen</td><td>Strafprozess, Zivilprozess</td>
+      </tr>
+      <tr>
+        <td>Schuldbetriebs- und Konkursrecht</td><td>Wie Geldforderungen durchgesetzt werden</td><td>Betreibungsbegehren, Konkursverfahren</td>
+      </tr>
+    </table>
+    <h3 class="subtitle">2.6 Der Rechtsstaat – die Grundlage unserer Demokratie</h3>
+    <ul>
+      <li>Der Staat hält sich selbst an die Gesetze</li>
+      <li>Jeder Mensch hat Grundrechte, die geschützt sind</li>
+      <li>Willkür wird verhindert (Staat darf nicht machen, was er will)</li>
+    </ul>
+    <h3 class="subtitle">2.7 Beispiel: Baugesetze</h3>
+    <p>Du willst in Basel ein Haus bauen.<br>
+    Auch wenn du viel Geld hast:<br>
+    → Ohne gültige Baubewilligung darfst du nicht einfach losbauen.<br>
+    → Die Verwaltung muss sich an gleiche Regeln für alle halten.</p>
+    <h3 class="subtitle">2.8 Die wichtigsten Prinzipien des Rechtsstaats</h3>
+    <table>
+      <tr><th>Prinzip</th><th>Bedeutung</th></tr>
+      <tr><td>Legalitätsprinzip</td><td>Behörden dürfen nur das tun, wozu sie gesetzlich ermächtigt sind</td></tr>
+      <tr><td>Gewaltentrennung</td><td>Macht ist auf verschiedene Organe verteilt (Legislative, Exekutive, Judikative)</td></tr>
+      <tr><td>Grundrechte</td><td>Rechte wie Meinungsfreiheit, Eigentumsschutz sind garantiert</td></tr>
+    </table>
+    <h3 class="subtitle">2.9 Grundrechte – deine unveräußerlichen Rechte</h3>
+    <ul>
+      <li>Schutz der Menschenwürde</li>
+      <li>Recht auf Leben und persönliche Freiheit</li>
+      <li>Meinungsfreiheit</li>
+      <li>Eigentumsgarantie</li>
+      <li>Rechtsgleichheit</li>
+    </ul>
+    <p>→ Diese stehen in der Bundesverfassung (BV), z. B. Art. 8–36 BV.</p>
+    <h3 class="subtitle">2.10 Beispiel: Eigentumsgarantie</h3>
+    <p>Wenn der Kanton Baselland deine Garage abreißen will, muss er dich entschädigen.<br>
+    Niemand darf einfach dein Eigentum wegnehmen.</p>
+    <h3 class="subtitle">2.11 Einschränkung von Grundrechten</h3>
+    <ul>
+      <li>öffentliche Sicherheit</li>
+      <li>Schutz von Gesundheit</li>
+      <li>Seuchen (z. B. COVID-19-Regeln)</li>
+    </ul>
+    <p>→ Einschränkungen müssen gesetzlich erlaubt, verhältnismäßig und gerechtfertigt sein.</p>
+    <h3 class="subtitle">2.12 Gewaltentrennung – warum die Macht aufgeteilt ist</h3>
+    <table>
+      <tr><th>Gewalt</th><th>Aufgabe</th><th>Beispiele</th></tr>
+      <tr><td>Legislative</td><td>Gesetze machen</td><td>Parlament (Nationalrat, Ständerat)</td></tr>
+      <tr><td>Exekutive</td><td>Gesetze ausführen</td><td>Regierung (Bundesrat)</td></tr>
+      <tr><td>Judikative</td><td>Recht sprechen</td><td>Gerichte (Bundesgericht, Kantonsgerichte)</td></tr>
+    </table>
+    <h3 class="subtitle">2.13 Beispiel: Gesetz zur CO₂-Reduktion</h3>
+    <p>Parlament beschließt das neue Gesetz (Legislative)<br>
+    Bundesrat sorgt für die Umsetzung (Exekutive)<br>
+    Gerichte prüfen, ob alles korrekt abläuft (Judikative)</p>
+    <h3 class="subtitle">2.14 Direkte und indirekte Demokratie</h3>
+    <table>
+      <tr><th>Typ</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Direkte Demokratie</td><td>Volk stimmt direkt über wichtige Fragen ab</td><td>Referenden, Initiativen</td></tr>
+      <tr><td>Indirekte Demokratie</td><td>Volk wählt Parlament, das Gesetze beschließt</td><td>Wahlen</td></tr>
+    </table>
+    <h3 class="subtitle">2.15 Beispiel: Abstimmung in Basel</h3>
+    <p>Direkte Demokratie: Stimmrecht über neues Stadtcasino Basel<br>
+    Indirekte Demokratie: Wahl des Regierungsrates</p>
+    <h3 class="subtitle">2.16 Rechte und Pflichten der Bürger:innen</h3>
+    <table>
+      <tr><th>Bereich</th><th>Beispiele</th></tr>
+      <tr><td>Rechte</td><td>Abstimmen, wählen, Petitionen einreichen, Rechtsgleichheit</td></tr>
+      <tr><td>Pflichten</td><td>Steuern zahlen, Militär- oder Ersatzdienst, Schulpflicht</td></tr>
+    </table>
+    <h3 class="subtitle">2.17 Beispiel: Wählen und Abstimmen</h3>
+    <p>Mit 18 Jahren darfst du in Basel bei allen eidgenössischen, kantonalen und kommunalen Wahlen mitbestimmen.<br>
+    Du bist aber auch verpflichtet, deine Steuererklärung pünktlich einzureichen.</p>
+    <h3 class="subtitle">2.18 Fazit Kapitel 2 – Öffentliches Recht verständlich erklärt</h3>
+    <table>
+      <tr><th>Bereich</th><th>Zusammenfassung</th></tr>
+      <tr><td>Öffentliches Recht</td><td>regelt Verhältnis Staat ↔ Privatperson</td></tr>
+      <tr><td>Privatrecht</td><td>regelt Beziehungen zwischen Privatpersonen</td></tr>
+      <tr><td>Rechtsstaat</td><td>garantiert Grundrechte, verhindert Willkür</td></tr>
+      <tr><td>Gewaltentrennung</td><td>verteilt Macht auf drei Organe</td></tr>
+      <tr><td>Demokratie</td><td>direkte Mitsprache + gewählte Vertreter:innen</td></tr>
+      <tr><td>Rechte & Pflichten</td><td>Basis für das Zusammenleben in der Schweiz</td></tr>
+    </table>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen die Übungsaufgaben zum öffentlichen Recht.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum öffentlichen Recht bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
