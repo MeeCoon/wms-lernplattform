@@ -138,19 +138,9 @@
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li><details>
-        <summary><a href="mathe.html">📐 Mathematik</a></summary>
-        <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-        <a href="rechnungen_in_q.html">Rechnungen in Q</a>
-        <a href="#">Lineare Gleichungen & Systeme</a>
-        <a href="#">Quadratische Gleichungen</a>
-      </details></li>
-    </ul>
-  </div>
+  <!-- Sidebar-Platzhalter -->
+  <div class="sidebar" id="sidebar"></div>
+
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -265,28 +255,47 @@
     <p>Hier folgt die Übungsprüfung zu Rechnungen in Z.</p>
   </div>
 
-  <script>
-    function showTab(e, id) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const ind = document.querySelector('.indicator');
-      const br = e.target.getBoundingClientRect(), cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const b = document.querySelector('.reiter.active');
-      const ind = document.querySelector('.indicator');
-      const br = b.getBoundingClientRect(), cr = b.parentElement.getBoundingClientRect();
-      ind.style.left = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    });
-  </script>
+<script>
+  // Sobald die Seite geladen ist, holen wir uns nav.html
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('nav.html')
+      .then(resp => resp.text())
+      .then(html => {
+        document.getElementById('sidebar').innerHTML = html;
+      });
+  });
+
+<script>
+  // Sobald die Seite geladen ist, holen wir uns nav.html
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('nav.html')
+      .then(resp => resp.text())
+      .then(html => {
+        document.getElementById('sidebar').innerHTML = html;
+      });
+  });
+
+  // Deine bestehenden Funktionen bleiben unverändert:
+  function toggleMenu() {
+    document.getElementById('sidebar').classList.toggle('show');
+  }
+  function showTab(e, id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    const ind = document.querySelector('.indicator'),
+          br  = e.target.getBoundingClientRect(),
+          cr  = e.target.parentElement.getBoundingClientRect();
+    ind.style.left  = (br.left - cr.left) + 'px';
+    ind.style.width = br.width + 'px';
+  }
+  window.addEventListener('load', () => {
+    document.querySelector('.reiter.active').click();
+  });
+</script>
+
+
 
 </body>
 </html>
