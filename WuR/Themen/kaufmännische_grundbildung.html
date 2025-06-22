@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kaufmännische Grundbildung – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #ff7043; /* orange für Wirtschafts-Themen */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s; z-index: 1;
+    }
+    .reiter:hover { color: #ff7043; }
+    .reiter.active {
+      color: #ff7043; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #ff7043;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+    .tab-content {
+      display: none; max-width: 900px;
+      margin: 0 auto; padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #ff7043;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Kaufmännische Grundbildung</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="WuR/Themen/öffentlichtes_recht.html">Öffentliches Recht</a>
+          <!-- … weitere WuR-Themen … -->
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>💼 Wirtschafts-Themen</summary>
+          <a href="Wi/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
+          <!-- … weitere Wirtschafts-Themen … -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Kaufmännische Grundbildung</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>was Kaufleute machen und warum die Ausbildung so beliebt ist</li>
+      <li>wie Unternehmen nach Grösse, Branche und Sektor eingeteilt werden</li>
+      <li>was ein Traumarbeitgeber ist und was dir persönlich wichtig ist</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist „kaufmännisch“?</h3>
+    <p>„Kaufmännisch“ heisst: organisieren, rechnen, kommunizieren, planen.<br>
+    Als Kauffrau oder Kaufmann arbeitest du z. B. in der Administration, beim Kundenservice, im Rechnungswesen oder im Verkauf.<br>
+    Du bekommst Einblick in viele Bereiche eines Betriebs – egal ob Schule, Hotel, Modefirma oder Gaming-Start-up.</p>
+
+    <h3 class="subtitle">1.3 Was du in der Lehre lernst</h3>
+    <table>
+      <tr><th>Bereich</th><th>Was du machst</th></tr>
+      <tr><td>Organisation</td><td>Termine, Projekte, Dokumente verwalten</td></tr>
+      <tr><td>Rechnungswesen</td><td>Zahlungen, Budgets, Buchhaltung</td></tr>
+      <tr><td>Kundenkontakt</td><td>Anfragen beantworten, Bestellungen bearbeiten</td></tr>
+      <tr><td>Kommunikation</td><td>Mails schreiben, Protokolle führen, Gespräche vorbereiten</td></tr>
+      <tr><td>Digitales Arbeiten</td><td>Excel, Word, Datenbanken, ERP-Systeme nutzen</td></tr>
+    </table>
+    <p>Du wirst zum Allrounder, den jedes Unternehmen brauchen kann.</p>
+
+    <h3 class="subtitle">1.4 Beispiel: Eine KV-Lernende im Sportverein</h3>
+    <p>Selin macht ihre KV-Lehre beim regionalen Fussballverband:</p>
+    <ul>
+      <li>Sie organisiert Spielpläne</li>
+      <li>Verrechnet Startgebühren</li>
+      <li>Schreibt den Newsletter</li>
+      <li>Hilft bei Sponsorengesprächen</li>
+    </ul>
+    <p>→ Sie ist das organisatorische Rückgrat – ohne sie läuft nichts.</p>
+
+    <h3 class="subtitle">1.5 Wo du arbeiten kannst</h3>
+    <p>Kaufleute braucht’s fast überall:</p>
+    <ul>
+      <li>in Schulen, Spitälern, Versicherungen</li>
+      <li>in Reisebüros, Fashion-Brands, Eventagenturen</li>
+      <li>in Tech-Start-ups oder Architekturbüros</li>
+    </ul>
+    <p>Je nach Interesse kannst du deine KV-Lehre in einer Branche machen, die zu dir passt.</p>
+
+    <h3 class="subtitle">1.6 Unternehmensgrössen</h3>
+    <table>
+      <tr><th>Typ</th><th>Mitarbeitende</th><th>Abkürzung</th></tr>
+      <tr><td>Mikrounternehmen</td><td>1–9</td><td>–</td></tr>
+      <tr><td>Kleinunternehmen</td><td>10–49</td><td>KMU</td></tr>
+      <tr><td>Mittelunternehmen</td><td>50–249</td><td>KMU</td></tr>
+      <tr><td>Grossunternehmen</td><td>250+</td><td>GU</td></tr>
+    </table>
+    <p>In der Schweiz sind 99 % aller Unternehmen KMU.</p>
+
+    <h3 class="subtitle">1.7 Branchen – was eine Firma macht</h3>
+    <table>
+      <tr><th>Branche</th><th>Beispiele</th></tr>
+      <tr><td>Gesundheit</td><td>Spital, Versicherung, Apotheke</td></tr>
+      <tr><td>Tourismus</td><td>Reisebüro, Hotel, Eventfirma</td></tr>
+      <tr><td>Mode</td><td>Fashionlabels, Retail, Onlineshops</td></tr>
+      <tr><td>Bau</td><td>Architektur, Handwerk</td></tr>
+      <tr><td>Technologie</td><td>IT-Support, Softwareentwicklung</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.8 Die drei Wirtschaftssektoren</h3>
+    <table>
+      <tr><th>Sektor</th><th>Tätigkeiten</th><th>Beispielberufe</th></tr>
+      <tr><td>Primär</td><td>Rohstoffe gewinnen</td><td>Landwirtin, Förster, Fischer</td></tr>
+      <tr><td>Sekundär</td><td>Rohstoffe verarbeiten</td><td>Schreiner, Automechaniker</td></tr>
+      <tr><td>Tertiär</td><td>Dienstleistungen</td><td>KV, Verkäuferin, Reiseleiter</td></tr>
+    </table>
+    <p>In der Schweiz arbeiten über 75 % im Tertiärsektor, also im Dienstleistungsbereich.</p>
+
+    <h3 class="subtitle">1.9 Was ist ein „Traumarbeitgeber“?</h3>
+    <p>Ein Traumarbeitgeber ist ein Betrieb, bei dem du dich wohlfühlst und entwickeln kannst.<br>
+    Typische Kriterien:</p>
+    <ul>
+      <li>cooles Team</li>
+      <li>moderne Unternehmenskultur</li>
+      <li>nachhaltige Werte</li>
+      <li>Aufstiegsmöglichkeiten</li>
+      <li>flexible Arbeitszeit oder Homeoffice</li>
+    </ul>
+    <p>Ein Traumarbeitgeber sieht für jede Person anders aus – wichtig ist, dass du selbst weisst, was dir im Beruf wirklich wichtig ist.</p>
+
+    <h2 class="section-title">2. Fazit Kaufmännische Grundbildung</h2>
+    <table>
+      <tr><th>Thema</th><th>Was du mitnehmen solltest</th></tr>
+      <tr><td>KV EFZ + BM</td><td>ist eine vielseitige, gefragte Ausbildung</td></tr>
+      <tr><td>Berufsfeld</td><td>Organisation, Kommunikation, Zahlen & Kunden</td></tr>
+      <tr><td>Branchen & Sektoren</td><td>zeigen, wo du überall arbeiten kannst</td></tr>
+      <tr><td>KMU & Grossfirmen</td><td>bieten dir verschiedene Arbeitswelten</td></tr>
+      <tr><td>Traumarbeitgeber</td><td>hilft dir zu erkennen, was dir im Job wichtig ist</td></tr>
+    </table>
+    <p>:contentReference[oaicite:2]{index=2}</p>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zur Kaufmännischen Grundbildung.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Kaufmännische Grundbildung bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      document.querySelector('.reiter.active').click();
+    });
+  </script>
+
+</body>
+</html>
