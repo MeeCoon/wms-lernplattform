@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mietvertrag – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Mietvertrag</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/oeffentliches_recht.html">Öffentliches Recht</a>
+          <!-- weitere WuR-Themen hier: z.B. Privatrecht, Schuldrecht, etc. -->
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/mietvertrag.html">Mietvertrag</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Mietvertrag</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>die verschiedenen Vertragsarten (Miete, Pacht, Leihe, Leasing) zu unterscheiden</li>
+      <li>die wichtigsten Pflichten von Mieter:in und Vermieter:in</li>
+      <li>die Regeln rund um die Beendigung eines Mietvertrags</li>
+      <li>wie du bei Problemen im Mietrecht richtig reagierst</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Einstieg: Warum Regeln fürs Mieten wichtig sind</h3>
+    <p>Ob du eine Wohnung in Reinach mietest oder ein Auto für die Ferien – überall gelten Regeln.<br>
+    Der Mietvertrag schützt beide Seiten:<br>
+    👉 der/die Vermieter:in bekommt sein/ihr Geld<br>
+    👉 der/die Mieter:in kann die Sache sorgenfrei benutzen</p>
+
+    <h3 class="subtitle">1.3 Vertragsarten und ihre Wesensmerkmale</h3>
+    <table>
+      <tr><th>Vertragsart</th><th>Definition</th><th>Beispiel</th></tr>
+      <tr><td>Miete</td><td>Überlassung einer Sache gegen Bezahlung</td><td>Wohnung, Auto</td></tr>
+      <tr><td>Pacht</td><td>Überlassung von Sache + Nutzungsertrag gegen Bezahlung</td><td>Restaurant-Pacht</td></tr>
+      <tr><td>Leihe</td><td>Unentgeltliche Überlassung</td><td>Freund leiht dir Bohrmaschine</td></tr>
+      <tr><td>Leasing</td><td>Überlassung gegen Leasingrate; Risiken trägt Leasingnehmer</td><td>Auto-Leasing bei Amag</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.4 Beispiele</h3>
+    <p>
+      Miete: 4-Zimmer-Wohnung in Reinach BL für CHF 1750.– im Monat<br>
+      Pacht: Pacht eines Kiosks am Bahnhof SBB inklusive Verkaufseinnahmen<br>
+      Leihe: Ein Kollege leiht dir gratis seine Gitarre für ein Konzert<br>
+      Leasing: VW Golf leasen – CHF 450.– monatlich, Versicherung selbst zahlen
+    </p>
+
+    <h3 class="subtitle">1.5 Wichtig: Form des Mietvertrags</h3>
+    <p>Keine gesetzliche Formvorschrift → mündliche Vereinbarung ist gültig!<br>
+    Aber empfohlen: Schriftlicher Mietvertrag, besonders bei Wohnungen und Autos (Beweisgründe).</p>
+
+    <h3 class="subtitle">1.6 Pflichten beim Mietvertrag</h3>
+    <h4>Pflichten des Vermieters</h4>
+    <table>
+      <tr><th>Pflicht</th><th>Erklärung</th></tr>
+      <tr><td>Übergabe</td><td>Vermieter muss Mietsache im gebrauchstauglichen Zustand übergeben</td></tr>
+      <tr><td>Unterhalt</td><td>Vermieter muss grössere Reparaturen selbst übernehmen</td></tr>
+      <tr><td>Auskunftspflicht</td><td>Mieter:innen dürfen Miethöhe der Vormieter:in verlangen</td></tr>
+      <tr><td>Tragen von Abgaben</td><td>Steuern und Gebühren für Mietsache zahlt Vermieter</td></tr>
+    </table>
+    <p><strong>Beispiel: Wohnung in Münchenstein</strong><br>
+    Frau A. mietet eine Wohnung. Wasserleitung defekt → Vermieter zahlt Reparatur. Frau A. meldet Mangel sofort.</p>
+
+    <h4>Pflichten des Mieters</h4>
+    <table>
+      <tr><th>Pflicht</th><th>Erklärung</th></tr>
+      <tr><td>Mietzins zahlen</td><td>Zahlung von Mietzins + Nebenkosten (z. B. Heizung)</td></tr>
+      <tr><td>Sorgfaltspflicht</td><td>Schonender Umgang mit Wohnung, Haustieren usw.</td></tr>
+      <tr><td>Rücksichtnahme</td><td>Keine laute Partys ohne Rücksicht auf Nachbarn</td></tr>
+      <tr><td>Rückgabe</td><td>Wohnung in normal genutztem Zustand zurückgeben</td></tr>
+      <tr><td>Mietkaution</td><td>Allenfalls Kaution hinterlegen (z. B. 2–3 Monatsmieten)</td></tr>
+    </table>
+    <p><strong>Beispiel: Mietkaution</strong><br>
+    Herr Bauer hinterlegt CHF 3600.– Kaution für Wohnung im Gundeli-Quartier. Bei ordnungsgemässer Rückgabe erhält er sie zurück.</p>
+
+    <h3 class="subtitle">1.7 Laufender vs. ausserordentlicher Unterhalt</h3>
+    <table>
+      <tr><th>Typ</th><th>Bedeutung</th><th>Wer zahlt?</th></tr>
+      <tr><td>Laufender Unterhalt</td><td>Kleine Reparaturen (z. B. Glühbirnen)</td><td>Mieter</td></tr>
+      <tr><td>Ausserordentlicher Unterhalt</td><td>Grössere Reparaturen (z. B. Heizung kaputt)</td><td>Vermieter</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.8 Beendigung des Mietvertrags</h3>
+    <h4>Arten der Beendigung</h4>
+    <table>
+      <tr><th>Art</th><th>Erklärung</th></tr>
+      <tr><td>Befristeter Vertrag</td><td>Endet automatisch zum vereinbarten Datum</td></tr>
+      <tr><td>Unbefristeter Vertrag</td><td>Muss aktiv gekündigt werden</td></tr>
+    </table>
+
+    <h4>Form der Kündigung</h4>
+    <p>Wohnungen und Geschäftsräume:<br>
+    → Kündigung schriftlich, bei Vermieterkündigung zusätzlich amtliches Formular erforderlich.<br>
+    Anfechtung möglich, wenn Kündigung gegen Treu und Glauben verstösst (Art. 271 OR).</p>
+    <p><strong>Beispiel: Kündigung von Sabine</strong><br>
+    Sabine erhält Kündigung per E-Mail → ungültig! Schriftlich + amtliches Formular nötig.</p>
+
+    <h4>Kündigung Familienwohnungen</h4>
+    <p>Familienwohnungen können nur gemeinsam gekündigt werden – zwei Kündigungsschreiben an beide Ehepartner!</p>
+
+    <h4>Typische Fälle bei Mietbeendigung</h4>
+    <table>
+      <tr><th>Problem</th><th>Lösung</th></tr>
+      <tr><td>Mieter möchte früher raus</td><td>Ersatzmieter stellen</td></tr>
+      <tr><td>Missbräuchliche Kündigung</td><td>Anfechtung innert 30 Tagen möglich</td></tr>
+      <tr><td>Eigenbedarfskündigung</td><td>Nur gültig bei echtem Bedarf</td></tr>
+    </table>
+    <p><strong>Beispiel: Eigenbedarfskündigung</strong><br>
+    Vermieter nutzt Wohnung für Tochter – gültig, wenn korrekt schriftlich gekündigt.</p>
+
+    <h3 class="subtitle">1.9 Rechte des Mieters bei Problemen</h3>
+    <ul>
+      <li>Anfechtung der Kündigung (Art. 271 OR)</li>
+      <li>Mietzinserstreckung verlangen (Art. 272 OR)</li>
+      <li>Mietzinserhöhung anfechten (Art. 270b OR)</li>
+      <li>Anfechtung missbräuchlicher Anfangsmietzinse möglich</li>
+    </ul>
+
+    <h3 class="subtitle">1.10 Fazit: Mietvertrag einfach erklärt</h3>
+    <table>
+      <tr><th>Bereich</th><th>Zusammengefasst</th></tr>
+      <tr><td>Vertragsarten</td><td>Miete, Pacht, Leihe, Leasing unterscheiden</td></tr>
+      <tr><td>Pflichten</td><td>Vermieter: Übergabe &amp; Unterhalt; Mieter: zahlen &amp; Sorge tragen</td></tr>
+      <tr><td>Vertragsbeendigung</td><td>Formvorschriften, Fristen, Schutz der Mieter:innen</td></tr>
+      <tr><td>Rechte bei Streitigkeiten</td><td>Kündigung anfechten, Mietzins überprüfen lassen</td></tr>
+    </table>
+    <p>➡️ Egal ob du eine WG suchst oder ein Auto mietest – der Mietvertrag gibt dir Rechte, aber auch Pflichten!</p>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Thema Mietvertrag.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Mietvertrag bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
