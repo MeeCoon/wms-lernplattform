@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marketing-Mix – die 4P – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #8e44ad; /* violett für FRW/Wirtschaftsthemen */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #8e44ad; }
+    .reiter.active {
+      color: #8e44ad; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px;
+      height: 3px; background-color: #8e44ad;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #8e44ad;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Marketing-Mix – die 4P</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li><details>
+        <summary>📊 Wirtschaft & Recht</summary>
+        <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+        <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+        <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+        <a href="FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+        <a href="FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+        <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+        <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
+        <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        <a href="FRW/Themen/marketing_mix.html">Marketing-Mix – die 4P</a>
+      </details></li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+
+    <h2 class="section-title">1. Marketing-Mix – die 4P</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>welche vier Bereiche zum klassischen Marketing-Mix gehören (Product, Price, Place, Promotion)</li>
+      <li>wie Unternehmen diese vier Bereiche optimal aufeinander abstimmen</li>
+      <li>wie du echte Beispiele aus dem Alltag erkennen kannst</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist der Marketing-Mix?</h3>
+    <p>Das beste Produkt bringt nichts, wenn es falsch beworben, zu teuer oder am falschen Ort verkauft wird.<br>
+    Der Marketing-Mix bedeutet:<br>
+    → Unternehmen müssen vier Bereiche gleichzeitig durchdenken und aufeinander abstimmen.<br>
+    Man spricht von den 4P:</p>
+    <table>
+      <tr><th>Kürzel</th><th>Übersetzung</th><th>Bedeutung</th></tr>
+      <tr><td>Product</td><td>Produkt</td><td>Produktgestaltung</td></tr>
+      <tr><td>Price</td><td>Preis</td><td>Preisstrategie</td></tr>
+      <tr><td>Place</td><td>Platz</td><td>Vertrieb / Distribution</td></tr>
+      <tr><td>Promotion</td><td>Promotion</td><td>Werbung / Kommunikation</td></tr>
+    </table>
+    <p>→ Erst das perfekte Zusammenspiel führt zum Erfolg.</p>
+
+    <h3 class="subtitle">1.3 Product (das richtige Produkt entwickeln)</h3>
+    <p>Ein Unternehmen muss genau überlegen:</p>
+    <ul>
+      <li>Was bieten wir an? (Produkt oder Dienstleistung)</li>
+      <li>Wie soll es aussehen, riechen, schmecken, klingen?</li>
+      <li>Was unterscheidet uns von der Konkurrenz?</li>
+    </ul>
+    <p><strong>Wichtige Elemente beim Produkt:</strong></p>
+    <table>
+      <tr><th>Element</th><th>Beispiel</th></tr>
+      <tr><td>Qualität</td><td>langlebige Jeans aus Bio-Baumwolle</td></tr>
+      <tr><td>Design</td><td>stylische Verpackung bei Sneakers</td></tr>
+      <tr><td>Marke</td><td>Swisscom, Red Bull, Nike</td></tr>
+      <tr><td>Zusatzleistungen</td><td>24h-Kundendienst, Gratisreparatur</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.4 Price (der passende Preis)</h3>
+    <p>Der Preis ist extrem wichtig – er entscheidet oft über Kauf oder Nichtkauf.<br>
+    Preisfindung hängt ab von:</p>
+    <ul>
+      <li>Produktionskosten</li>
+      <li>Zahlungsbereitschaft der Kund:innen</li>
+      <li>Konkurrenzpreisen</li>
+      <li>Image der Marke</li>
+    </ul>
+    <p><strong>Typische Preisstrategien:</strong></p>
+    <table>
+      <tr><th>Strategie</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Hochpreisstrategie</td><td>Premiumprodukt, hohe Qualität</td><td>Apple, Tesla</td></tr>
+      <tr><td>Tiefpreisstrategie</td><td>günstige Preise für Massenmarkt</td><td>Denner, Aldi</td></tr>
+      <tr><td>Psychologische Preise</td><td>Preise knapp unter einer runden Zahl</td><td>CHF 9.95 statt CHF 10.00</td></tr>
+      <tr><td>Preisdifferenzierung</td><td>verschiedene Preise für verschiedene Gruppen</td><td>Rabatt für Lernende</td></tr>
+    </table>
+    <p><strong>Beispiel: Kino Pathé Basel</strong><br>
+    Normalpreis: CHF 18.–<br>
+    Studentenspecial: CHF 14.–<br>
+    Dienstag-Rabatt: CHF 10.– für alle</p>
+
+    <h3 class="subtitle">1.5 Place (der richtige Vertriebsweg)</h3>
+    <p>Wie und wo kommt das Produkt zur Kundschaft?</p>
+    <table>
+      <tr><th>Vertriebsform</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr><td>Direkt</td><td>Verkauf ohne Zwischenhändler</td><td>eigene Shops, Webshop</td></tr>
+      <tr><td>Indirekt</td><td>Verkauf über Händler</td><td>Migros, Galaxus, Zalando</td></tr>
+    </table>
+    <p><strong>Wichtige Entscheidungen beim Place:</strong></p>
+    <ul>
+      <li>Standort (zentral, leicht erreichbar)</li>
+      <li>Online-Verfügbarkeit (Webshop, App)</li>
+      <li>Lieferzeiten und Servicequalität</li>
+    </ul>
+
+    <h3 class="subtitle">1.6 Promotion (die perfekte Werbung)</h3>
+    <p>Instrumente der Promotion:</p>
+    <table>
+      <tr><th>Bereich</th><th>Beispiele</th></tr>
+      <tr><td>Klassische Werbung</td><td>Plakate, Radio, Printanzeigen</td></tr>
+      <tr><td>Online-Marketing</td><td>Instagram, TikTok, Google Ads</td></tr>
+      <tr><td>Events & Messen</td><td>Fashion Week Basel, Gaming-Expo</td></tr>
+      <tr><td>Sponsoring</td><td>FC Basel-Trikotsponsor, Festivalsupport</td></tr>
+      <tr><td>Verkaufsförderung</td><td>Rabatte, Gutscheine, Sonderaktionen</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.7 Das AIDA-Modell (Wie Werbung wirkt)</h3>
+    <table>
+      <tr><th>Buchstabe</th><th>Bedeutung</th><th>Ziel</th></tr>
+      <tr><td>Attention</td><td>Aufmerksamkeit erzeugen</td><td>Auffällige Farben, Slogans</td></tr>
+      <tr><td>Interest</td><td>Interesse wecken</td><td>Spannende Story, spannende Infos</td></tr>
+      <tr><td>Desire</td><td>Wunsch auslösen</td><td>„Will ich haben!“</td></tr>
+      <tr><td>Action</td><td>Handlung auslösen</td><td>Klick, Kauf, Bestellung</td></tr>
+    </table>
+
+    <h3 class="subtitle">1.8 Beispiel: Launch eines veganen Eistees in Basel</h3>
+    <ul>
+      <li><strong>Attention:</strong> Plakat am Bahnhof SBB mit cooler Grafik</li>
+      <li><strong>Interest:</strong> Infos über Fairtrade‐Zutaten</li>
+      <li><strong>Desire:</strong> Influencer erzählen, wie lecker & fair der Tee ist</li>
+      <li><strong>Action:</strong> QR-Code führt direkt zum Webshop für Rabattaktion</li>
+    </ul>
+
+    <h3 class="subtitle">1.9 Zusammengefasst: Erfolgreiches Marketing braucht Balance</h3>
+    <table>
+      <tr><th>P</th><th>Frage</th><th>Wichtigster Punkt</th></tr>
+      <tr><td>Product</td><td>Was genau verkaufen wir?</td><td>Qualität & Marke</td></tr>
+      <tr><td>Price</td><td>Wie teuer ist es?</td><td>Wertwahrnehmung vs. Konkurrenz</td></tr>
+      <tr><td>Place</td><td>Wo & wie wird verkauft?</td><td>Verfügbarkeit & Image</td></tr>
+      <tr><td>Promotion</td><td>Wie machen wir Werbung?</td><td>Aufmerksamkeit & Emotionen</td></tr>
+    </table>
+    <p>Nur wenn alle vier P perfekt zusammenspielen, wird ein Produkt oder eine Dienstleistung langfristig erfolgreich.</p>
+
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Marketing-Mix.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Marketing-Mix bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const btn = e.target.getBoundingClientRect(),
+            cont = e.target.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.reiter.active'),
+            btn = active.getBoundingClientRect(),
+            cont = active.parentElement.getBoundingClientRect(),
+            ind = document.querySelector('.indicator');
+      ind.style.left  = (btn.left - cont.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
