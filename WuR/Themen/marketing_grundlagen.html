@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Marketing – Grundlagen – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR/Wirtschaft */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6; color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>1. Marketing – Grundlagen</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft &amp; Recht</summary>
+          <!-- Rechtsthemen -->
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/öfentliches_recht.html">Öffentliches Recht</a>
+          <!-- Wirtschaftsthemen -->
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/kaufmännische_grundbildung.html">Kaufmännische Grundbildung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/management_modell.html">Das Management Modell</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/umsetzung_unternehmerischer_ideen.html">Umsetzung unternehmerischer Ideen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/organisationsformen.html">Organisationsformen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/human_resources.html">Human Resources</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/marketing_grundlagen.html">Marketing – Grundlagen</a>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Marketing – Grundlagen</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>was Marketing eigentlich ist und wieso es für Firmen überlebenswichtig ist</li>
+      <li>wie Unternehmen mit Marktanalyse ihre Zielgruppen und Trends erkennen</li>
+      <li>was Markt- und Produktziele sind</li>
+      <li>was Begriffe wie Marktpotenzial, -volumen und -anteil bedeuten</li>
+      <li>wie Produkte sich mit der Zeit entwickeln (Produktlebenszyklus)</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist Marketing?</h3>
+    <p>Viele denken bei „Marketing“ zuerst an Werbung. Aber Marketing ist viel mehr. Es ist das, was vor, während und nach dem Verkauf passiert.</p>
+    <p><strong>Marketing bedeutet:</strong></p>
+    <ul>
+      <li>herausfinden, was Kund:innen brauchen</li>
+      <li>ein passendes Produkt oder eine Dienstleistung entwickeln</li>
+      <li>es richtig platzieren, bewerben und verkaufen</li>
+      <li>sich ständig an neue Trends anpassen</li>
+    </ul>
+    <p>Ein Unternehmen ohne Marketing ist wie ein Laden ohne Schild – niemand weiss, was es gibt, für wen es ist oder warum man es kaufen sollte.</p>
+
+    <h3 class="subtitle">1.3 Marktanalyse (Wie erkennt man, was Kund:innen wollen?)</h3>
+    <p>Bevor ein Unternehmen ein Produkt auf den Markt bringt, muss es wissen:</p>
+    <ul>
+      <li>Wer sind unsere potenziellen Kund:innen?</li>
+      <li>Was sind deren Bedürfnisse und Wünsche?</li>
+      <li>Wie sieht der Markt aus (Konkurrenz, Trends)?</li>
+    </ul>
+    <p><strong>Dazu gibt es zwei Wege:</strong></p>
+    <table>
+      <tr><th>Methode</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Markterkundung</td>
+        <td>eigene Einschätzung, informell</td>
+        <td>Gespräche mit Kunden, Meinungen auf Social Media</td>
+      </tr>
+      <tr>
+        <td>Marktforschung</td>
+        <td>systematisch, mit Daten &amp; Studien</td>
+        <td>professionelle Umfragen, Auswertung von Verkaufszahlen</td>
+      </tr>
+    </table>
+
+    <h3 class="subtitle">1.4 Beispiel: Neuer Bubble-Tea-Stand am Bahnhof Basel</h3>
+    <p>Die Gründer:innen überlegen:</p>
+    <ul>
+      <li>Welche Sorten sind beliebt?</li>
+      <li>Sind Jugendliche oder Berufspendler:innen die Zielgruppe?</li>
+      <li>Wollen die Leute eher günstig oder bio?</li>
+    </ul>
+    <p>→ Sie starten mit einer Insta-Umfrage (Markterkundung) und lassen dann eine Marktforschungsfirma ihre Ideen testen.</p>
+
+    <h3 class="subtitle">1.5 Marktziele (Was will ein Unternehmen erreichen?)</h3>
+    <p>Bevor man ein Produkt entwickelt, definiert man sogenannte Marktziele. Dazu gehören:</p>
+    <ul>
+      <li>Bedürfnisse der Zielgruppe: Was will sie?</li>
+      <li>Zielgruppenbeschreibung: Wer sind sie? (Alter, Wohnort, Interessen…)</li>
+      <li>Marktanteil: Wie viel vom Markt will man gewinnen?</li>
+    </ul>
+
+    <h3 class="subtitle">1.6 Zielgruppen (Wen wollen wir ansprechen?)</h3>
+    <p>Nicht jedes Produkt passt zu allen. Darum teilt man den Markt in Segmente.</p>
+    <table>
+      <tr><th>Segmentierungs-Kriterium</th><th>Beispiel</th></tr>
+      <tr><td>Geografisch</td><td>Basel-Stadt, Baselbiet, Schweiz</td></tr>
+      <tr><td>Demografisch</td><td>16–25-Jährige, Studierende, Familien</td></tr>
+      <tr><td>Verhaltensbezogen</td><td>umweltbewusst, technikaffin</td></tr>
+      <tr><td>Psychografisch</td><td>trendig, nachhaltig denkend, sportlich</td></tr>
+    </table>
+    <p>→ Ein veganes Fast-Food-Konzept in Basel-Stadt hat andere Zielgruppen als ein Metzgerei-Imbiss in der Agglo.</p>
+
+    <h3 class="subtitle">1.7 Marktgrössen (Wie gross ist der Markt wirklich?)</h3>
+    <table>
+      <tr><th>Begriff</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Marktpotenzial</td>
+        <td>die theoretisch maximale Nachfrage</td>
+        <td>100 000 Leute im Raum Basel mögen Bubble Tea</td>
+      </tr>
+      <tr>
+        <td>Marktvolumen</td>
+        <td>der effektive Umsatz im Moment</td>
+        <td>aktuell werden 60 000 Portionen/Jahr verkauft</td>
+      </tr>
+      <tr>
+        <td>Marktanteil</td>
+        <td>wie viel davon ein Unternehmen abdeckt</td>
+        <td>BubbleTeaBar verkauft 12 000 → 20 % Marktanteil</td>
+      </tr>
+    </table>
+    <p>→ Diese Zahlen helfen zu entscheiden, ob sich ein Einstieg lohnt und wie ehrgeizig man sein kann.</p>
+
+    <h3 class="subtitle">1.8 Produktziele (Was genau wollen wir anbieten?)</h3>
+    <p>Neben den Marktzielen legt man auch Produktziele fest:</p>
+    <ul>
+      <li>Welche Produkte oder Dienstleistungen? → z. B. vegane Burger, glutenfreie Donuts, Modeartikel, Software-Abo</li>
+      <li>Wie soll das Sortiment aussehen?</li>
+    </ul>
+    <table>
+      <tr><th>Sortimentstyp</th><th>Erklärung</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Breit &amp; tief</td>
+        <td>viele Produktgruppen, viele Varianten</td>
+        <td>Coop: Lebensmittel, Kleider, Bücher, mit vielen Sorten</td>
+      </tr>
+      <tr>
+        <td>Schmal &amp; flach</td>
+        <td>wenige Gruppen, wenige Varianten</td>
+        <td>Burrito-Stand mit 3 Sorten</td>
+      </tr>
+    </table>
+    <p>→ abhängig von Zielgruppe, Lager, Saison usw.</p>
+
+    <h3 class="subtitle">1.9 Produktlebenszyklus (Wie sich Produkte im Lauf der Zeit entwickeln)</h3>
+    <p>Kein Produkt bleibt für immer gleich beliebt. Der Produktlebenszyklus zeigt den typischen Verlauf:</p>
+    <table>
+      <tr><th>Phase</th><th>Merkmale</th><th>Beispiel</th></tr>
+      <tr><td>Einführung</td><td>hohe Kosten, wenig Gewinn</td><td>Bio-Proteinriegel wird neu gelauncht</td></tr>
+      <tr><td>Wachstum</td><td>Nachfrage steigt</td><td>Fitness-Influencer posten es</td></tr>
+      <tr><td>Reife</td><td>Umsatz stabil, Konkurrenz gross</td><td>Markt ist voll, Werbung nötig</td></tr>
+      <tr><td>Sättigung</td><td>Verkäufe stagnieren</td><td>kaum neue Kunden, Rabattaktionen</td></tr>
+      <tr><td>Rückgang</td><td>Umsatz sinkt</td><td>wird evtl. vom Markt genommen</td></tr>
+    </table>
+    <p>→ Unternehmen müssen Produkte weiterentwickeln oder ersetzen, wenn sie in die Sättigungsphase kommen.</p>
+
+    <h3 class="subtitle">1.10 Beispiel: Streetwear-Label in Basel</h3>
+    <p>Das Start-up „FlexFit“ bringt coole, nachhaltige Caps raus:</p>
+    <ul>
+      <li>Einführung: Launch-Party in Basel</li>
+      <li>Wachstum: Auftritte an Urban Fashion Events</li>
+      <li>Reife: Konkurrenz durch grosse Marken steigt</li>
+      <li>Sättigung: Käufe stagnieren</li>
+      <li>Rückgang: Neue Kollektion nötig oder Exit</li>
+    </ul>
+
+    <h3 class="subtitle">1.11 Fazit</h3>
+    <table>
+      <tr><th>Bereich</th><th>Bedeutung</th></tr>
+      <tr><td>Marketing</td><td>zeigt, wie man Produkte richtig plant & verkauft</td></tr>
+      <tr><td>Marktanalyse</td><td>hilft, Trends & Kund:innen zu verstehen</td></tr>
+      <tr><td>Marktziele</td><td>definieren, wen man ansprechen will</td></tr>
+      <tr><td>Produktziele</td><td>bestimmen, was und wie viel produziert wird</td></tr>
+      <tr><td>Produktlebenszyklus</td><td>zeigt, dass kein Produkt ewig aktuell bleibt</td></tr>
+    </table>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zu Marketing.</p>
+  </div>
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Marketing bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
