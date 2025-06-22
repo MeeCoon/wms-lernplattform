@@ -27,7 +27,6 @@
       margin: 0;
       font-size: 2.5rem;
     }
-    /* Zurück-Button */
     .back-btn {
       position: absolute;
       left: 20px;
@@ -65,17 +64,31 @@
       z-index: 999;
     }
     .sidebar.show { right: 0; }
-    .sidebar h2 { font-size: 1.5rem; margin-bottom: 20px; color: #333; }
-    .fach-liste { list-style: none; padding: 0; }
-    .fach-liste > li { margin-bottom: 10px; }
-    .fach-liste summary { cursor: pointer; font-weight: bold; margin-bottom: 5px; }
-    .fach-liste a {
-      display: block; text-decoration: none; color: #444;
-      margin-left: 10px; margin-bottom: 4px;
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #333;
     }
     .suche-im-menu {
-      width: 100%; padding: 10px; margin-bottom: 20px;
-      border-radius: 20px; border: 1px solid #ccc;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 10px; }
+    .fach-liste summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block;
+      text-decoration: none;
+      color: #444;
+      margin-left: 10px;
+      margin-bottom: 4px;
     }
     .reiter-container {
       position: relative;
@@ -84,48 +97,67 @@
       padding: 40px 0 10px;
     }
     .reiter {
-      padding: 15px 25px; margin: 0 15px;
-      background: none; border: none;
-      font-size: 1.2rem; color: #777;
-      cursor: pointer; outline: none;
+      padding: 15px 25px;
+      margin: 0 15px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #777;
+      cursor: pointer;
+      outline: none;
       transition: color 0.3s;
     }
     .reiter:hover { color: #c0392b; }
     .reiter.active {
-      color: #c0392b; font-weight: bold;
+      color: #c0392b;
+      font-weight: bold;
     }
     .indicator {
-      position: absolute; bottom: 5px; height: 3px;
+      position: absolute;
+      bottom: 5px;
+      height: 3px;
       background-color: #c0392b;
       transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
     }
     .tab-content {
       display: none;
       max-width: 900px;
       margin: 0 auto;
       padding: 20px;
-      font-size: 1.1rem; line-height: 1.6; color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
     }
     .tab-content.active { display: block; }
-    .tab-content p, .tab-content ul, .tab-content ol {
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol {
       margin-bottom: 20px;
     }
     .section-title {
-      font-size: 1.8rem; font-weight: bold;
-      margin-top: 60px; margin-bottom: 30px;
-      display: block; width: 100%;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 60px;
+      margin-bottom: 30px;
+      display: block;
+      width: 100%;
       border-bottom: 3px solid #c0392b;
       padding-bottom: 5px;
     }
     .subtitle {
-      font-size: 1.4rem; font-weight: bold;
-      margin-top: 40px; margin-bottom: 15px;
-      display: block; width: 100%;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      display: block;
+      width: 100%;
     }
-    ul, ol { padding-left: 20px; }
     code {
-      background-color: #f4f4f4; padding: 2px 6px;
-      border-radius: 4px; font-family: monospace;
+      background-color: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -141,7 +173,6 @@
   <!-- Sidebar-Platzhalter -->
   <div class="sidebar" id="sidebar"></div>
 
-
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
     <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
@@ -150,7 +181,6 @@
   </div>
 
   <div id="theorie" class="tab-content active">
-
     <h2 class="section-title">1. Allgemein</h2>
     <p>Die Menge der ganzen Zahlen, bezeichnet mit dem Symbol ℤ, umfasst alle Zahlen ohne Dezimalstellen: also sowohl positive als auch negative ganze Zahlen sowie die Null.</p>
     <p><strong>ℤ = { ..., -3, -2, -1, 0, 1, 2, 3, ... }</strong></p>
@@ -163,36 +193,29 @@
     </ul>
     <p>Zahlen wie -5, 0 oder 14 sind ganze Zahlen, 3.14 oder -0.5 jedoch nicht.</p>
     <p>Beispiele im Alltag: Temperatur (-4 °C), Kontostände (-20 €), Höhenangaben (–50 m).</p>
-    <!-- 2. Variabeln -->
+
     <h2 class="section-title">2. Variabeln</h2>
     <p>Variablen (z. B. a, b, x, y) ersetzen Zahlen und machen Ausdrücke allgemein.</p>
-    
     <ul>
       <li><strong>Addition:</strong> x + x = 2x – Wichtig: Basis gleich lassen und Koeffizienten addieren.</li>
       <li><strong>Subtraktion:</strong> 2x – x = x – Wichtig: Basis gleich lassen und Koeffizienten subtrahieren.</li>
     </ul>
-    
     <p><strong>Multiplikation von Potenzen:</strong><br>
-    Wenn du zwei Potenzen derselben Basis multiplizierst, addierst du ihre Exponenten:</p>
+      Wenn du zwei Potenzen derselben Basis multiplizierst, addierst du ihre Exponenten:</p>
     <pre><code>
-    x<sup>a</sup> × x<sup>b</sup> = x<sup>a+b</sup>
-    Beispiel: x<sup>2</sup> × x<sup>3</sup> = x<sup>5</sup>
+x<sup>a</sup> × x<sup>b</sup> = x<sup>a+b</sup>
+Beispiel: x<sup>2</sup> × x<sup>3</sup> = x<sup>5</sup>
     </code></pre>
-    
     <p><strong>Division von Potenzen:</strong><br>
-    Beim Teilen zweier Potenzen derselben Basis subtrahierst du die Exponenten:</p>
+      Beim Teilen zweier Potenzen derselben Basis subtrahierst du die Exponenten:</p>
     <pre><code>
-    x<sup>a</sup> ÷ x<sup>b</sup> = x<sup>a−b</sup>
-    Beispiel: x<sup>2</sup> ÷ x = x<sup>1</sup> = x
+x<sup>a</sup> ÷ x<sup>b</sup> = x<sup>a−b</sup>
+Beispiel: x<sup>2</sup> ÷ x = x<sup>1</sup> = x
     </code></pre>
-    
     <p><strong>WICHTIG:</strong> Jede Variable <code>x</code> ohne sichtbaren Exponenten entspricht <code>x<sup>1</sup></code>. Die Basis muss stets identisch sein; zwei verschiedene Variablen (z. B. <code>x</code> und <code>y</code>) lassen sich nicht direkt addieren oder subtrahieren.</p>
-
-    </ul>
 
     <h2 class="section-title">3. Binomische Formeln</h2>
     <p>Binomische Formeln ermöglichen das schnelle Erweitern und Faktorisieren von Ausdrücken der Form (a ± b)² und (a + b)(a - b).</p>
-
     <h3 class="subtitle">3.1 Herleitung von (a + b)²</h3>
     <p>Schreibe (a + b)² als (a + b)(a + b) und verwende FOIL:</p>
     <ul>
@@ -201,50 +224,42 @@
       <li>b·a = ba = ab</li>
       <li>b·b = b²</li>
     </ul>
-    <p>Daher: <code>(a + b)² = a² + ab + ab + b² = a² + 2ab + b²</code>.</p>
-
+    <p>Daher: <code>(a + b)² = a² + 2ab + b²</code>.</p>
     <h3 class="subtitle">3.2 Herleitung von (a - b)²</h3>
     <p>Analog: (a - b)² = (a - b)(a - b):</p>
     <ul>
       <li>a·a = a²</li>
       <li>a·(-b) = -ab</li>
-      <li>-b·a = -ba = -ab</li>
+      <li>-b·a = -ab</li>
       <li>-b·(-b) = b²</li>
     </ul>
-    <p>Daher: <code>(a - b)² = a² - ab - ab + b² = a² - 2ab + b²</code>.</p>
-
+    <p>Daher: <code>(a - b)² = a² - 2ab + b²</code>.</p>
     <h3 class="subtitle">3.3 Herleitung von (a + b)(a - b)</h3>
     <p>Multipliziere (a + b)(a - b):</p>
     <ul>
       <li>a·a = a²</li>
       <li>a·(-b) = -ab</li>
-      <li>b·a = ba = ab</li>
+      <li>b·a = ab</li>
       <li>b·(-b) = -b²</li>
     </ul>
-    <p>Daher: <code>(a + b)(a - b) = a² - ab + ab - b² = a² - b²</code>.</p>
-
+    <p>Daher: <code>(a + b)(a - b) = a² - b²</code>.</p>
     <h3 class="subtitle">3.4 Beispiele</h3>
     <ul>
       <li><code>(x + 5)² = x² + 10x + 25</code></li>
       <li><code>(x - 3)² = x² - 6x + 9</code></li>
       <li><code>(x + 4)(x - 4) = x² - 16</code></li>
     </ul>
-
     <h3 class="subtitle">3.5 Faktorisieren</h3>
-    <p>Erkenne das Muster:</p>
     <ul>
       <li>a² + 2ab + b² → (a + b)²</li>
       <li>a² - 2ab + b² → (a - b)²</li>
       <li>a² - b² → (a + b)(a - b)</li>
     </ul>
-
     <h3 class="subtitle">3.6 Tipps</h3>
     <ul>
       <li>Achte auf das Vorzeichen des mittleren Terms 2ab.</li>
-      <li>Suche bei Faktorisierung stets nach perfekten Quadraten oder Differenzen.</li>
-      <li>Teste beim Umformen verschiedener a- und b-Werte, ob der Koeffizient passt.</li>
+      <li>Teste mit Zahlen, ob dein Faktor stimmt.</li>
     </ul>
-
   </div>
 
   <div id="aufgaben" class="tab-content">
@@ -255,47 +270,39 @@
     <p>Hier folgt die Übungsprüfung zu Rechnungen in Z.</p>
   </div>
 
-<script>
-  // Sobald die Seite geladen ist, holen wir uns nav.html
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('nav.html')
-      .then(resp => resp.text())
-      .then(html => {
-        document.getElementById('sidebar').innerHTML = html;
-      });
-  });
+  <script>
+    // 1) Sidebar laden
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('nav.html')
+        .then(resp => resp.text())
+        .then(html => {
+          document.getElementById('sidebar').innerHTML = html;
+        });
+    });
 
-<script>
-  // Sobald die Seite geladen ist, holen wir uns nav.html
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('nav.html')
-      .then(resp => resp.text())
-      .then(html => {
-        document.getElementById('sidebar').innerHTML = html;
-      });
-  });
+    // 2) Menü umschalten
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
 
-  // Deine bestehenden Funktionen bleiben unverändert:
-  function toggleMenu() {
-    document.getElementById('sidebar').classList.toggle('show');
-  }
-  function showTab(e, id) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-    const ind = document.querySelector('.indicator'),
-          br  = e.target.getBoundingClientRect(),
-          cr  = e.target.parentElement.getBoundingClientRect();
-    ind.style.left  = (br.left - cr.left) + 'px';
-    ind.style.width = br.width + 'px';
-  }
-  window.addEventListener('load', () => {
-    document.querySelector('.reiter.active').click();
-  });
-</script>
+    // 3) Tabs wechseln
+    function showTab(e, id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br  = e.target.getBoundingClientRect(),
+            cr  = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
 
-
+    // 4) Initialisierung des Indikators
+    window.addEventListener('load', () => {
+      document.querySelector('.reiter.active').click();
+    });
+  </script>
 
 </body>
 </html>
