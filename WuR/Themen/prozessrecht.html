@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prozessrecht – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 { font-size: 1.5rem; margin-bottom: 20px; color: #333; }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none; color: #444;
+      margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative; display: flex;
+      justify-content: center; padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px;
+      height: 3px; background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22; /* grüne Linie */
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Prozessrecht</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen & Systeme</a>
+          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen & Logarithmen</a>
+          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="WuR/Themen/öfentliches_recht.html">Öffentliches Recht</a>
+          <a href="WuR/Themen/grundlagen_des_rechts.html">Prozessrecht</a>
+          <!-- Weitere WuR‐Themen hier verlinken -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Prozessrecht</h2>
+
+    <h3 class="subtitle">1.1 Lernziele (kurz & verständlich)</h3>
+    <p>In diesem Kapitel lernst du:</p>
+    <ul>
+      <li>die drei grossen Prozessarten zu unterscheiden (Zivilprozess, Strafprozess, Verwaltungsverfahren)</li>
+      <li>die Beteiligten in jedem Verfahren zu kennen</li>
+      <li>den Ablauf und den Instanzenweg in jedem Prozess zu erklären</li>
+      <li>typische Beispiele aus dem Alltag richtig zuzuordnen</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Was ist überhaupt ein „Prozess“?</h3>
+    <p>Ein Prozess ist ein Verfahren, bei dem gerichtlich geklärt wird,</p>
+    <ul>
+      <li>→ wer Recht hat oder</li>
+      <li>→ wer schuldig ist oder</li>
+      <li>→ ob eine Entscheidung des Staates korrekt war.</li>
+    </ul>
+    <p>Es gibt drei Hauptarten:</p>
+    <table>
+      <tr><th>Prozessart</th><th>Worum geht es?</th><th>Beispiel</th></tr>
+      <tr><td>Zivilprozess</td><td>Streit zwischen Privatpersonen</td><td>Mietstreit, Schadenersatz</td></tr>
+      <tr><td>Strafprozess</td><td>Straftaten klären und bestrafen</td><td>Diebstahl, Körperverletzung</td></tr>
+      <tr><td>Verwaltungsverfahren</td><td>Streit mit dem Staat wegen Entscheidungen</td><td>Baubewilligung, Steuerveranlagung</td></tr>
+    </table>
+
+    <h2 class="section-title">2. Zivilprozess – Privat gegen Privat</h2>
+    <p>Hier streiten sich zwei gleichgestellte Parteien.</p>
+    <p>Es geht oft um:</p>
+    <ul>
+      <li>Verträge (z. B. Kaufvertrag, Mietvertrag)</li>
+      <li>Familienrecht (z. B. Scheidung)</li>
+      <li>Erbrecht (z. B. Testament anfechten)</li>
+    </ul>
+
+    <h3 class="subtitle">2.1 Beteiligte im Zivilprozess</h3>
+    <table>
+      <tr><th>Rolle</th><th>Aufgabe</th></tr>
+      <tr><td>Kläger</td><td>will etwas einklagen</td></tr>
+      <tr><td>Beklagter</td><td>verteidigt sich</td></tr>
+      <tr><td>Richter</td><td>entscheidet nach den vorhandenen Beweisen</td></tr>
+    </table>
+    <p>➡️ Der Richter darf keine eigenen Beweise suchen, er beurteilt nur, was die Parteien vorlegen.</p>
+
+    <h3 class="subtitle">2.2 Ablauf des Zivilprozesses</h3>
+    <ul>
+      <li>Friedensrichter: Versuch, den Streit durch Vermittlung zu lösen</li>
+      <li>Zivilgericht (Amtsgericht): Erste richterliche Instanz</li>
+      <li>Kantonsgericht (Obergericht): Berufung möglich, falls eine Partei nicht zufrieden ist</li>
+      <li>Bundesgericht: Letzte Instanz</li>
+    </ul>
+
+    <h3 class="subtitle">2.3 Beispiel: Mietstreit in Basel</h3>
+    <p>Sarah klagt gegen ihren Vermieter wegen falscher Nebenkostenabrechnung.</p>
+    <p>Sie muss beweisen, dass die Abrechnung falsch ist.</p>
+    <p>Falls keine Einigung beim Friedensrichter → Weiterzug ans Gericht möglich.</p>
+
+    <h2 class="section-title">3. Strafprozess – Staat gegen Person</h2>
+    <p>Hier geht es darum, Straftaten aufzuklären und zu bestrafen.</p>
+
+    <h3 class="subtitle">3.1 Beteiligte im Strafprozess</h3>
+    <table>
+      <tr><th>Rolle</th><th>Aufgabe</th></tr>
+      <tr><td>Staatsanwalt</td><td>Ankläger im Namen des Staates</td></tr>
+      <tr><td>Angeklagter</td><td>verteidigt sich</td></tr>
+      <tr><td>Geschädigte Partei</td><td>Opfer, z. B. bei Körperverletzung</td></tr>
+      <tr><td>Richter</td><td>entscheidet über Schuld und Strafe</td></tr>
+    </table>
+    <p>➡️ Der Richter sucht aktiv Beweise: Zeugen, Gutachten, Polizeirapporte usw.</p>
+
+    <h3 class="subtitle">3.2 Ablauf des Strafprozesses</h3>
+    <ul>
+      <li>Untersuchungsverfahren: Polizei &amp; Staatsanwaltschaft sammeln Beweise</li>
+      <li>Anklageerhebung: Staatsanwaltschaft reicht Anklage ein</li>
+      <li>Strafgericht: Hauptverhandlung und Urteil</li>
+      <li>Kantonsgericht / Obergericht: Berufung möglich</li>
+      <li>Bundesgericht: Letzte Instanz</li>
+    </ul>
+
+    <h3 class="subtitle">3.3 Beispiel: Ladendiebstahl in Liestal</h3>
+    <p>Polizei fasst eine Person auf frischer Tat.</p>
+    <p>Staatsanwaltschaft erhebt Anklage wegen Diebstahl (StGB).</p>
+    <p>Strafgericht entscheidet über Schuld und Busse oder andere Strafen.</p>
+
+    <h2 class="section-title">4. Verwaltungsverfahren – Bürger:in gegen Staat</h2>
+    <p>Hier geht es um Streitigkeiten zwischen Privatpersonen und Behörden.</p>
+    <p>Typische Fälle:</p>
+    <ul>
+      <li>Ablehnung einer Baubewilligung</li>
+      <li>Steuerveranlagung falsch berechnet</li>
+      <li>Ausweisentzug wegen zu schnellem Fahren</li>
+    </ul>
+
+    <h3 class="subtitle">4.1 Beteiligte im Verwaltungsverfahren</h3>
+    <table>
+      <tr><th>Rolle</th><th>Aufgabe</th></tr>
+      <tr><td>Behördenvertreter</td><td>erlässt Verwaltungsentscheid</td></tr>
+      <tr><td>Rekurrent (Kläger)</td><td>wehrt sich gegen den Entscheid</td></tr>
+      <tr><td>Richter</td><td>überprüft die Rechtmässigkeit</td></tr>
+    </table>
+    <p>➡️ Der Staat muss seinen Entscheid beweisen und begründen.</p>
+
+    <h3 class="subtitle">4.2 Ablauf des Verwaltungsverfahrens</h3>
+    <ul>
+      <li>Entscheid der Verwaltung (z. B. Baubewilligung abgelehnt)</li>
+      <li>Einsprache / Rekurs bei nächsthöherer Behörde</li>
+      <li>Verwaltungsgericht (z. B. Kantonsgericht)</li>
+      <li>Bundesverwaltungsgericht / Bundesgericht als letzte Instanzen</li>
+    </ul>
+
+    <h3 class="subtitle">4.3 Beispiel: Bauprojekt in Muttenz</h3>
+    <p>Gemeinde lehnt Bausantrag von Familie Meier ab.</p>
+    <p>Meier erhebt Rekurs.</p>
+    <p>Falls Ablehnung bleibt → Beschwerde ans Verwaltungsgericht möglich.</p>
+
+    <h2 class="section-title">5. Vergleich: Zivilprozess – Strafprozess – Verwaltungsverfahren</h2>
+    <table>
+      <tr>
+        <th>Kriterium</th><th>Zivilprozess</th><th>Strafprozess</th><th>Verwaltungsverfahren</th>
+      </tr>
+      <tr>
+        <td>Streit zwischen</td><td>Privatpersonen</td><td>Staat und Angeklagtem</td><td>Privatperson und Behörde</td>
+      </tr>
+      <tr>
+        <td>Ziel</td><td>Wer hat Recht?</td><td>Straftäter bestrafen</td><td>Verwaltungsentscheid überprüfen</td>
+      </tr>
+      <tr>
+        <td>Resultat</td><td>Urteil oder Vergleich</td><td>Urteil und Strafe</td><td>Entscheid</td>
+      </tr>
+      <tr>
+        <td>Beweisführung</td><td>Kläger muss beweisen</td><td>Staatsanwalt + Richter suchen Beweise</td><td>Verwaltung muss Entscheid begründen</td>
+      </tr>
+    </table>
+
+    <h3 class="subtitle">🧠 Merke dir</h3>
+    <p>Zivilprozess → Privat gegen Privat</p>
+    <p>Strafprozess → Staat gegen Straftäter</p>
+    <p>Verwaltungsverfahren → Bürger:in gegen Behörde</p>
+
+    <h2 class="section-title">6. Fazit – Prozessrecht einfach erklärt</h2>
+    <table>
+      <tr><th>Thema</th><th>Zusammengefasst</th></tr>
+      <tr><td>Prozessarten</td><td>Zivilprozess, Strafprozess, Verwaltungsverfahren</td></tr>
+      <tr><td>Beteiligte</td><td>Kläger, Beklagter, Staatsanwalt, Behörden, Richter</td></tr>
+      <tr><td>Instanzenweg</td><td>mehrere Stufen möglich – Berufung/Weiterzug erlaubt</td></tr>
+      <tr><td>Beweislast</td><td>im Strafprozess aktiv, im Zivilprozess durch Parteien</td></tr>
+      <tr><td>Einfluss des Staates</td><td>variiert je nach Verfahren</td></tr>
+    </table>
+    <p>➡️ Ohne funktionierendes Prozessrecht gäbe es Chaos, Ungerechtigkeit und Willkür – es schützt sowohl Privatpersonen als auch den Staat selbst.</p>
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zum Prozessrecht.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Prozessrecht bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = btn.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
