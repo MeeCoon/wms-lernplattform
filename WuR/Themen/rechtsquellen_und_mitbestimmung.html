@@ -149,46 +149,8 @@
   </header>
 
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  <div class="sidebar" id="sidebar">
-    <h2>Navigation</h2>
-    <input class="suche-im-menu" placeholder="Suche..." />
-    <ul class="fach-liste">
-      <li>
-        <details>
-          <summary>📐 Mathematik</summary>
-          <a href="index.html">Startseite</a>
-          <a href="rechnungen_in_z.html">Rechnungen in Z</a>
-          <a href="Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
-          <a href="Mathe/Themen/lineare_gleichungen_&_systeme.html">Lineare Gleichungen &amp; Systeme</a>
-          <a href="Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
-          <a href="Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
-          <a href="Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
-          <a href="Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>📊 Finanz- und Rechnungswesen</summary>
-          <a href="FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
-          <a href="FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
-          <a href="FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
-          <a href="FRW/Themen/bankgeschaefte.html">Bankgeschäfte</a>
-          <a href="FRW/Themen/fremde_waehrungen.html">Fremde Währungen</a>
-          <a href="FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
-          <a href="FRW/Themen/mwst.html">Mehrwertsteuer</a>
-          <a href="FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
-        </details>
-      </li>
-      <li>
-        <details open>
-          <summary>⚖️ Wirtschaft und Recht</summary>
-          <a href="WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
-          <a href="WuR/Themen/vertragliche_regeln.html">Vertragliche Regeln</a>
-          <a href="WuR/Themen/rechtsquellen_und_mitbestimmung.html">Rechtsquellen und Mitbestimmung</a>
-        </details>
-      </li>
-    </ul>
-  </div>
+   <div class="sidebar" id="sidebar"></div>
+
 
   <div class="reiter-container">
     <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
@@ -315,30 +277,8 @@
     <p>Hier wird eine Übungsprüfung zum Thema Rechtsquellen und Mitbestimmung bereitgestellt.</p>
   </div>
 
-  <script>
-    function showTab(e, tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const ind = document.querySelector('.indicator'),
-            br = e.target.getBoundingClientRect(),
-            cr = e.target.parentElement.getBoundingClientRect();
-      ind.style.left  = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    }
-    function toggleMenu() {
-      document.getElementById('sidebar').classList.toggle('show');
-    }
-    window.addEventListener('load', () => {
-      const btn = document.querySelector('.reiter.active'),
-            ind = document.querySelector('.indicator'),
-            br = btn.getBoundingClientRect(),
-            cr = btn.parentElement.getBoundingClientRect();
-      ind.style.left  = (br.left - cr.left) + 'px';
-      ind.style.width = br.width + 'px';
-    });
-  </script>
+  <script src="https://meecoon.github.io/wms-lernplattform/nav.js"></script>
+
 
 </body>
 </html>
