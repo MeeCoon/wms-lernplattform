@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Umsetzung unternehmerischer Ideen – WMS-Lernplattform</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+    }
+    header {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      background-color: #228B22; /* grün für WuR */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    .back-btn {
+      position: absolute;
+      left: 20px; top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .back-btn:hover { opacity: 0.8; }
+
+    .menu-btn {
+      position: fixed;
+      top: 20px; right: 20px;
+      font-size: 28px;
+      background: none; color: white;
+      border: none; cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 80px; right: -300px;
+      width: 250px; height: 100%;
+      background: white;
+      box-shadow: -3px 0 15px rgba(0,0,0,0.1);
+      padding: 30px 20px;
+      transition: right 0.3s ease;
+      z-index: 999;
+    }
+    .sidebar.show { right: 0; }
+    .sidebar h2 {
+      font-size: 1.5rem; margin-bottom: 20px; color: #333;
+    }
+    .suche-im-menu {
+      width: 100%; padding: 10px; margin-bottom: 20px;
+      border-radius: 20px; border: 1px solid #ccc;
+    }
+    .fach-liste { list-style: none; padding: 0; }
+    .fach-liste > li { margin-bottom: 15px; }
+    .fach-liste summary {
+      cursor: pointer; font-weight: bold; margin-bottom: 5px;
+    }
+    .fach-liste a {
+      display: block; text-decoration: none;
+      color: #444; margin-left: 15px; margin-bottom: 4px;
+    }
+
+    .reiter-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0 10px;
+    }
+    .reiter {
+      padding: 15px 25px; margin: 0 15px;
+      background: none; border: none;
+      font-size: 1.2rem; color: #777;
+      cursor: pointer; outline: none;
+      transition: color 0.3s;
+      z-index: 1;
+    }
+    .reiter:hover { color: #228B22; }
+    .reiter.active {
+      color: #228B22; font-weight: bold;
+    }
+    .indicator {
+      position: absolute; bottom: 5px; height: 3px;
+      background-color: #228B22;
+      transition: left 0.3s ease, width 0.3s ease;
+      pointer-events: none;
+    }
+
+    .tab-content {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 1.1rem; line-height: 1.6;
+      color: #333;
+    }
+    .tab-content.active { display: block; }
+    .tab-content p,
+    .tab-content ul,
+    .tab-content ol,
+    .tab-content table {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem; font-weight: bold;
+      margin-top: 60px; margin-bottom: 30px;
+      border-bottom: 3px solid #228B22;
+      padding-bottom: 5px;
+    }
+    .subtitle {
+      font-size: 1.4rem; font-weight: bold;
+      margin-top: 40px; margin-bottom: 15px;
+      display: block; width: 100%;
+    }
+
+    table {
+      width: 100%; border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 6px; text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://meecoon.github.io/wms-lernplattform/index.html" class="back-btn">Zurück zur Startseite</a>
+    <h1>Umsetzung unternehmerischer Ideen</h1>
+  </header>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Navigation</h2>
+    <input class="suche-im-menu" placeholder="Suche..." />
+    <ul class="fach-liste">
+      <li>
+        <details>
+          <summary>📐 Mathematik</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/rechnungen_in_z.html">Rechnungen in Z</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/rechnungen_in_q.html">Rechnungen in Q</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_gleichungen.html">Lineare Gleichungen &amp; Systeme</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/quadratische_gleichungen.html">Quadratische Gleichungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/potenzen_logarithmen.html">Potenzen &amp; Logarithmen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/nutzenschwelle.html">Nutzenschwelle</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/Mathe/Themen/lineare_optimierung.html">Lineare Optimierung</a>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>📊 Finanz- und Rechnungswesen</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/kaufmännische_buchführung.html">Kaufmännische Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/doppelte_buchführung.html">Doppelte Buchführung</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/rechnungsabschluss.html">Rechnungsabschluss</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/bankgeschäfte.html">Bankgeschäfte</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/fremde_währungen.html">Fremde Währungen</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/warenhandelsbetrieb.html">Buchhaltung des Warenhandelsbetriebs</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/mwst.html">Mehrwertsteuer</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/FRW/Themen/betriebliche_kalkulation.html">Betriebliche Kalkulation</a>
+        </details>
+      </li>
+      <li>
+        <details open>
+          <summary>⚖️ Wirtschaft und Recht</summary>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/grundlagen_des_rechts.html">Grundlagen des Rechts</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/oeffentliches_recht.html">Öffentliches Recht</a>
+          <a href="https://meecoon.github.io/wms-lernplattform/WuR/Themen/umsetzung_unternehmerischer_ideen.html">Umsetzung unternehmerischer Ideen</a>
+          <!-- Weitere WuR-Themen hier -->
+        </details>
+      </li>
+    </ul>
+  </div>
+
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+
+  <!-- Theorie-Tab -->
+  <div id="theorie" class="tab-content active">
+    <h2 class="section-title">1. Umsetzung unternehmerischer Ideen</h2>
+
+    <h3 class="subtitle">1.1 Lernziele</h3>
+    <ul>
+      <li>wie Unternehmen ihre Ziele planen und formulieren</li>
+      <li>was eine Vision, eine Mission und eine Strategie ist</li>
+      <li>wie das Unternehmenskonzept aufgebaut ist</li>
+      <li>was ein Leitbild enthält und warum es wichtig ist</li>
+    </ul>
+
+    <h3 class="subtitle">1.2 Vom Gedanken zur Realität</h3>
+    <p>Am Anfang steht oft eine Idee:</p>
+    <p>„Wir eröffnen eine nachhaltige Streetwear Marke für junge Leute in Basel.“</p>
+    <p>Aber damit aus einer Idee ein funktionierendes Unternehmen wird, braucht es mehr als Motivation – es braucht Struktur, Planung und Richtung. Genau dafür gibt es:</p>
+    <ul>
+      <li>die Vision</li>
+      <li>die Mission</li>
+      <li>die Strategie</li>
+      <li>das Unternehmenskonzept</li>
+      <li>und das Leitbild</li>
+    </ul>
+
+    <h3 class="subtitle">1.3 Vision</h3>
+    <p>Die Vision zeigt, wohin die Reise gehen sollte. Sie ist langfristig, inspirierend und gibt Orientierung.</p>
+    <ul>
+      <li><strong>Was ist es?</strong> Zukunftsbild – der „Nordstern“ der Firma</li>
+      <li><strong>Beispiel:</strong> „Wir machen Basel zur Hauptstadt fairer Mode für Jugendliche.“</li>
+    </ul>
+    <p>→ Eine Vision ist kein Plan, sondern ein Leitgedanke, der alles antreibt.</p>
+
+    <h3 class="subtitle">1.4 Mission</h3>
+    <p>Die Mission beantwortet:</p>
+    <ul>
+      <li>Was machen wir?</li>
+      <li>Für wen?</li>
+      <li>Was ist unser Beitrag?</li>
+    </ul>
+    <p>→ Die Mission macht klar: Was tun wir? Für wen? Wofür stehen wir?</p>
+
+    <h3 class="subtitle">1.5 Strategie</h3>
+    <p>Die Strategie ist der konkrete Weg zwischen Idee und Umsetzung:</p>
+    <ul>
+      <li><strong>Welche Zielgruppe?</strong> Schüler:innen, Studis, junge Erwachsene</li>
+      <li><strong>Wo starten wir?</strong> Online-Shop, Pop-up-Stores in Basel</li>
+      <li><strong>Wie vermarkten wir uns?</strong> Influencer aus dem Raum Basel, TikTok-Kampagne</li>
+      <li><strong>Ziele in 3–5 Jahren?</strong> Break-even in 2 Jahren, Expansionsplan bis Zürich</li>
+    </ul>
+    <p>→ Die Strategie macht das Unternehmen steuerbar und messbar.</p>
+
+    <h3 class="subtitle">1.6 Unternehmenskonzept</h3>
+    <p>Das Konzept teilt die Strategie in drei konkrete Bereiche auf:</p>
+    <table>
+      <tr><th>Bereich</th><th>Inhalt</th><th>Beispiel</th></tr>
+      <tr>
+        <td>Leistung</td><td>Produkte, Dienstleistungen, Kundennutzen</td><td>Hoodies &amp; T-Shirts aus Bio-Baumwolle</td>
+      </tr>
+      <tr>
+        <td>Finanzen</td><td>Kapital, Preise, Gewinnziele</td><td>Startkapital CHF 30’000, Preis CHF 49.–/Stück</td>
+      </tr>
+      <tr>
+        <td>Soziales</td><td>Umgang mit Mitarbeitenden, Umwelt, Gesellschaft</td><td>Lokal produzieren, Inklusion im Team</td>
+      </tr>
+    </table>
+
+    <h3 class="subtitle">1.7 Leitbild</h3>
+    <p>Das Leitbild fasst Vision, Mission, Werte und Grundsätze zusammen – ein Dokument für alle:</p>
+    <ul>
+      <li><strong>Mitarbeitende:</strong> Orientierung</li>
+      <li><strong>Kundschaft:</strong> Vertrauen</li>
+      <li><strong>Öffentlichkeit:</strong> Transparenz</li>
+      <li><strong>Investoren:</strong> Klarheit</li>
+    </ul>
+
+    <h3 class="subtitle">1.8 Beispiel: Der FC Basel und sein Leitbild</h3>
+    <ul>
+      <li><strong>Vision:</strong> Sportlicher Erfolg, Nachwuchsförderung, Identifikation mit der Region</li>
+      <li><strong>Mission:</strong> „Für Basel. Für unsere Farben. Für unsere Zukunft.“</li>
+      <li><strong>Werte:</strong> Leidenschaft, Respekt, Verantwortungsbewusstsein</li>
+    </ul>
+    <p>→ Auch wenn der FCB kein klassisches Unternehmen ist, gilt dasselbe Prinzip: klare Richtung, klare Werte.</p>
+
+    <h3 class="subtitle">1.9 Fazit</h3>
+    <table>
+      <tr><th>Begriff</th><th>Funktion</th></tr>
+      <tr><td>Vision</td><td>Zeigt, wo das Unternehmen hinwill</td></tr>
+      <tr><td>Mission</td><td>Erklärt, was es tut und warum</td></tr>
+      <tr><td>Strategie</td><td>Beschreibt, wie das Ziel erreicht wird</td></tr>
+      <tr><td>Konzept</td><td>Macht Strategie in Leistung, Finanzen, Soziales konkret</td></tr>
+      <tr><td>Leitbild</td><td>Fasst alles verständlich zusammen</td></tr>
+    </table>
+    :contentReference[oaicite:2]{index=2}
+  </div>
+
+  <!-- Aufgaben-Tab -->
+  <div id="aufgaben" class="tab-content">
+    <p>Hier folgen später interaktive Aufgaben zur Umsetzung unternehmerischer Ideen.</p>
+  </div>
+
+  <!-- Übungsprüfung-Tab -->
+  <div id="pruefung" class="tab-content">
+    <p>Hier wird eine Übungsprüfung zum Thema Umsetzung unternehmerischer Ideen bereitgestellt.</p>
+  </div>
+
+  <script>
+    function showTab(e, tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.reiter').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      const ind = document.querySelector('.indicator'),
+            br = e.target.getBoundingClientRect(),
+            cr = e.target.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    }
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+    }
+    window.addEventListener('load', () => {
+      const btn = document.querySelector('.reiter.active'),
+            ind = document.querySelector('.indicator'),
+            br = btn.getBoundingClientRect(),
+            cr = btn.parentElement.getBoundingClientRect();
+      ind.style.left  = (br.left - cr.left) + 'px';
+      ind.style.width = br.width + 'px';
+    });
+  </script>
+
+</body>
+</html>
