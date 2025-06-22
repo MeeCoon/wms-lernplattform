@@ -152,7 +152,13 @@
   <button class="menu-btn" onclick="toggleMenu()">☰</button>
   <div class="sidebar" id="sidebar"></div>
 
-
+  <div class="reiter-container">
+    <button class="reiter active" onclick="showTab(event,'theorie')">Theorie</button>
+    <button class="reiter" onclick="showTab(event,'aufgaben')">Aufgaben</button>
+    <button class="reiter" onclick="showTab(event,'pruefung')">Übungsprüfung</button>
+    <div class="indicator"></div>
+  </div>
+  
   <!-- Theorie-Tab -->
   <div id="theorie" class="tab-content active">
     <h2 class="section-title">1. Grundlagen des Rechts</h2>
